@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Primer commit. Primer Push." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +31,14 @@
       <option name="presentableId" value="Default" />
       <updated>1666134563146</updated>
     </task>
+    <task id="LOCAL-00001" summary="Primer commit. Primer Push.">
+      <created>1666134627932</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666134627932</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -43,5 +51,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Primer commit. Primer Push." />
+    <option name="LAST_COMMIT_MESSAGE" value="Primer commit. Primer Push." />
   </component>
 </project>
