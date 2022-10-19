@@ -1,6 +1,7 @@
 package Modelo;
 
 public class Equipo {
+
     private long codigo;
     private String descripcion;
     private long precioArriendoDia;
