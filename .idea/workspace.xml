@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Espacios entre los textos" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arregalndo clases UIArriendoEquipos y Main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelo/Equipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Equipo.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="rama_angel" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -91,12 +94,12 @@
       <option name="project" value="LOCAL" />
       <updated>1666224144909</updated>
     </task>
-    <task id="LOCAL-00007" summary="Espacios entre los textos">
-      <created>1666225214497</created>
+    <task id="LOCAL-00007" summary="Arregalndo clases UIArriendoEquipos y Main">
+      <created>1666226123645</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1666225214497</updated>
+      <updated>1666226123645</updated>
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
@@ -106,19 +109,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -130,7 +121,7 @@
     <MESSAGE value="Agrega clase Cliente, ControladorArriendoEquipos, Equipo, UIArriendoEquipos. Agrega enum EstadoEquipo. Implementación de arquitectura por capas." />
     <MESSAGE value="Avance clase UIArriendoEquipos" />
     <MESSAGE value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
-    <MESSAGE value="Espacios entre los textos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Espacios entre los textos" />
+    <MESSAGE value="Arregalndo clases UIArriendoEquipos y Main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arregalndo clases UIArriendoEquipos y Main" />
   </component>
 </project>
