@@ -35,7 +35,11 @@ public class ControladorArriendoEquipos {
             ClientesArr[i][1] = cliente.getNombre();
             ClientesArr[i][2] = cliente.getDireccion();
             ClientesArr[i][3] = cliente.getTelefono();
-            ClientesArr[i][4] = String.valueOf(cliente.isActivo());
+            if(clientes.get(i).isActivo()) {
+                ClientesArr[i][4] = "Activo";
+            }else{
+                ClientesArr[i][4] = "Inactivo";
+            }
         }
         return ClientesArr;
     }
