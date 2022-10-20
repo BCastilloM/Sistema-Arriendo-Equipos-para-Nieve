@@ -79,10 +79,33 @@ public class UIArriendoEquipos {
     }
 
     public void listaClientes() {
+        String[][] listadoClientes = ControladorArriendoEquipos.getInstance().listaClientes();
+        if(listadoClientes.length > 0){
+            System.out.println("LISTADO DE CLIENTES");
+            System.out.println("-------------------\n");
+            System.out.printf("%-15s%-20s%-20s%-16s%-8s%n", "Rut", "Nombre", "Direccion",  "Telefono", "Estado");
+            for(String[] columna : listadoClientes){
+                System.out.printf("%-15s%-20s%-20s%-16s%-8s%n", columna[0], columna[1], columna[2], columna[3], columna[4]);
+            }
+
+        }else{
+            System.out.println("No se han registrado clientes");
+        }
+
 
     }
 
     public void listaEquipos() {
-
+        String[][] datosEquipos = ControladorArriendoEquipos.getInstance().listaEquipos();
+        if(datosEquipos.length > 0) {
+            System.out.println("LISTADO DE EQUIPOS");
+            System.out.println("------------------");
+            System.out.printf("%-15s%-55s%-20s%-15s%n", "Código", "Descripción", "Precio", "Estado");
+            for(String[] columna : datosEquipos) {
+                System.out.printf("%-15s%-55s%-20s%-15s%n", columna[0], columna[1], columna[2], columna[3]);
+            }
+        }else {
+            System.out.println("No se han registrado equipos");
+        }
     }
 }
