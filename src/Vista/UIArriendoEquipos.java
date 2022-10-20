@@ -4,14 +4,19 @@ import Controlador.ControladorArriendoEquipos;
 
 import java.util.Scanner;
 public class UIArriendoEquipos {
+    // Atributos
     private static UIArriendoEquipos instance=null;
     private final Scanner scan;
 
+    //Constructor
     private UIArriendoEquipos() {
         scan = new Scanner(System.in);
         scan.useDelimiter("[\t|\r\n]+");
     }
 
+    // Métodos
+
+    // Crea objeto de tipo UIArriendoEquipos
     public static UIArriendoEquipos getInstance() {
         if(instance == null) {
             instance = new UIArriendoEquipos();
@@ -20,7 +25,7 @@ public class UIArriendoEquipos {
     }
 
     public void menu() {
-        int opcion=0;
+        int opcion;
 
         do{
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
