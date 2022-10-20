@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 public class ControladorArriendoEquipos {
     private static ControladorArriendoEquipos instance = null;
-    private final ArrayList<Cliente> clientes = new ArrayList();
-    private final ArrayList<Equipo> equipos = new ArrayList();
+    private final ArrayList<Cliente> clientes;
+    private final ArrayList<Equipo> equipos;
     private ControladorArriendoEquipos(){
-
+        clientes = new ArrayList();
+        equipos = new ArrayList();
     }
     public static ControladorArriendoEquipos getInstance(){
 
