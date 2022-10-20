@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.ControladorArriendoEquipos;
+
 import java.util.Scanner;
 public class UIArriendoEquipos {
     private UIArriendoEquipos instance=null;
@@ -43,11 +45,37 @@ public class UIArriendoEquipos {
     }
 
     public void creaCliente() {
+        String rut, nombre, direccion, telefono;
 
+        System.out.println("Ingrese su Rut");
+        rut = scan.next();
+
+        System.out.println("Ingrese su nombre");
+        nombre = scan.next();
+
+        System.out.println("Ingrese su domicilio");
+        direccion = scan.next();
+
+        System.out.println("Ingrese su número de teléfono");
+        telefono = scan.next();
+
+        ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
     }
 
     public void creaEquipo() {
+        long codigo, precioArriendoDia;
+        String descripcion;
 
+        System.out.println("Ingrese el código");
+        codigo = scan.nextLong();
+
+        System.out.println("Ingrese la descripción");
+        descripcion = scan.next();
+
+        System.out.println("Ingrese el precio de arriendo por día");
+        precioArriendoDia = scan.nextLong();
+
+        ControladorArriendoEquipos.getInstance().creaEquipo(codigo, descripcion, precioArriendoDia);
     }
 
     public void listaClientes() {

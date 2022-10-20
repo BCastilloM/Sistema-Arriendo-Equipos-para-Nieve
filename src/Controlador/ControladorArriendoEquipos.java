@@ -15,7 +15,7 @@ public class ControladorArriendoEquipos {
     public void creaCliente(String rut, String nom, String dir, String tel){
 
     }
-    public void creaEquipo(String cod, String desc, long precio){
+    public void creaEquipo(long cod, String desc, long precio){
 
     }
     public String[][] listaClientes(){
