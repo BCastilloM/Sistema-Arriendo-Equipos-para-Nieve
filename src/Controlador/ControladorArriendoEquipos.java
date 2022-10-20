@@ -28,12 +28,28 @@ public class ControladorArriendoEquipos {
         equipos.add(new Equipo(cod, desc, precio));
     }
     public String[][] listaClientes(){
-
-        return   ;
+        String[][] ClientesArr = new String[clientes.size()][5];
+        int i = 0;
+        for (Cliente cliente : clientes){
+            ClientesArr[i][0] = cliente.getRut();
+            ClientesArr[i][1] = cliente.getNombre();
+            ClientesArr[i][2] = cliente.getDireccion();
+            ClientesArr[i][3] = cliente.getTelefono();
+            ClientesArr[i][4] = String.valueOf(cliente.isActivo());
+        }
+        return ClientesArr;
     }
-    public String[][] listaEquipos(){
 
-        return   ;
+    public String[][] listaEquipos(){
+        String[][] EquiposArr = new String[equipos.size()][4];
+        int i = 0;
+        for (Equipo equipo : equipos){
+            EquiposArr[i][0] = String.valueOf(equipo.getCodigo());
+            EquiposArr[i][1] = equipo.getDescripcion();
+            EquiposArr[i][2] = String.valueOf(equipo.getPrecioArriendoDia());
+            EquiposArr[i][3] = String.valueOf(equipo.getEstado());
+        }
+        return EquiposArr;
     }
 
 }
