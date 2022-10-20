@@ -40,6 +40,7 @@ public class ControladorArriendoEquipos {
             }else{
                 ClientesArr[i][4] = "Inactivo";
             }
+            i++;
         }
         return ClientesArr;
     }
@@ -52,6 +53,7 @@ public class ControladorArriendoEquipos {
             EquiposArr[i][1] = equipo.getDescripcion();
             EquiposArr[i][2] = String.valueOf(equipo.getPrecioArriendoDia());
             EquiposArr[i][3] = String.valueOf(equipo.getEstado());
+            i++;
         }
         return EquiposArr;
     }
