@@ -6,7 +6,7 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String telefono;
-    private boolean activo = false;
+    private boolean activo = true;
 
     // Constructor
     public Cliente(String rut, String nombre, String direccion, String telefono) {
