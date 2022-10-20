@@ -32,19 +32,18 @@ public class Cliente {
     public String getTelefono() {
         return telefono;
     }
-
-    /*
-        ***POR HACER***
     public boolean isActivo() {
         return activo;
     }
 
+
     public void setActivo(boolean activo) {
-        this.activo = activo;
+        this.activo = true;
     }
 
-    public void setInactivo() {
-
+    public void setInactivo(boolean inactivo) {
+        this.activo = false;
     }
-    */
+
+
 }
