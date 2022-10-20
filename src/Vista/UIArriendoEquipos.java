@@ -105,7 +105,7 @@ public class UIArriendoEquipos {
         if(datosEquipos.length > 0) {
             System.out.println("LISTADO DE EQUIPOS");
             System.out.println("------------------");
-            System.out.printf("%-15s%-55s%-20s%-15s%n", "Código", "Descripción", "Precio", "Estado");
+            System.out.printf("%-15s%-50s%-20s%-15s%n", "Código", "Descripción", "Precio", "Estado");
             for(String[] columna : datosEquipos) {
                 System.out.printf("%-15s%-50s%-20s%-15s%n", columna[0], columna[1], columna[2], columna[3]);
             }
