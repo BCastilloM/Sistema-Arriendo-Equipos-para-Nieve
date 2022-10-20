@@ -23,7 +23,7 @@ public class UIArriendoEquipos {
         int opcion=0;
 
         do{
-            System.out.println("******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE ******");
+            System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE ******");
             System.out.println("*** MENÚ DE OPCIONES ***");
             System.out.println("1.- Crea un nuevo cliente");
             System.out.println("2.- Crea un nuevo equipo");
@@ -47,7 +47,7 @@ public class UIArriendoEquipos {
     public void creaCliente() {
         String rut, nombre, direccion, telefono;
 
-        System.out.println("Ingrese su Rut");
+        System.out.println("\nIngrese su Rut");
         rut = scan.next();
 
         System.out.println("Ingrese su nombre");
@@ -66,7 +66,7 @@ public class UIArriendoEquipos {
         long codigo, precioArriendoDia;
         String descripcion;
 
-        System.out.println("Ingrese el código");
+        System.out.println("\nIngrese el código");
         codigo = scan.nextLong();
 
         System.out.println("Ingrese la descripción");
