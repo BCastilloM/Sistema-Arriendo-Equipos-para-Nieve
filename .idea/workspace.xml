@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Avance clase UIArriendoEquipos">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
-    </list>
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666146803767</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos">
+      <created>1666224144909</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666224144909</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +110,7 @@
     <MESSAGE value="cambios." />
     <MESSAGE value="Agrega clase Cliente, ControladorArriendoEquipos, Equipo, UIArriendoEquipos. Agrega enum EstadoEquipo. Implementación de arquitectura por capas." />
     <MESSAGE value="Avance clase UIArriendoEquipos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Avance clase UIArriendoEquipos" />
+    <MESSAGE value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
   </component>
 </project>

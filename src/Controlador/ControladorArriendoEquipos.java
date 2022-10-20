@@ -1,7 +1,14 @@
 package Controlador;
 
+import Modelo.Cliente;
+import Modelo.Equipo;
+
+import java.util.ArrayList;
+
 public class ControladorArriendoEquipos {
     private static ControladorArriendoEquipos instance = null;
+    private final ArrayList<Cliente> clientes = new ArrayList();
+    private final ArrayList<Equipo> equipos = new ArrayList();
     private ControladorArriendoEquipos(){
 
     }
@@ -13,10 +20,11 @@ public class ControladorArriendoEquipos {
         return instance;
     }
     public void creaCliente(String rut, String nom, String dir, String tel){
+        clientes.add(new Cliente(rut, nom, dir, tel));
 
     }
     public void creaEquipo(long cod, String desc, long precio){
-
+        equipos.add(new Equipo(cod, desc, precio));
     }
     public String[][] listaClientes(){
 
