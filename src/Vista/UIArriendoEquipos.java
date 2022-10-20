@@ -23,7 +23,7 @@ public class UIArriendoEquipos {
         int opcion=0;
 
         do{
-            System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE ******");
+            System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
             System.out.println("*** MENÚ DE OPCIONES ***");
             System.out.println("1.- Crea un nuevo cliente");
             System.out.println("2.- Crea un nuevo equipo");
