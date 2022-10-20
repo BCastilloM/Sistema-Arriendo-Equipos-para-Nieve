@@ -4,7 +4,7 @@ import Controlador.ControladorArriendoEquipos;
 
 import java.util.Scanner;
 public class UIArriendoEquipos {
-    private UIArriendoEquipos instance=null;
+    private static UIArriendoEquipos instance=null;
     private final Scanner scan;
 
     private UIArriendoEquipos() {
@@ -12,7 +12,7 @@ public class UIArriendoEquipos {
         scan.useDelimiter("[\t|\r\n]+");
     }
 
-    public UIArriendoEquipos getInstance() {
+    public static UIArriendoEquipos getInstance() {
         if(instance == null) {
             instance = new UIArriendoEquipos();
         }
