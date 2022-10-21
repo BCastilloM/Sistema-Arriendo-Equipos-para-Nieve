@@ -52,16 +52,18 @@ public class UIArriendoEquipos {
     public void creaCliente() {
         String rut, nombre, direccion, telefono;
 
-        System.out.println("\nIngrese su Rut");
+        System.out.println("Creando un nuevo cliente...");
+
+        System.out.print("\nRut: ");
         rut = scan.next();
 
-        System.out.println("Ingrese su nombre");
+        System.out.print("\nNombre: ");
         nombre = scan.next();
 
-        System.out.println("Ingrese su domicilio");
+        System.out.print("\nDomicilio: ");
         direccion = scan.next();
 
-        System.out.println("Ingrese su número de teléfono");
+        System.out.print("\nTeléfono: ");
         telefono = scan.next();
 
         ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
@@ -71,13 +73,15 @@ public class UIArriendoEquipos {
         long codigo, precioArriendoDia;
         String descripcion;
 
-        System.out.println("\nIngrese el código");
+        System.out.println("Creando un nuevo equipo...");
+
+        System.out.print("\nCódigo: ");
         codigo = scan.nextLong();
 
-        System.out.println("Ingrese la descripción");
+        System.out.print("\nDescripción: ");
         descripcion = scan.next();
 
-        System.out.println("Ingrese el precio de arriendo por día");
+        System.out.print("\nPrecio de arriendo por día: ");
         precioArriendoDia = scan.nextLong();
 
         ControladorArriendoEquipos.getInstance().creaEquipo(codigo, descripcion, precioArriendoDia);
@@ -107,7 +111,7 @@ public class UIArriendoEquipos {
             System.out.println("------------------");
             System.out.printf("%-15s%-50s%-20s%-15s%n", "Código", "Descripción", "Precio", "Estado");
             for(String[] columna : datosEquipos) {
-                System.out.printf("%-15s%-50s%-20s%-15s%n", columna[0], columna[1], columna[2], columna[3]);
+                System.out.printf("%-15s%-50s%,-20d%-15s%n", columna[0], columna[1], Long.parseLong(columna[2]), columna[3]);
             }
         }else {
             System.out.println("No se han registrado equipos");
