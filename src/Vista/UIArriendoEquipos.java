@@ -1,3 +1,9 @@
+/*
+ *  Autores:
+ *  Benjamín Antonio Castillo Molina
+ *  Felipe Alonso Abello Varela
+ */
+
 package Vista;
 
 import Controlador.ControladorArriendoEquipos;

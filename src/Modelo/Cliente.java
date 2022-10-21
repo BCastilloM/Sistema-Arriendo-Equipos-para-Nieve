@@ -1,3 +1,9 @@
+/*
+ *  Autores:
+ *  Benjamín Antonio Castillo Molina
+ *  Ángel Tomás Montecino Flores
+ */
+
 package Modelo;
 
 public class Cliente {

@@ -1,3 +1,8 @@
+/*
+ *  Autores:
+ *  Ángel Tomás Montecino Flores
+ */
+
 package Modelo;
 
 public class Equipo {
