@@ -6,6 +6,8 @@
 
 package Modelo;
 
+import java.util.ArrayList;
+
 public class Cliente {
     // Atributos
     private String rut;
@@ -14,12 +16,14 @@ public class Cliente {
     private String telefono;
     private boolean activo = true;
 
+    private final ArrayList<Arriendo>arriendos;
     // Constructor
     public Cliente(String rut, String nombre, String direccion, String telefono) {
         this.rut = rut;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        arriendos=new ArrayList<Arriendo>();
     }
 
     // Métodos
@@ -49,6 +53,23 @@ public class Cliente {
 
     public void setInactivo(boolean inactivo) {
         this.activo = false;
+
+    }
+    /*
+    public void addArriendo(Arriendo arriendo){
+        if(!Arriendo.contains(arriendo)){
+        Arriendo.add(arriendo);
+        }
+    }
+
+     */
+    public Arriendo[] getArriendosPorDevolver() {
+        for (Arriendo arriendo: arriendos) {
+            if (arriendo.getEstado().equals(EstadoArriendo.ENTREGADO)) {
+                arriendos.add(arriendo);
+            }
+        }
+        return arriendos.toArray(new Arriendo[0]);
     }
 
 
