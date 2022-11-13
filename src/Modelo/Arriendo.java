@@ -1,17 +1,18 @@
 package Modelo;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Arriendo {
     private long codigo;
-    private Date fechaInicio;
-    private Date fechaDevolucion;
+    private LocalDate fechaInicio;
+    private LocalDate fechaDevolucion;
     private EstadoArriendo estado = EstadoArriendo.INICIADO;
     private Cliente cliente;
     private final ArrayList<DetalleArriendo> detalleArriendos;
 
-    public Arriendo(long codigo, Date fechaInicio, Cliente cliente) {
+    public Arriendo(long codigo, LocalDate fechaInicio, Cliente cliente) {
         this.codigo = codigo;
         this.fechaInicio = fechaInicio;
         this.cliente = cliente;
@@ -22,11 +23,11 @@ public class Arriendo {
         return codigo;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public Date getFechaDevolucion() {
+    public LocalDate getFechaDevolucion() {
         return fechaDevolucion;
     }
 
@@ -34,7 +35,7 @@ public class Arriendo {
         return estado;
     }
 
-    public void setFechaDevolucion(Date fechaDevolucion) {
+    public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
@@ -42,30 +43,53 @@ public class Arriendo {
         this.estado = estado;
     }
 
-
     public void addDetalleArriendo(Equipo equipo) {
         detalleArriendos.add(new DetalleArriendo(equipo.getPrecioArriendoDia(), equipo, this));
 
     }
-    /*
+
     public int getNumeroDiasArriendo() {
         if(estado.equals(EstadoArriendo.DEVUELTO)) {
-            return ;
+            Period period = Period.between(fechaInicio, fechaDevolucion);
+            if(period.getDays() == 0) {
+                return 1;
+            }else {
+                return period.getDays();
+            }
         }
         return 0;
     }
 
+    /*
     public long getMontoTotal() {
-
+        if(estado.equals(EstadoArriendo.DEVUELTO)) {
+            return getNumeroDiasArriendo() * //getPrecioAplicado
+        }
+        return ; //getPrecioAplicado
+    }
+    */
+    public String[][] getDetallesToString() {
+        String[][] detallesArr = new String[detalleArriendos.size()][3];
+        int i=0;
+        if(estado.equals(EstadoArriendo.DEVUELTO) || estado.equals(EstadoArriendo.ENTREGADO)) {
+            for (DetalleArriendo detArriendo: detalleArriendos) {
+                detallesArr[i][0] = String.valueOf(codigo);
+                detallesArr[i][1] = detArriendo.getEquipo().getDescripcion();
+                detallesArr[i][2] = String.valueOf(detArriendo.getPrecioAplicado());
+                i++;
+            }
+            return detallesArr;
+        }
+        return detallesArr;
     }
 
     public Cliente getCliente() {
         return cliente;
     }
-
+    /*
     public Equipo[] getEquipo() {
 
     }
-
      */
+
 }
