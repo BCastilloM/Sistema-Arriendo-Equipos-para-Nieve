@@ -45,7 +45,6 @@ public class Arriendo {
 
     public void addDetalleArriendo(Equipo equipo) {
         detalleArriendos.add(new DetalleArriendo(equipo.getPrecioArriendoDia(), equipo, this));
-
     }
 
     public int getNumeroDiasArriendo() {
@@ -60,14 +59,15 @@ public class Arriendo {
         return 0;
     }
 
-    /*
+    // ***Revisar***
     public long getMontoTotal() {
+        int i=detalleArriendos.size()-1;
         if(estado.equals(EstadoArriendo.DEVUELTO)) {
-            return getNumeroDiasArriendo() * //getPrecioAplicado
+            return getNumeroDiasArriendo() * detalleArriendos.get(i).getPrecioAplicado();
         }
-        return ; //getPrecioAplicado
+        return detalleArriendos.get(i).getPrecioAplicado();
     }
-    */
+
     public String[][] getDetallesToString() {
         String[][] detallesArr = new String[detalleArriendos.size()][3];
         int i=0;
@@ -86,10 +86,10 @@ public class Arriendo {
     public Cliente getCliente() {
         return cliente;
     }
+
     /*
     public Equipo[] getEquipo() {
-
+        return ;
     }
      */
-
 }
