@@ -59,6 +59,7 @@ public class Arriendo {
         return 0;
     }
 
+
     // ***Revisar***
     public long getMontoTotal() {
         int i=detalleArriendos.size()-1;
