@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arreglando listaEquipos de la clase UIArriendoEquipos.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" afterDir="false" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Agregando clase cliente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelo/Arriendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Arriendo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Cliente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666320396167</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Agregando clase cliente">
+      <created>1668377720051</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1668377720051</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -229,6 +233,7 @@
     <MESSAGE value="Agregando comentarios." />
     <MESSAGE value="Arreglando listaEquipos de la clase UIArriendoEquipos." />
     <MESSAGE value="Agregando autores." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando autores." />
+    <MESSAGE value="Agregando clase cliente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando clase cliente" />
   </component>
 </project>
