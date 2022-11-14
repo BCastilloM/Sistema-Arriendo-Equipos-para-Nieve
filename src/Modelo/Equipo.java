@@ -49,7 +49,7 @@ public class Equipo {
     }
 
     public boolean isArrendado(){
-        int a = (detalleArriendos.size() -1);
-        return detalleArriendos.get(a).getArriendo().getEstado().equals(EstadoArriendo.ENTREGADO);
+        int i = (detalleArriendos.size() -1);
+        return detalleArriendos.get(i).getArriendo().getEstado().equals(EstadoArriendo.ENTREGADO);
     }
 }
