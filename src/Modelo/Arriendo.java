@@ -51,7 +51,7 @@ public class Arriendo {
         if(estado.equals(EstadoArriendo.DEVUELTO)) {
             Period period = Period.between(fechaInicio, fechaDevolucion);
             if(period.getDays() == 0) {
-                return 1;
+                return period.getDays()+1;
             }else {
                 return period.getDays();
             }
@@ -60,14 +60,28 @@ public class Arriendo {
     }
 
 
-    // ***Revisar***
+    /* ***Revisar***
     public long getMontoTotal() {
-        int i=detalleArriendos.size()-1;
-        if(estado.equals(EstadoArriendo.DEVUELTO)) {
-            return getNumeroDiasArriendo() * detalleArriendos.get(i).getPrecioAplicado();
+        long totalPagar=0, totalDia=0;
+        if (estado.equals(EstadoArriendo.DEVUELTO)) {
+            for (DetalleArriendo detArriendo: detalleArriendos) {
+                if(estado.equals(EstadoArriendo.DEVUELTO)) {
+                    totalPagar+= getNumeroDiasArriendo() * detArriendo.getPrecioAplicado();
+                }
+            }
+            return totalPagar;
+        } else if (estado.equals(EstadoArriendo.ENTREGADO)) {
+            for (DetalleArriendo detArriendo: detalleArriendos) {
+                if(estado.equals(EstadoArriendo.ENTREGADO)) {
+                    totalDia+= getNumeroDiasArriendo() * detArriendo.getPrecioAplicado();
+                }
+            }
+            return totalDia;
         }
-        return detalleArriendos.get(i).getPrecioAplicado();
+        return 0;
     }
+
+     */
 
     public String[][] getDetallesToString() {
         String[][] detallesArr = new String[detalleArriendos.size()][3];
@@ -88,9 +102,12 @@ public class Arriendo {
         return cliente;
     }
 
-    /*
     public Equipo[] getEquipo() {
-        return ;
+        ArrayList<Equipo> equipoArriendo = new ArrayList<Equipo>();
+        for (DetalleArriendo detArriendo: detalleArriendos) {
+            equipoArriendo.add(detArriendo.getEquipo());
+        }
+        return equipoArriendo.toArray(new Equipo[0]);
     }
-     */
+
 }
