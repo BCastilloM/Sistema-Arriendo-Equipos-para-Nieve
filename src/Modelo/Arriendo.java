@@ -59,29 +59,19 @@ public class Arriendo {
         return 0;
     }
 
-
-    /* ***Revisar***
     public long getMontoTotal() {
-        long totalPagar=0, totalDia=0;
-        if (estado.equals(EstadoArriendo.DEVUELTO)) {
-            for (DetalleArriendo detArriendo: detalleArriendos) {
-                if(estado.equals(EstadoArriendo.DEVUELTO)) {
-                    totalPagar+= getNumeroDiasArriendo() * detArriendo.getPrecioAplicado();
-                }
-            }
+        long totalPagar=0;
+        if (estado == EstadoArriendo.INICIADO) {
             return totalPagar;
-        } else if (estado.equals(EstadoArriendo.ENTREGADO)) {
-            for (DetalleArriendo detArriendo: detalleArriendos) {
-                if(estado.equals(EstadoArriendo.ENTREGADO)) {
-                    totalDia+= getNumeroDiasArriendo() * detArriendo.getPrecioAplicado();
-                }
-            }
-            return totalDia;
         }
-        return 0;
+        for (DetalleArriendo detArriendo: detalleArriendos) {
+                totalPagar+= detArriendo.getPrecioAplicado();
+        }
+        if (estado == EstadoArriendo.DEVUELTO) {
+            return totalPagar * getNumeroDiasArriendo();
+        }
+        return totalPagar;
     }
-
-     */
 
     public String[][] getDetallesToString() {
         String[][] detallesArr = new String[detalleArriendos.size()][3];

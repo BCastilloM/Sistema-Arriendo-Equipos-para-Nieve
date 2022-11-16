@@ -13,7 +13,7 @@ public class Equipo {
     private String descripcion;
     private long precioArriendoDia;
     private EstadoEquipo estado = EstadoEquipo.OPERATIVO;
-    private ArrayList<DetalleArriendo> detalleArriendos;
+    private final ArrayList<DetalleArriendo> detalleArriendos;
 
     // Constructor
     public Equipo(long codigo, String descripcion, long precioArriendoDia) {
@@ -50,6 +50,6 @@ public class Equipo {
 
     public boolean isArrendado(){
         int i = (detalleArriendos.size() -1);
-        return detalleArriendos.get(i).getArriendo().getEstado().equals(EstadoArriendo.ENTREGADO);
+        return detalleArriendos.get(i).getArriendo().getEstado() == EstadoArriendo.ENTREGADO;
     }
 }

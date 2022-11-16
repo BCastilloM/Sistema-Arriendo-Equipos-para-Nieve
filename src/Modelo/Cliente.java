@@ -57,15 +57,13 @@ public class Cliente {
     }
 
     public void addArriendo(Arriendo arriendo){
-        if(arriendo != null && !arriendos.contains(arriendo)){
         arriendos.add(arriendo);
-        }
     }
 
 
     public Arriendo[] getArriendosPorDevolver() {
         for (Arriendo arriendo: arriendos) {
-            if (arriendo.getEstado().equals(EstadoArriendo.ENTREGADO)) {
+            if (arriendo.getEstado() == EstadoArriendo.ENTREGADO) {
                 arriendos.add(arriendo);
             }
         }
