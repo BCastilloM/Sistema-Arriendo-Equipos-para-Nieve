@@ -38,6 +38,13 @@ public class UIArriendoEquipos {
 
     public void menu() {
         int opcion;
+        try {
+            String opcionStr = scan.next();
+            opcion = Integer.parseInt(opcionStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
 
         do{
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
@@ -244,8 +251,9 @@ public class UIArriendoEquipos {
         String fechaInicio = scan.next();
         System.out.print("\nFecha fin periodo (dd/mm/aaaa): ");
         String fechaFin = scan.next();
-        LocalDate localFechaInicio = LocalDate.parse(fechaInicio.replace("/","-"));
-        LocalDate localFechaFin = LocalDate.parse(fechaFin.replace("/","-"));
+        LocalDate localFechaInicio = LocalDate.parse(fechaInicio);
+        LocalDate localFechaFin = LocalDate.parse(fechaFin);
+
         String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
         System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
         System.out.println("--------------------\n");

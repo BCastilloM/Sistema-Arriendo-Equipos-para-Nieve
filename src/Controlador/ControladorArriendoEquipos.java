@@ -50,36 +50,52 @@ public class ControladorArriendoEquipos {
         equipos.add(new Equipo(cod, desc, precio));
     }
 
-    public String[][] listaClientes() {
-        String[][] ClientesArr = new String[clientes.size()][5];
+    public String[][] listaClientes() { // CAMBIOOS*******************************************************************
+        String[][] ClientesArr = new String[clientes.size()][6];
         int i = 0;
-        for (Cliente cliente : clientes) {
-            ClientesArr[i][0] = cliente.getRut();
-            ClientesArr[i][1] = cliente.getNombre();
-            ClientesArr[i][2] = cliente.getDireccion();
-            ClientesArr[i][3] = cliente.getTelefono();
-            if (clientes.get(i).isActivo()) {
-                ClientesArr[i][4] = "Activo";
-            } else {
-                ClientesArr[i][4] = "Inactivo";
+        if (!clientes.isEmpty()) {
+            for (Cliente cliente : clientes) {
+                ClientesArr[i][0] = cliente.getRut();
+                ClientesArr[i][1] = cliente.getNombre();
+                ClientesArr[i][2] = cliente.getDireccion();
+                ClientesArr[i][3] = cliente.getTelefono();
+                if (cliente.isActivo()) { // cambio*********************************************
+                    ClientesArr[i][4] = "Activo";
+                } else {
+                    ClientesArr[i][4] = "Inactivo";
+                }
+                ClientesArr[i][5] = String.valueOf(cliente.getArriendosPorDevolver().length);
+                i++;
             }
-            i++;
+            return ClientesArr;
         }
-        return ClientesArr;
+        return new String[0][0];
     }
+
 
     public String[][] listaEquipos() {
         String[][] EquiposArr = new String[equipos.size()][4];
         int i = 0;
-        for (Equipo equipo : equipos) {
-            EquiposArr[i][0] = String.valueOf(equipo.getCodigo());
-            EquiposArr[i][1] = equipo.getDescripcion();
-            EquiposArr[i][2] = String.valueOf(equipo.getPrecioArriendoDia());
-            EquiposArr[i][3] = String.valueOf(equipo.getEstado());
-            i++;
+        if (!equipos.isEmpty()) { // CABIO***************************************************************
+            for (Equipo equipo : equipos) {
+                EquiposArr[i][0] = String.valueOf(equipo.getCodigo());
+                EquiposArr[i][1] = equipo.getDescripcion();
+                EquiposArr[i][2] = String.valueOf(equipo.getPrecioArriendoDia());
+                EquiposArr[i][3] = String.valueOf(equipo.getEstado());
+                //CAMBIO***********************************************
+                if (equipo.isArrendado()) {
+                    EquiposArr[i][4] = "Arrendado";
+                } else {
+                    EquiposArr[i][4] = "Disponible";
+                }
+                i++;
+                // HASTA AQUI********************************************
+            }
+            return EquiposArr;
         }
-        return EquiposArr;
+        return new String[0][0];
     }
+
 
     public long creaArriendo(String rut) throws ClienteException {
         long i = 0;

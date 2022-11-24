@@ -44,12 +44,15 @@ public class Equipo {
         this.estado = estado;
     }
 
-    public void addDetalleArriendo(DetalleArriendo detalle){
+    public void addDetalleArriendo(DetalleArriendo detalle) {
         detalleArriendos.add(detalle);
     }
 
-    public boolean isArrendado(){
-        int i = (detalleArriendos.size() -1);
-        return detalleArriendos.get(i).getArriendo().getEstado() == EstadoArriendo.ENTREGADO;
+    public boolean isArrendado() {
+        if (!detalleArriendos.isEmpty()) {
+            return detalleArriendos.get(detalleArriendos.size() - 1).getArriendo().getEstado() == EstadoArriendo.ENTREGADO;
+        }
+        return false;
     }
 }
+

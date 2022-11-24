@@ -53,7 +53,7 @@ public class Arriendo {
             if(period.getDays() == 0) {
                 return period.getDays()+1;
             }else {
-                return period.getDays();
+                return 1;
             }
         }
         return 0;
