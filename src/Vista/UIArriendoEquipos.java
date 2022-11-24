@@ -38,13 +38,7 @@ public class UIArriendoEquipos {
 
     public void menu() {
         int opcion;
-        try {
-            String opcionStr = scan.next();
-            opcion = Integer.parseInt(opcionStr);
-        } catch (NumberFormatException e) {
-            System.out.println("No se ingresó una opcion válida");
-            return;
-        }
+
 
         do{
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
@@ -60,7 +54,13 @@ public class UIArriendoEquipos {
             System.out.println("9. Lista detalles de un arriendo");
             System.out.println("10. Salir");
             System.out.print("\tIngrese opción: ");
-                opcion = scan.nextInt();
+            try {
+                String opcionStr = scan.next();
+                opcion = Integer.parseInt(opcionStr);
+            } catch (NumberFormatException e) {
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
 
             switch (opcion) {
                 case 1 -> creaCliente();
