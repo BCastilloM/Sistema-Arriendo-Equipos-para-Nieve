@@ -7,8 +7,14 @@
 package Vista;
 
 import Controlador.ControladorArriendoEquipos;
+import Excepciones.ArriendoException;
+import Excepciones.ClienteException;
+import Excepciones.EquipoException;
+import Modelo.Cliente;
 import Modelo.EstadoArriendo;
+import Modelo.EstadoEquipo;
 
+import java.util.Arrays;
 import java.util.Scanner;
 public class UIArriendoEquipos {
     // Atributos
@@ -54,7 +60,7 @@ public class UIArriendoEquipos {
                 case 1 -> creaCliente();
                 case 2 -> creaEquipo();
                 case 3 -> arriendaEquipos();
-                case 4 -> devuelveEquipos();
+                //case 4 -> devuelveEquipos();
                 case 5 -> cambiaEstadoCliente();
                 case 6 -> listaClientes();
                 case 7 -> listaEquipos();
@@ -108,70 +114,98 @@ public class UIArriendoEquipos {
         //FALTA VALIDAR RUT
         String pregunta = new String();
         String rutCliente = new String();
-        String nombreCliente = new String();
-        String codigoEquipo = new String();
-        String[][] datosEquipos = ControladorArriendoEquipos.getInstance().listaEquipos();
-        int numeroEquipo = 0;
+        long codigoEquipo;
+        long codigoArriendo;
         int precioTotal = 0;
         System.out.println("Arrendando equipos...");
+        System.out.print("\nRut cliente: ");
+        rutCliente = scan.next();
+        String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
+        try{
+            codigoArriendo = ControladorArriendoEquipos.getInstance().creaArriendo(rutCliente);
+        }catch(ClienteException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+        System.out.print("\nNombre cliente: " + cliente[1]);
         do {
-            System.out.print("\nRut cliente: ");
-            rutCliente = scan.next();
-            System.out.print("\nNombre cliente: ");
-            nombreCliente = scan.next();
             System.out.print("\nCódigo equipo: ");
-            codigoEquipo = scan.next();
-            int i = 0;
-            for(String[] columna : datosEquipos){
-                if(codigoEquipo.equals(columna[0])){
-                    numeroEquipo = i;
-                }else{
-                    i++;
-                }
-            }
-            if(datosEquipos[numeroEquipo][3].equals(EstadoArriendo.ENTREGADO)){
+            codigoEquipo = scan.nextLong();
+            String[] datosEquipo = ControladorArriendoEquipos.getInstance().consultaEquipo(codigoEquipo);
+            if(datosEquipo[3].equals("entregado")){
                 System.out.print("\nEl equipo se encuentra arrendado");
             }else{
-                //Estado del arriendo donde está disponible
-                //ControladorArriendoEquipos.getInstance().agregaEquipoToArriendo(datosArriendo, datosEquipos[numeroEquipo][0]);
-                //Revisar
-                System.out.print("\nSe ha agregado " + datosEquipos[numeroEquipo][1] + " al arriendo");
-                precioTotal+=Integer.parseInt(datosEquipos[numeroEquipo][2]);
+                try{
+                    ControladorArriendoEquipos.getInstance().agregaEquipoToArriendo(codigoArriendo, codigoEquipo);
+                }catch(ArriendoException | EquipoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+                System.out.print("\nSe ha agregado " + datosEquipo[1] + " al arriendo");
+                precioTotal+=Integer.parseInt(datosEquipo[2]);
             }
             System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n)");
             pregunta = scan.next();
-        }while(pregunta=="s");
+        }while(pregunta.equals("s"));
         System.out.print("\nMonto total por día de arriendo: --> $" + precioTotal);
     }
 
-    private void devuelveEquipos() {
+    /*private void devuelveEquipos() {
         String rutCliente;
-        int arriendoADevolver;
-        int estadoEquipo;
+        long arriendoADevolver;
         System.out.println("Devolviendo equipos arrendados...");
         System.out.print("Rut cliente: ");
         rutCliente = scan.next();
-        System.out.print("\nNombre cliente: ");
+        String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
+        String[][] arriendos;
+        try {
+            arriendos = ControladorArriendoEquipos.getInstance().listaArriendosPorDevolver(rutCliente);
+        } catch (ClienteException e) {
+            System.out.println(e.getMessage());
+            return ;
+        }
+        System.out.print("\nNombre cliente: " + cliente[1]);
         System.out.println("");
         System.out.println("Los arriendos por devolver son =>>");
-        System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.",  "Estado", "Rut Cliente", "Monto total");
-        System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "", "", "",  "", rutCliente, "");
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.", "Estado", "Rut Cliente", "Monto total");
+        for (int i = 0; i < arriendos.length; i++) {
+            System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", arriendos[i][0], arriendos[i][1], arriendos[i][2], arriendos[i][3], rutCliente, arriendos[i][6]);
+        }
+
         System.out.print("\n\nCodigo arriendo a devolver: ");
-        arriendoADevolver = scan.nextInt();
+        arriendoADevolver = scan.nextLong();
+        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(arriendoADevolver);
+        int[] estadoEquipo = new int[detalleArriendo.length];
         System.out.println("");
         System.out.print("Ingrese código y estado en que se devuelve cada equipo que se indica >>>");
         //Ocupar un ciclo iterativo basado en la cantidad de equipos que ha arrendado el cliente
-        System.out.print("\n(" + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
-        estadoEquipo = scan.nextInt();
+        int opcion;
+        for(int i = 0; i < detalleArriendo.length; i++){
+        System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
+        opcion = scan.nextInt();
+        switch (opcion){
+            case 1 -> estadoEquipo = estadoEquipo.;
+            case 2 -> ;
+            case 3 ->
+        }
+        }
+        EstadoEquipo[] estadoEquipos = (estadoEquipo).toArray();
+        ControladorArriendoEquipos.getInstance().devuelveEquipos(arriendoADevolver, estadoEquipo);
         System.out.print("\n\n" + "equipo(s) fue(ron) devuelto(s) exitosamente");
-    }
+    }*/
 
     private void cambiaEstadoCliente() {
         String rutCliente;
         System.out.println("Cambiando el estado a un cliente...");
         System.out.print("Rut cliente: ");
         rutCliente = scan.next();
-        //ControladorArriendoEquipos.getInstance().cambiaEstadoCliente(rutCliente);
+        try{
+            ControladorArriendoEquipos.getInstance().cambiaEstadoCliente(rutCliente);
+        }catch(ClienteException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
         System.out.print("\nSe ha cambiado exitosamente el estado del cliente ");
     }
 
@@ -204,17 +238,24 @@ public class UIArriendoEquipos {
         }
     }
 
+    //Hacer
     private void listaArriendos() {
         System.out.print("\nFecha inicio periodo (dd/mm/aaaa): ");
-
+        String fechaInicio = scan.next();
         System.out.print("\nFecha fin periodo (dd/mm/aaaa): ");
-
+        String fechaFin = scan.next();
+        String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
         System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
         System.out.println("--------------------\n");
         System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
-        System.out.printf("%-8s%-15s%-15s%-12s%-15s%12s%n", "", "", "", "", "", "");
+        int i = 0;
+        for(String[] columna : datosArriendos){
+            System.out.printf("%-8s%-15s%-15s%-12s%-15s%12s%n", datosArriendos[i][0], datosArriendos[i][1], datosArriendos[i][2], datosArriendos[i][3], datosArriendos[i][4], datosArriendos[i][6]);
+            i++;
+        }
     }
 
+    //Hacer
     private void listaDetallesArriendo() {
         int codigoArriendo;
         System.out.print("Codigo arriendo: ");
