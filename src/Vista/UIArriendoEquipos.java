@@ -14,6 +14,7 @@ import Modelo.Cliente;
 import Modelo.EstadoArriendo;
 import Modelo.EstadoEquipo;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 public class UIArriendoEquipos {
@@ -149,8 +150,8 @@ public class UIArriendoEquipos {
         }while(pregunta.equals("s"));
         System.out.print("\nMonto total por día de arriendo: --> $" + precioTotal);
     }
-
-    /*private void devuelveEquipos() {
+/*
+    private void devuelveEquipos() {
         String rutCliente;
         long arriendoADevolver;
         System.out.println("Devolviendo equipos arrendados...");
@@ -192,8 +193,8 @@ public class UIArriendoEquipos {
         EstadoEquipo[] estadoEquipos = (estadoEquipo).toArray();
         ControladorArriendoEquipos.getInstance().devuelveEquipos(arriendoADevolver, estadoEquipo);
         System.out.print("\n\n" + "equipo(s) fue(ron) devuelto(s) exitosamente");
-    }*/
-
+    }
+*/
     private void cambiaEstadoCliente() {
         String rutCliente;
         System.out.println("Cambiando el estado a un cliente...");
@@ -238,40 +239,46 @@ public class UIArriendoEquipos {
         }
     }
 
-    //Hacer
     private void listaArriendos() {
         System.out.print("\nFecha inicio periodo (dd/mm/aaaa): ");
         String fechaInicio = scan.next();
         System.out.print("\nFecha fin periodo (dd/mm/aaaa): ");
         String fechaFin = scan.next();
+        LocalDate localFechaInicio = LocalDate.parse(fechaInicio.replace("/","-"));
+        LocalDate localFechaFin = LocalDate.parse(fechaFin.replace("/","-"));
         String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
         System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
         System.out.println("--------------------\n");
         System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
         int i = 0;
         for(String[] columna : datosArriendos){
-            System.out.printf("%-8s%-15s%-15s%-12s%-15s%12s%n", datosArriendos[i][0], datosArriendos[i][1], datosArriendos[i][2], datosArriendos[i][3], datosArriendos[i][4], datosArriendos[i][6]);
+            if(LocalDate.parse(datosArriendos[i][1].replace("/","-")).isAfter(localFechaInicio) && LocalDate.parse(datosArriendos[i][2].replace("/","-")).isBefore(localFechaFin)){
+                System.out.printf("%-8s%-15s%-15s%-12s%-15s%12s%n", datosArriendos[i][0], datosArriendos[i][1], datosArriendos[i][2], datosArriendos[i][3], datosArriendos[i][4], datosArriendos[i][6]);
+            }
             i++;
         }
     }
 
-    //Hacer
     private void listaDetallesArriendo() {
         int codigoArriendo;
         System.out.print("Codigo arriendo: ");
         codigoArriendo = scan.nextInt();
+        String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
+        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
         System.out.print("\n----------------------------------------------------------------");
         System.out.print("\nCodigo: " + codigoArriendo);
-        System.out.print("\nFecha Inicio: ");
-        System.out.print("\nFecha Devolucion: ");
-        System.out.print("\nEstado: ");
-        System.out.print("\nRut cliente: ");
-        System.out.print("\nNombre cliente: ");
-        System.out.print("\nMonto total: $");
+        System.out.print("\nFecha Inicio: " + Arriendo[1]);
+        System.out.print("\nFecha Devolucion: " + Arriendo[2]);
+        System.out.print("\nEstado: " + Arriendo[3]);
+        System.out.print("\nRut cliente: " + Arriendo[4]);
+        System.out.print("\nNombre cliente: " + Arriendo[5]);
+        System.out.print("\nMonto total: $" + Arriendo[6]);
         System.out.print("\n----------------------------------------------------------------");
         System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
         System.out.print("\n----------------------------------------------------------------");
         System.out.printf("%-15s%-25s%-25s%n", "Codigo equipo", "Descripcion equipo", "Precio arriendo por dia");
-        System.out.printf("%-15s%-25s%25s%n", "", "", "");
+        for(int i = 0; i<detalleArriendo.length; i++){
+            System.out.printf("%-15s%-25s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
+        }
     }
 }
