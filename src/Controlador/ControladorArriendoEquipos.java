@@ -13,7 +13,9 @@ import Modelo.*;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControladorArriendoEquipos {
     // Atributos
@@ -78,10 +80,10 @@ public class ControladorArriendoEquipos {
         }
         return EquiposArr;
     }
-    /*
+
     public long creaArriendo(String rut) throws ClienteException {
         long i = 0;
-        Cliente cliente = buscaClientes(rut);
+        Cliente cliente = buscaCliente(rut);
         if (cliente == null) {
             throw new ClienteException("No existe un cliente con el rut dado");
         }
@@ -146,7 +148,7 @@ public class ControladorArriendoEquipos {
         if (arriendo.getEstado() != EstadoArriendo.ENTREGADO) {
             throw new ArriendoException("El arriendo no tiene devolución pendiente");
         }
-      for(Equipo equipo : arriendo.getEquipo()){
+      for(Equipo equipo : arriendo.getEquipo()){ // REVISAR
           bandera = true;
           for(int i = 0; i < equipos.size() && bandera; i++){
               if(equipo.getCodigo() == equipos.get(i).getCodigo()){
@@ -175,7 +177,7 @@ public class ControladorArriendoEquipos {
         Cliente cliente = buscaCliente(rut);
         String[] ClientesArr = new String[6];
         if (cliente == null) {
-            return ClientesArr;
+            return new String[0];
         }
         ClientesArr[0] = cliente.getRut();
         ClientesArr[1] = cliente.getNombre();
@@ -194,7 +196,7 @@ public class ControladorArriendoEquipos {
         Equipo equipo = buscaEquipo(codigo);
         String[] EquiposArr = new String[5];
         if (equipo == null) {
-            return EquiposArr;
+            return new String[0];
         }
         EquiposArr[0] = String.valueOf(equipo.getCodigo());
         EquiposArr[1] = equipo.getDescripcion();
@@ -207,7 +209,103 @@ public class ControladorArriendoEquipos {
         }
         return EquiposArr;
     }
+
+    public String[] consultaArriendo(long codigo) {
+        Arriendo arriendo = buscaArriendo(codigo);
+        if (arriendo != null) {
+            String[] datosArr = new String[7];
+            datosArr[0] = String.valueOf(arriendo.getCodigo());
+            datosArr[1] = String.valueOf(arriendo.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            if(arriendo.getEstado() == EstadoArriendo.DEVUELTO) {
+                datosArr[2] = String.valueOf(arriendo.getFechaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            } else {
+                datosArr[2] = "No devuelto";
+            }
+            datosArr[3] = String.valueOf(arriendo.getEstado()).toLowerCase();
+            datosArr[4] = arriendo.getCliente().getRut();
+            datosArr[5] = arriendo.getCliente().getNombre();
+            datosArr[6] = String.valueOf(arriendo.getMontoTotal());
+        }
+        return new String[0];
+    }
+
+    public String[][] listaArriendos() {
+        if(arriendos.isEmpty()) {
+            String[][] ArriendosArr = new String[arriendos.size()][7];
+            int i = 0;
+            for (Arriendo arriendo: arriendos) {
+                ArriendosArr[i][0] = String.valueOf(arriendo.getCodigo());
+                ArriendosArr[i][1] = String.valueOf(arriendo.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                if(arriendo.getEstado() == EstadoArriendo.DEVUELTO) {
+                    ArriendosArr[i][2] = String.valueOf(arriendo.getFechaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                } else {
+                    ArriendosArr[i][2] = "No devuelto";
+                }
+                ArriendosArr[i][3] = String.valueOf(arriendo.getEstado()).toLowerCase();
+                ArriendosArr[i][4] = arriendo.getCliente().getRut();
+                ArriendosArr[i][5] = arriendo.getCliente().getNombre();
+                ArriendosArr[i][6] = String.valueOf(arriendo.getMontoTotal());
+                i++;
+            }
+            return ArriendosArr;
+        }
+        return new String[0][0];
+    }
+
+    public String[][] listaArriendosPorDevolver(String rut) throws ClienteException {
+        Cliente cliente = buscaCliente(rut);
+        if (cliente == null) {
+            throw new ClienteException("No existe un cliente con el rut dado");
+        } else {
+            ArrayList<Arriendo> arriendosCliente = new ArrayList<Arriendo>(List.of(cliente.getArriendosPorDevolver()));
+            String[][] arrDevolver = new String[arriendosCliente.size()][7];
+            int i=0;
+            for (Arriendo arriendo: arriendosCliente) {
+                arrDevolver[i][0] = String.valueOf(arriendo.getCodigo());
+                arrDevolver[i][1] = String.valueOf(arriendo.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                arrDevolver[i][2] = "No devuelto";
+                arrDevolver[i][3] = String.valueOf(arriendo.getEstado()).toLowerCase();
+                arrDevolver[i][4] = arriendo.getCliente().getRut();
+                arrDevolver[i][5] = arriendo.getCliente().getNombre();
+                arrDevolver[i][6] = String.valueOf(arriendo.getMontoTotal());
+            }
+            return arrDevolver;
+        }
+    }
+
+    public String[][] listaDetallesArriendo(long codArriendo) {
+        Arriendo arriendo = buscaArriendo(codArriendo);
+        if (arriendo != null) {
+            return arriendo.getDetallesToString();
+        }
+        return new String[0][0];
+    }
+
+    private Arriendo buscaArriendo(long codigo) {
+        for (Arriendo arriendo: arriendos) {
+            if (codigo == arriendo.getCodigo()) {
+                return arriendo;
+            }
+        }
+        return null;
+    }
+
+    private Cliente buscaCliente(String rut) {
+        for (Cliente cliente: clientes) {
+            if (rut.equals(cliente.getRut())) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    private Equipo buscaEquipo(long codigo) {
+        for (Equipo equipo: equipos) {
+            if (codigo == equipo.getCodigo()) {
+                return equipo;
+            }
+        }
+        return null;
+    }
 }
 
-     */
-    }

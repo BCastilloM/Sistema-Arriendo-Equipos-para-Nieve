@@ -9,8 +9,6 @@ package Vista;
 import Controlador.ControladorArriendoEquipos;
 import Modelo.EstadoArriendo;
 
-import java.security.spec.RSAOtherPrimeInfo;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 public class UIArriendoEquipos {
     // Atributos
