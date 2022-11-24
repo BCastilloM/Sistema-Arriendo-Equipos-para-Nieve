@@ -10,8 +10,6 @@ import Controlador.ControladorArriendoEquipos;
 import Excepciones.ArriendoException;
 import Excepciones.ClienteException;
 import Excepciones.EquipoException;
-import Modelo.Cliente;
-import Modelo.EstadoArriendo;
 import Modelo.EstadoEquipo;
 
 import java.time.LocalDate;
@@ -112,9 +110,8 @@ public class UIArriendoEquipos {
     }
 
     private void arriendaEquipos() {
-        //FALTA VALIDAR RUT
-        String pregunta = new String();
-        String rutCliente = new String();
+        String pregunta;
+        String rutCliente;
         long codigoEquipo;
         long codigoArriendo;
         int precioTotal = 0;
@@ -169,8 +166,8 @@ public class UIArriendoEquipos {
         System.out.println("");
         System.out.println("Los arriendos por devolver son =>>");
         System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.", "Estado", "Rut Cliente", "Monto total");
-        for (int i = 0; i < arriendos.length; i++) {
-            System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", arriendos[i][0], arriendos[i][1], arriendos[i][2], arriendos[i][3], rutCliente, arriendos[i][6]);
+        for (String[] arriendo : arriendos) {
+            System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", arriendo[0], arriendo[1], arriendo[2], arriendo[3], rutCliente, arriendo[6]);
         }
 
         System.out.print("\n\nCodigo arriendo a devolver: ");
@@ -191,10 +188,10 @@ public class UIArriendoEquipos {
         }
         try{
             ControladorArriendoEquipos.getInstance().devuelveEquipos(arriendoADevolver, estadoEquipo);
-            System.out.print("\n\n" + "equipo(s) fue(ron) devuelto(s) exitosamente");
+            System.out.print("\n\n" + detalleArriendo.length + "equipo(s) fue(ron) devuelto(s) exitosamente");
         }catch (ArriendoException e){
             System.out.println(e.getMessage());
-            return;
+            return ;
         }
     }
 
