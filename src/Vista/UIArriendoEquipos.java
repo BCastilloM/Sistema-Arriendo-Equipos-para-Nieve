@@ -61,7 +61,7 @@ public class UIArriendoEquipos {
                 case 1 -> creaCliente();
                 case 2 -> creaEquipo();
                 case 3 -> arriendaEquipos();
-                //case 4 -> devuelveEquipos();
+                case 4 -> devuelveEquipos();
                 case 5 -> cambiaEstadoCliente();
                 case 6 -> listaClientes();
                 case 7 -> listaEquipos();
@@ -150,7 +150,7 @@ public class UIArriendoEquipos {
         }while(pregunta.equals("s"));
         System.out.print("\nMonto total por día de arriendo: --> $" + precioTotal);
     }
-/*
+
     private void devuelveEquipos() {
         String rutCliente;
         long arriendoADevolver;
@@ -176,25 +176,28 @@ public class UIArriendoEquipos {
         System.out.print("\n\nCodigo arriendo a devolver: ");
         arriendoADevolver = scan.nextLong();
         String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(arriendoADevolver);
-        int[] estadoEquipo = new int[detalleArriendo.length];
+        EstadoEquipo[] estadoEquipo = new EstadoEquipo[detalleArriendo.length];
         System.out.println("");
         System.out.print("Ingrese código y estado en que se devuelve cada equipo que se indica >>>");
-        //Ocupar un ciclo iterativo basado en la cantidad de equipos que ha arrendado el cliente
         int opcion;
         for(int i = 0; i < detalleArriendo.length; i++){
         System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
         opcion = scan.nextInt();
-        switch (opcion){
-            case 1 -> estadoEquipo = estadoEquipo.;
-            case 2 -> ;
-            case 3 ->
+        switch(opcion){
+            case 1 -> estadoEquipo[i] = EstadoEquipo.OPERATIVO;
+            case 2 -> estadoEquipo[i] = EstadoEquipo.EN_REPARACION;
+            case 3 -> estadoEquipo[i] = EstadoEquipo.DADO_DE_BAJA;
+            }
         }
+        try{
+            ControladorArriendoEquipos.getInstance().devuelveEquipos(arriendoADevolver, estadoEquipo);
+            System.out.print("\n\n" + "equipo(s) fue(ron) devuelto(s) exitosamente");
+        }catch (ArriendoException e){
+            System.out.println(e.getMessage());
+            return;
         }
-        EstadoEquipo[] estadoEquipos = (estadoEquipo).toArray();
-        ControladorArriendoEquipos.getInstance().devuelveEquipos(arriendoADevolver, estadoEquipo);
-        System.out.print("\n\n" + "equipo(s) fue(ron) devuelto(s) exitosamente");
     }
-*/
+
     private void cambiaEstadoCliente() {
         String rutCliente;
         System.out.println("Cambiando el estado a un cliente...");
