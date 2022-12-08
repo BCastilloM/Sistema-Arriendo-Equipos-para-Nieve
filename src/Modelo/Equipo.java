@@ -44,8 +44,8 @@ public class Equipo {
         this.estado = estado;
     }
 
-    public void addDetalleArriendo(DetalleArriendo detalle) {
-        detalleArriendos.add(detalle);
+    public void addDetalleArriendo(DetalleArriendo detalleArriendo){
+        detalleArriendos.add(detalleArriendo);
     }
 
     public boolean isArrendado() {

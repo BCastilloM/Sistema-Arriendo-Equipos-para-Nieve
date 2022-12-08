@@ -121,7 +121,7 @@ public class UIArriendoEquipos {
         String rutCliente;
         long codigoEquipo;
         long codigoArriendo;
-        int precioTotal = 0;
+        long precioTotal = 0;
         System.out.println("Arrendando equipos...");
         System.out.print("\nRut cliente: ");
         rutCliente = scan.next();
@@ -147,7 +147,12 @@ public class UIArriendoEquipos {
                     return;
                 }
                 System.out.print("\nSe ha agregado " + datosEquipo[1] + " al arriendo");
-                precioTotal+=Integer.parseInt(datosEquipo[2]);
+                try{
+                    precioTotal+=ControladorArriendoEquipos.getInstance().cierraArriendo(codigoArriendo);
+                }catch(ArriendoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
             }
             System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n)");
             pregunta = scan.next();
