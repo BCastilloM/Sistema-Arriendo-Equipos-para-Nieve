@@ -48,24 +48,24 @@ public class Arriendo {
     }
 
     public int getNumeroDiasArriendo() {
-        if(estado.equals(EstadoArriendo.DEVUELTO)) {
+        if (estado.equals(EstadoArriendo.DEVUELTO)) {
             Period period = Period.between(fechaInicio, fechaDevolucion);
-            if(period.getDays() == 0) {
-                return period.getDays()+1;
-            }else {
+            if (period.getDays() == 0) {
                 return 1;
+            } else {
+                return period.getDays();
             }
         }
         return 0;
     }
 
     public long getMontoTotal() {
-        long totalPagar=0;
+        long totalPagar = 0;
         if (estado == EstadoArriendo.INICIADO) {
             return totalPagar;
         }
-        for (DetalleArriendo detArriendo: detalleArriendos) {
-                totalPagar+= detArriendo.getPrecioAplicado();
+        for (DetalleArriendo detArriendo : detalleArriendos) {
+            totalPagar += detArriendo.getPrecioAplicado();
         }
         if (estado == EstadoArriendo.DEVUELTO) {
             return totalPagar * getNumeroDiasArriendo();
@@ -75,9 +75,9 @@ public class Arriendo {
 
     public String[][] getDetallesToString() {
         String[][] detallesArr = new String[detalleArriendos.size()][3];
-        int i=0;
-        if(estado.equals(EstadoArriendo.DEVUELTO) || estado.equals(EstadoArriendo.ENTREGADO)) {
-            for (DetalleArriendo detArriendo: detalleArriendos) {
+        int i = 0;
+        if (estado.equals(EstadoArriendo.DEVUELTO) || estado.equals(EstadoArriendo.ENTREGADO)) {
+            for (DetalleArriendo detArriendo : detalleArriendos) {
                 detallesArr[i][0] = String.valueOf(codigo);
                 detallesArr[i][1] = detArriendo.getEquipo().getDescripcion();
                 detallesArr[i][2] = String.valueOf(detArriendo.getPrecioAplicado());
@@ -94,7 +94,7 @@ public class Arriendo {
 
     public Equipo[] getEquipo() {
         ArrayList<Equipo> equipoArriendo = new ArrayList<Equipo>();
-        for (DetalleArriendo detArriendo: detalleArriendos) {
+        for (DetalleArriendo detArriendo : detalleArriendos) {
             equipoArriendo.add(detArriendo.getEquipo());
         }
         return equipoArriendo.toArray(new Equipo[0]);

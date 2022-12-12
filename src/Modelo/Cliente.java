@@ -16,14 +16,15 @@ public class Cliente {
     private String telefono;
     private boolean activo = true;
 
-    private final ArrayList<Arriendo>arriendos;
+    private final ArrayList<Arriendo> arriendos;
+
     // Constructor
     public Cliente(String rut, String nombre, String direccion, String telefono) {
         this.rut = rut;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        arriendos=new ArrayList<Arriendo>();
+        arriendos = new ArrayList<Arriendo>();
     }
 
     // Métodos
@@ -42,27 +43,28 @@ public class Cliente {
     public String getTelefono() {
         return telefono;
     }
+
     public boolean isActivo() {
         return activo;
     }
 
 
     public void setActivo(boolean activo) {
-        this.activo = true;
+        this.activo = activo;
     }
 
     public void setInactivo(boolean inactivo) {
-        this.activo = false;
+        this.activo = inactivo;
 
     }
 
-    public void addArriendo(Arriendo arriendo){
+    public void addArriendo(Arriendo arriendo) {
         arriendos.add(arriendo);
     }
 
 
     public Arriendo[] getArriendosPorDevolver() {
-        for (Arriendo arriendo: arriendos) {
+        for (Arriendo arriendo : arriendos) {
             if (arriendo.getEstado() == EstadoArriendo.ENTREGADO) {
                 arriendos.add(arriendo);
             }

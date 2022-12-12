@@ -44,7 +44,7 @@ public class Equipo {
         this.estado = estado;
     }
 
-    public void addDetalleArriendo(DetalleArriendo detalleArriendo){
+    public void addDetalleArriendo(DetalleArriendo detalleArriendo) {
         detalleArriendos.add(detalleArriendo);
     }
 

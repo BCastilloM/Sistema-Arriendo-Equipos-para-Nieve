@@ -10,6 +10,7 @@ public class DetalleArriendo {
         this.equipo = equipo;
         this.arriendo = arriendo;
     }
+
     //REVISAR ERROR DE -1
     public long getPrecioAplicado() {
         return precioAplicado;
