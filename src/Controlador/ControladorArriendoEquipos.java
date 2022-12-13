@@ -104,7 +104,7 @@ public class ControladorArriendoEquipos {
         } else if (!cliente.isActivo()) {
             throw new ClienteException("El cliente está inactivo");
         } else {
-            i = (long) arriendos.lastIndexOf(arriendos);
+            i = arriendos.size() +1;
             arriendos.add(new Arriendo(i, LocalDate.now(), cliente));
             return i;
         }
@@ -240,7 +240,7 @@ public class ControladorArriendoEquipos {
     }
 
     public String[][] listaArriendos() {
-        if (arriendos.isEmpty()) {
+        if (!(arriendos.isEmpty())) {
             String[][] ArriendosArr = new String[arriendos.size()][7];
             int i = 0;
             for (Arriendo arriendo : arriendos) {
