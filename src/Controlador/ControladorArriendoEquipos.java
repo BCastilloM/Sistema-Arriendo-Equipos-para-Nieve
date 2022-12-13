@@ -240,8 +240,10 @@ public class ControladorArriendoEquipos {
             datosArr[4] = arriendo.getCliente().getRut();
             datosArr[5] = arriendo.getCliente().getNombre();
             datosArr[6] = String.valueOf(arriendo.getMontoTotal());
+            return datosArr;
+        }else{
+            return new String[0];
         }
-        return new String[0];
     }
 
     public String[][] listaArriendos() {

@@ -83,7 +83,7 @@ public class UIArriendoEquipos {
     private void creaCliente() {
         String rut, nombre, direccion, telefono;
 
-        System.out.println("Creando un nuevo cliente...");
+        System.out.println("\nCreando un nuevo cliente...");
 
         System.out.print("\nRut: ");
         rut = scan.next();
@@ -104,7 +104,7 @@ public class UIArriendoEquipos {
         long codigo, precioArriendoDia;
         String descripcion;
 
-        System.out.println("Creando un nuevo equipo...");
+        System.out.println("\nCreando un nuevo equipo...");
 
         System.out.print("\nCódigo: ");
         codigo = scan.nextLong();
@@ -122,7 +122,7 @@ public class UIArriendoEquipos {
         String pregunta, rutCliente;
         long codigoEquipo, codigoArriendo, precioTotal;
 
-        System.out.println("Arrendando equipos...");
+        System.out.println("\nArrendando equipos...");
         System.out.print("\nRut cliente: ");
         rutCliente = scan.next();
         String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
@@ -172,7 +172,7 @@ public class UIArriendoEquipos {
         String[][] arriendosDelCliente;
         long codArriendoADevolver;
 
-        System.out.println("Devolviendo equipos arrendados...");
+        System.out.println("\nDevolviendo equipos arrendados...");
         System.out.print("Rut cliente: ");
         rutCliente = scan.next();
         String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
@@ -221,7 +221,7 @@ public class UIArriendoEquipos {
     private void cambiaEstadoCliente() {
         String rutCliente;
 
-        System.out.println("Cambiando el estado a un cliente...");
+        System.out.println("\nCambiando el estado a un cliente...");
         System.out.print("Rut cliente: ");
         rutCliente = scan.next();
 
@@ -296,7 +296,7 @@ public class UIArriendoEquipos {
 
         for (String[] datosArriendo : datosArriendos) {
             if (LocalDate.parse(datosArriendo[1], tf).isAfter(ldFechaInicio) && LocalDate.parse(datosArriendo[1], tf).isBefore(ldFechaFin)) {
-                System.out.printf("%-8s%-15s%-15s%-12s%-15s%12s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
+                System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
             }
         }
     }
@@ -304,7 +304,7 @@ public class UIArriendoEquipos {
     private void listaDetallesArriendo() {
         int codigoArriendo;
 
-        System.out.print("Codigo arriendo: ");
+        System.out.print("\nCodigo arriendo: ");
         codigoArriendo = scan.nextInt();
         String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
 
@@ -321,10 +321,10 @@ public class UIArriendoEquipos {
         String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
 
         System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
-        System.out.print("\n----------------------------------------------------------------");
+        System.out.println("\n----------------------------------------------------------------");
         System.out.printf("%-15s%-25s%-25s%n", "Codigo equipo", "Descripcion equipo", "Precio arriendo por dia");
         for(int i = 0; i<detalleArriendo.length; i++){
-            System.out.printf("%-15s%-25s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
+            System.out.printf("%-15s%-23s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
         }
     }
 }

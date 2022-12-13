@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="ListaArriendos listo">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Inclusión de utilización de algunos métodos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -243,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670941248469</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Inclusión de utilización de algunos métodos">
+      <created>1670949793514</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1670949793514</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,6 +296,7 @@
     <MESSAGE value="Otro pequeño ajuste en &quot;arriendaEquipos&quot;" />
     <MESSAGE value="Mejoras en lectura de codigo en UI (Aun falta reparar 2 metodos y validar)" />
     <MESSAGE value="ListaArriendos listo" />
-    <option name="LAST_COMMIT_MESSAGE" value="ListaArriendos listo" />
+    <MESSAGE value="Inclusión de utilización de algunos métodos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inclusión de utilización de algunos métodos" />
   </component>
 </project>
