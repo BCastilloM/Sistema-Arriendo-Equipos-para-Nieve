@@ -307,7 +307,6 @@ public class UIArriendoEquipos {
         System.out.print("Codigo arriendo: ");
         codigoArriendo = scan.nextInt();
         String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
-        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
 
         System.out.print("\n----------------------------------------------------------------");
         System.out.print("\nCodigo: " + codigoArriendo);
@@ -318,6 +317,8 @@ public class UIArriendoEquipos {
         System.out.print("\nNombre cliente: " + Arriendo[5]);
         System.out.print("\nMonto total: $" + Arriendo[6]);
         System.out.print("\n----------------------------------------------------------------");
+
+        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
 
         System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
         System.out.print("\n----------------------------------------------------------------");

@@ -98,6 +98,7 @@ public class ControladorArriendoEquipos {
 
     public long creaArriendo(String rut) throws ClienteException {
         long i = 0;
+        Arriendo arriendo = null;
         Cliente cliente = buscaCliente(rut);
         if (cliente == null) {
             throw new ClienteException("No existe un cliente con el rut dado");
@@ -105,7 +106,9 @@ public class ControladorArriendoEquipos {
             throw new ClienteException("El cliente está inactivo");
         } else {
             i = arriendos.size() +1;
-            arriendos.add(new Arriendo(i, LocalDate.now(), cliente));
+            arriendo = new Arriendo(i, LocalDate.now(), cliente);
+            arriendos.add(arriendo);
+            cliente.addArriendo(arriendo);
             return i;
         }
     }
@@ -134,6 +137,8 @@ public class ControladorArriendoEquipos {
                     throw new EquipoException("El equipo se encuentra arrendado");
                 } else {
                     arriendo.addDetalleArriendo(equipo);
+                    DetalleArriendo detalleArriendo = new DetalleArriendo(equipo.getPrecioArriendoDia(), equipo, arriendo);
+                    equipo.addDetalleArriendo(detalleArriendo);
                     return equipo.getDescripcion();
                 }
             }

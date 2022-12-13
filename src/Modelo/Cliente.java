@@ -64,12 +64,14 @@ public class Cliente {
 
 
     public Arriendo[] getArriendosPorDevolver() {
+        int cantArrPorDev = 0;
         for (Arriendo arriendo : arriendos) {
             if (arriendo.getEstado() == EstadoArriendo.ENTREGADO) {
                 arriendos.add(arriendo);
+                cantArrPorDev++;
             }
         }
-        return arriendos.toArray(new Arriendo[0]);
+        return arriendos.toArray(new Arriendo[cantArrPorDev]);
     }
 
 
