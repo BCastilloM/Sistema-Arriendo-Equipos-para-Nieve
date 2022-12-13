@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="UI Arriendo Equipos terminado + detalles">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Otro pequeño ajuste en &quot;arriendaEquipos&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelo/DetalleArriendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/DetalleArriendo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelo/Equipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Equipo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -222,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669276406035</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Otro pequeño ajuste en &quot;arriendaEquipos&quot;">
+      <created>1670879630174</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1670879630174</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,6 +271,7 @@
     <MESSAGE value="Avanzando clase Arriendo." />
     <MESSAGE value="Avance UI Arriendo Equipos" />
     <MESSAGE value="UI Arriendo Equipos terminado" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI Arriendo Equipos terminado" />
+    <MESSAGE value="Otro pequeño ajuste en &quot;arriendaEquipos&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Otro pequeño ajuste en &quot;arriendaEquipos&quot;" />
   </component>
 </project>
