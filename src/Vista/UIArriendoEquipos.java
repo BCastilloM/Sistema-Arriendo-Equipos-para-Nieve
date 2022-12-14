@@ -211,7 +211,7 @@ public class UIArriendoEquipos {
 
         try{
             ControladorArriendoEquipos.getInstance().devuelveEquipos(codArriendoADevolver, estadoEquipos);
-            System.out.print("\n\n" + detalleArriendo.length + "equipo(s) fue(ron) devuelto(s) exitosamente");
+            System.out.print("\n\n" + detalleArriendo.length + " equipo(s) fue(ron) devuelto(s) exitosamente");
         }catch (ArriendoException e){
             System.out.println(e.getMessage());
             return;

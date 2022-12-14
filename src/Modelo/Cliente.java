@@ -65,13 +65,15 @@ public class Cliente {
 
     public Arriendo[] getArriendosPorDevolver() {
         int cantArrPorDev = 0;
+        ArrayList<Arriendo> arriendosPD = new ArrayList<>();
+
         for (Arriendo arriendo : arriendos) {
             if (arriendo.getEstado() == EstadoArriendo.ENTREGADO) {
-                arriendos.add(arriendo);
+                arriendosPD.add(arriendo);
                 cantArrPorDev++;
             }
         }
-        return arriendos.toArray(new Arriendo[cantArrPorDev]);
+        return arriendosPD.toArray(new Arriendo[cantArrPorDev]);
     }
 
 
