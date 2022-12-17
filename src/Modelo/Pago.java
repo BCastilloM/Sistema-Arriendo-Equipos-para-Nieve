@@ -3,8 +3,8 @@ package Modelo;
 import java.util.Date;
 
 public abstract class Pago {
-    protected long monto;
-    protected Date fecha;
+    private long monto;
+    private Date fecha;
 
     public Pago(long monto, Date fecha) {
         this.monto = monto;
