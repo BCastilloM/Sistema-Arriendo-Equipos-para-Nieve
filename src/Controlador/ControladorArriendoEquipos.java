@@ -12,10 +12,12 @@ import Excepciones.EquipoException;
 import Modelo.*;
 
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 public class ControladorArriendoEquipos {
     // Atributos
@@ -296,6 +298,68 @@ public class ControladorArriendoEquipos {
             return arriendo.getDetallesToString();
         }
         return new String[0][0];
+    }
+
+    public void saveDatosSistema() throws DataFormatException {
+        ObjectOutputStream archivoCliente = null;
+        ObjectOutputStream archivoEquipo = null;
+        ObjectOutputStream archivoArriendo = null;
+
+        try {
+            archivoCliente = new ObjectOutputStream(new FileOutputStream("aaa1.obj"));
+            archivoEquipo = new ObjectOutputStream(new FileOutputStream("aaa2.obj"));
+            archivoArriendo = new ObjectOutputStream(new FileOutputStream("aaa3.obj"));
+            for (Cliente cliente: clientes) {
+                archivoCliente.writeObject(cliente);
+            }
+            for (Equipo equipo: equipos) {
+                archivoEquipo.writeObject(equipo);
+            }
+            for (Arriendo arriendo: arriendos) {
+                archivoArriendo.writeObject(arriendo);
+            }
+        }catch (FileNotFoundException e) {
+            throw new DataFormatException("Problemas al abrir uno o más archivos");
+        } catch (IOException e) {
+            throw new DataFormatException("Problemas al grabar uno o más archivos");
+        } finally {
+            try {
+                archivoCliente.close();
+                archivoEquipo.close();
+                archivoArriendo.close();
+            } catch (IOException E) {
+                throw new DataFormatException("Problemas al cerrar uno o más archivos");
+            }
+        }
+    }
+
+    public void readDatosSistema() throws DataFormatException {
+        ObjectInputStream archivoCliente = null;
+        ObjectInputStream archivoEquipo = null;
+        ObjectInputStream archivoArriendo = null;
+
+        try {
+            archivoCliente = new ObjectInputStream(new FileInputStream("aaa1.obj"));
+            archivoEquipo = new ObjectInputStream(new FileInputStream("aaa2.obj"));
+            archivoArriendo = new ObjectInputStream(new FileInputStream("aaa3.obj"));
+            while (true) {
+                clientes.add((Cliente) archivoCliente.readObject());
+                equipos.add((Equipo) archivoEquipo.readObject());
+                arriendos.add((Arriendo) archivoArriendo.readObject());
+            }
+        } catch (EOFException e) {
+            try {
+                archivoCliente.close();
+                archivoEquipo.close();
+                archivoArriendo.close();
+            } catch (IOException e2) {
+                throw new DataFormatException("Problemas al cerrar uno o más archivos");
+            }
+        } catch (FileNotFoundException e) {
+            throw new DataFormatException("Problemas al abrir uno o más archivos");
+        } catch (IOException | ClassNotFoundException e) {
+            throw new DataFormatException("Problemas al leer uno o más archivos");
+        }
     }
 
     private Arriendo buscaArriendo(long codigo) {

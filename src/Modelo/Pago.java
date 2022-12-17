@@ -1,12 +1,13 @@
 package Modelo;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public abstract class Pago {
     private long monto;
-    private Date fecha;
+    private LocalDate fecha;
 
-    public Pago(long monto, Date fecha) {
+    public Pago(long monto, LocalDate fecha) {
         this.monto = monto;
         this.fecha = fecha;
     }
@@ -15,7 +16,7 @@ public abstract class Pago {
         return monto;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 }

@@ -2,6 +2,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Arriendo {
@@ -11,12 +12,14 @@ public class Arriendo {
     private EstadoArriendo estado = EstadoArriendo.INICIADO;
     private Cliente cliente;
     private final ArrayList<DetalleArriendo> detalleArriendos;
+    private final ArrayList<Pago> pagos;
 
     public Arriendo(long codigo, LocalDate fechaInicio, Cliente cliente) {
         this.codigo = codigo;
         this.fechaInicio = fechaInicio;
         this.cliente = cliente;
         detalleArriendos = new ArrayList<DetalleArriendo>();
+        pagos = new ArrayList<Pago>();
     }
 
     public long getCodigo() {
@@ -100,4 +103,48 @@ public class Arriendo {
         return equipoArriendo.toArray(new Equipo[0]);
     }
 
+    public void addPagoContado(Contado pago) {
+        pagos.add(pago);
+    }
+
+    public void addPagoDebito(Debito pago) {
+        pagos.add(pago);
+    }
+
+    public void addPagoCredito(Credito pago) {
+        pagos.add(pago);
+    }
+
+    public long getMontoPagado() {
+        long total = 0;
+        if (!pagos.isEmpty()) {
+            for (Pago pago : pagos) {
+                total += pago.getMonto();
+            }
+        }
+        return total;
+    }
+
+    public long getSaldoAdeudado() {
+        long porPagar = 0;
+        if (!pagos.isEmpty()) {
+            porPagar = getMontoTotal() - getMontoPagado();
+        }
+        return porPagar;
+    }
+
+    public String[][] getPagosToString() {
+        if (!pagos.isEmpty()) {
+            String[][] pagosAsociados = new String[pagos.size()][3];
+            int i = 0;
+            for (Pago pago : pagos) {
+                pagosAsociados[i][0] = String.valueOf(pago.getMonto());
+                pagosAsociados[i][1] = String.valueOf(pago.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                pagosAsociados[i][2] = String.valueOf(pago.getClass());
+                i++;
+            }
+            return pagosAsociados;
+        }
+        return new String[0][0];
+    }
 }

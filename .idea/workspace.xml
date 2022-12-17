@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Agregando la clase pago, Contado, debito y credito">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Avance 2 listo (? (Falta validar)">
+      <change beforePath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelo/Arriendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Arriendo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelo/Pago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Pago.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +41,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/felip/Downloads/Avance 2 POO&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bajbs/Downloads/javas/nieve2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
 }</component>
@@ -261,21 +263,7 @@
       <option name="project" value="LOCAL" />
       <updated>1670987445070</updated>
     </task>
-    <task id="LOCAL-00028" summary="Avance 2 listo (? (Falta validar)">
-      <created>1670987571518</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1670987571518</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Agregando la clase pago, Contado, debito y credito">
-      <created>1671291277427</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1671291277427</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +313,6 @@
     <MESSAGE value="Inclusión de utilización de algunos métodos" />
     <MESSAGE value="listaDetallesArriendo funcional (Falta reparar errores y validar)" />
     <MESSAGE value="Avance 2 listo (? (Falta validar)" />
-    <MESSAGE value="Agregando la clase pago, Contado, debito y credito" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando la clase pago, Contado, debito y credito" />
+    <option name="LAST_COMMIT_MESSAGE" value="Avance 2 listo (? (Falta validar)" />
   </component>
 </project>
