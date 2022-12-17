@@ -7,7 +7,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public class Equipo {
+public abstract class Equipo {
     // Atributos
     private long codigo;
     private String descripcion;
@@ -32,9 +32,7 @@ public class Equipo {
         return descripcion;
     }
 
-    public long getPrecioArriendoDia() {
-        return precioArriendoDia;
-    }
+    public abstract long getPrecioArriendoDia();
 
     public EstadoEquipo getEstado() {
         return estado;
