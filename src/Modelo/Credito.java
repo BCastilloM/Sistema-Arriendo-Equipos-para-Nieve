@@ -1,13 +1,13 @@
 package Modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Credito extends Pago{
     private String codTransaccion;
     private String numTarjeta;
     private int nroCuotas;
 
-    public Credito(long monto, Date fecha, String codTransaccion, String numTarjeta, int nroCuotas) {
+    public Credito(long monto, LocalDate fecha, String codTransaccion, String numTarjeta, int nroCuotas) {
         super(monto, fecha);
         this.codTransaccion = codTransaccion;
         this.numTarjeta = numTarjeta;
