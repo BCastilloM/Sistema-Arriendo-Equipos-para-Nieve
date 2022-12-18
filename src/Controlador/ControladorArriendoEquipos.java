@@ -48,14 +48,6 @@ public class ControladorArriendoEquipos {
 
     }
 
-    public void creaImplemento(long cod, String desc, long precio){
-        equipos.add(new Implemento(cod, desc, precio));
-    }
-
-    public void creaConjunto(long cod, String desc){
-        equipos.add(new Conjunto(cod, desc));
-    }
-
     public String[][] listaClientes() {
         String[][] ClientesArr = new String[clientes.size()][6];
         int i = 0;
@@ -392,5 +384,82 @@ public class ControladorArriendoEquipos {
         }
         return null;
     }
+/*
+    public void creaImplemento(long cod, String desc, long precio){
+        Equipo equipo = buscaEquipo(cod);
+        equipos.add(new Implemento(cod, desc, precio));
+    }
+
+    public void creaConjunto(long cod, String desc, long[] codEquipos) throws EquipoException {
+        Equipo equipoConjunto = buscaEquipo(cod);
+        if (equipoConjunto != null) {
+            throw new EquipoException("Ya existe un equipo con el código dado");
+        }
+        for(int i = 0; i < codEquipos.length; i++){
+            for(Equipo equipo : equipos){
+                if(buscaEquipo(codEquipos[i]) == null){
+                    throw new EquipoException("Código de un equipo componente es incorrecto");
+                }
+            }
+        }
+        Equipo conjunto = new Conjunto(cod, desc);
+        for(int i = 0; i < codEquipos.length; i++){
+            conjunto.addEquipo(buscaEquipo(codEquipos[i]));
+        }
+    }
+    public void pagaArriendoContado(long codArriendo, long monto) throws  ArriendoException{
+        Arriendo arriendo = buscaArriendo(codArriendo);
+        if(arriendo != null){
+            throw new ArriendoException("No existe un arriendo con el código dado");
+        } else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
+            throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
+        } else if(arriendo.getSaldoAdeudado() < monto){
+            throw new ArriendoException("Monto supera al saldo adeudado");
+        }
+        arriendo.addPagoContado(new Contado(monto, LocalDate.now()));
+    }
+    public void pagaArriendoDebito(long codArriendo, long monto, String codTransaccion, String numTarjeta)throws ArriendoException{
+        Arriendo arriendo = buscaArriendo(codArriendo);
+        if(arriendo != null){
+            throw new ArriendoException("No existe un arriendo con el código dado");
+        }else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
+            throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
+        } else if(arriendo.getSaldoAdeudado() < monto){
+            throw new ArriendoException("Monto supera al saldo adeudado");
+        }
+        arriendo.addPagoDebito(new Debito(monto, LocalDate.now(), codTransaccion, numTarjeta));
+    }
+    public void pagaArriendoCredito(long codArriendo, long monto, String codTransaccion, String numTarjeta, int nroCuotas) throws ArriendoException{
+        Arriendo arriendo = buscaArriendo(codArriendo);
+        if(arriendo != null){
+            throw new ArriendoException("No existe un arriendo con el código dado");
+        } else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
+            throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
+        } else if(arriendo.getSaldoAdeudado() < monto){
+            throw new ArriendoException("Monto supera al saldo adeudado");
+        }
+        arriendo.addPagoCredito(new Credito(monto, LocalDate.now(), codTransaccion, numTarjeta, nroCuotas));
+    }
+    public String[] consultaArriendoAPagar(long codigo){
+        Arriendo arriendo = buscaArriendo(codigo);
+        if(arriendo == null || arriendo.getEstado() != EstadoArriendo.DEVUELTO){
+            return new String[0];
+        }
+        String[] MontoAPagar = new String[7];
+        MontoAPagar[0] = String.valueOf(arriendo.getCodigo());
+        MontoAPagar[1] = String.valueOf(arriendo.getEstado()).toLowerCase();
+        MontoAPagar[2] = arriendo.getCliente().getRut();
+        MontoAPagar[3] = arriendo.getCliente().getNombre();
+        MontoAPagar[4] = String.valueOf(arriendo.getMontoTotal());
+        MontoAPagar[5] = String.valueOf(arriendo.getMontoPagado());
+        MontoAPagar[6] = String.valueOf(arriendo.getSaldoAdeudado());
+
+        return MontoAPagar;
+    }
+      */
+
 }
+
+
+
 
