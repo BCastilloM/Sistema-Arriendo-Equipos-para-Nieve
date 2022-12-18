@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="solucionando pago">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Avance 2 listo (? (Falta validar)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,35 +263,7 @@
       <option name="project" value="LOCAL" />
       <updated>1670987445070</updated>
     </task>
-    <task id="LOCAL-00028" summary="Arreglando clase Pago. Terminando clase Arriendo. Agregando save y read a Controlador.">
-      <created>1671315706005</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1671315706005</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Arreglando clase Credito.">
-      <created>1671315822614</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1671315822614</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Arreglando clase Debito y Contado.">
-      <created>1671315876125</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1671315876125</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Terminando Equipo, Implemento y Conjunto.">
-      <created>1671321504365</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1671321504365</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,6 +290,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Primer commit. Primer Push." />
+    <MESSAGE value="cambios." />
     <MESSAGE value="Agrega clase Cliente, ControladorArriendoEquipos, Equipo, UIArriendoEquipos. Agrega enum EstadoEquipo. Implementación de arquitectura por capas." />
     <MESSAGE value="Avance clase UIArriendoEquipos" />
     <MESSAGE value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
@@ -338,10 +313,6 @@
     <MESSAGE value="Inclusión de utilización de algunos métodos" />
     <MESSAGE value="listaDetallesArriendo funcional (Falta reparar errores y validar)" />
     <MESSAGE value="Avance 2 listo (? (Falta validar)" />
-    <MESSAGE value="Arreglando clase Pago. Terminando clase Arriendo. Agregando save y read a Controlador." />
-    <MESSAGE value="Arreglando clase Credito." />
-    <MESSAGE value="Arreglando clase Debito y Contado." />
-    <MESSAGE value="Terminando Equipo, Implemento y Conjunto." />
-    <option name="LAST_COMMIT_MESSAGE" value="Terminando Equipo, Implemento y Conjunto." />
+    <option name="LAST_COMMIT_MESSAGE" value="Avance 2 listo (? (Falta validar)" />
   </component>
 </project>

@@ -456,7 +456,53 @@ public class ControladorArriendoEquipos {
 
         return MontoAPagar;
     }
-      */
+
+
+public String[][] listaArriendosPagados() {
+    if (!(arriendos.isEmpty())){
+        int cantArrConPago = 0;
+        for(Arriendo arriendo: arriendos){
+            if(arriendo.getMontoPagado > 0){
+                cantArrConPago++;
+            }
+        }
+        if(cantArrConPago>0){
+            String[][] ArriendosPag = new String[cantArrConPago][7];
+            int i = 0;
+            for(Arriendo arriendo: arriendos){
+                if(arriendo.getMontoPagado > 0){
+                    String[] datos = consultaArriendoAPagar(i);
+                    ArriendosPag[i][0] = datos[0];
+                    ArriendosPag[i][1] = datos[1];
+                    ArriendosPag[i][2] = datos[2];
+                    ArriendosPag[i][3] = datos[3];
+                    ArriendosPag[i][4] = datos[4];
+                    ArriendosPag[i][5] = datos[5];
+                    ArriendosPag[i][6] = datos[6];
+                    i++;
+                }
+            }
+            return ArriendosPag;
+        }else{
+            return new String[0][0];
+        }
+
+    }else{
+        return new String[0][0];
+    }
+
+}
+
+    public String[][] listaPagosDeArriendo(long codArriendo) {
+        Arriendo arriendo = buscaArriendo(codArriendo);
+        if(arriendo!=null){
+            return arriendo.getPagosToString();
+        }else{
+            return new String[0][0];
+        }
+    }
+
+ */
 
 }
 

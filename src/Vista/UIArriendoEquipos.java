@@ -475,27 +475,39 @@ public class UIArriendoEquipos {
     /*
     private void listaArriendosPagados() {
         String[][] listaArrPag = ControladorArriendoEquipos.getInstance().listaArriendosPagados();
-        System.out.println("\nLISTADO DE ARRIENDOS PAGADOS");
-        System.out.println("----------------------------\n");
-        System.out.printf("%-12s%-10s%-15s%-20s%-10s%-10s%-15s%n", "Codigo", "Estado", "Rut cliente", "Nombre cliente", "Monto deuda", "Monto pagado", "Saldo adeudado");
-        for(int i = 0; i<listaArrPag.length; i++){
-            System.out.printf("%-12s%-10s%-15s%-20s%10s%10s%15s%n", listaArrPag[i][0], listaArrPag[i][1], listaArrPag[i][2], listaArrPag[i][3], listaArrPag[i][4], listaArrPag[i][5], listaArrPag[i][6]);
+        if (listaArrPag.length > 0) {
+            System.out.println("\nLISTADO DE ARRIENDOS PAGADOS");
+            System.out.println("----------------------------\n");
+            System.out.printf("%-12s%-10s%-15s%-20s%-10s%-10s%-15s%n", "Codigo", "Estado", "Rut cliente", "Nombre cliente", "Monto deuda", "Monto pagado", "Saldo adeudado");
+            for(int i = 0; i<listaArrPag.length; i++){
+                System.out.printf("%-12s%-10s%-15s%-20s%10s%10s%15s%n", listaArrPag[i][0], listaArrPag[i][1], listaArrPag[i][2], listaArrPag[i][3], listaArrPag[i][4], listaArrPag[i][5], listaArrPag[i][6]);
+            }
+        }else {
+            System.out.println("\nNo hay arriendos pagados");
         }
+
     }
+
+
     private void listaPagosDeUnArriendo() {
         long codArr;
 
         System.out.print("\nCodigo arriendo: ");
         codArr = scan.nextLong();
         String[][] listaPagDeArr = ControladorArriendoEquipos.getInstance().listaPagosDeArriendo(codArr);
+        if(listaPagDeArr.length == 0){
+            System.out.println("\n\nEl arriendo no tiene pagos asociados");
+        }else{
+            System.out.println("\n\n>>>>>>>>>>>\tPAGOS REALIZADOS\t<<<<<<<<<<<\n");
+            System.out.printf("%7s%-12s%-12s%n", "Monto", "Fecha", "Tipo pago");
 
-        System.out.println("\n\n>>>>>>>>>>>\tPAGOS REALIZADOS\t<<<<<<<<<<<\n");
-        System.out.printf("%7s%-12s%-12s%n", "Monto", "Fecha", "Tipo pago");
-
-        for(int i = 0; i < listaPagDeArr.length; i++){
-            System.out.printf("%7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
+            for(int i = 0; i < listaPagDeArr.length; i++){
+                System.out.printf("%7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
+            }
         }
+
     }
+
      */
 
 }
