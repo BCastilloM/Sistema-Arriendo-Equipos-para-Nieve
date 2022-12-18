@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 public class Conjunto extends Equipo{
     private ArrayList<Equipo> equipos;
-    public Conjunto(long codigo, String descripcion, long precioArriendoDia) {
-        super(codigo, descripcion, precioArriendoDia);
+    public Conjunto(long codigo, String descripcion) {
+        super(codigo, descripcion);
         equipos = new ArrayList<Equipo>();
     }
 
     @Override
     public long getPrecioArriendoDia() {
-        return 0;
+        long precioArriendoDia=0;
+        for (Equipo equipo: equipos) {
+            precioArriendoDia+= equipo.getPrecioArriendoDia();
+        }
+        return precioArriendoDia;
     }
 
     public void addEquipo(Equipo equipo) {

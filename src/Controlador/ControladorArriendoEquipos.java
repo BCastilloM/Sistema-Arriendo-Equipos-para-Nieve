@@ -52,8 +52,8 @@ public class ControladorArriendoEquipos {
         equipos.add(new Implemento(cod, desc, precio));
     }
 
-    public void creaConjunto(long cod, String desc, long precio){
-        equipos.add(new Conjunto(cod, desc, precio));
+    public void creaConjunto(long cod, String desc){
+        equipos.add(new Conjunto(cod, desc));
     }
 
     public String[][] listaClientes() {

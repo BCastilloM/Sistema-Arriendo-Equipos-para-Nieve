@@ -11,16 +11,16 @@ public abstract class Equipo {
     // Atributos
     private long codigo;
     private String descripcion;
-    private long precioArriendoDia;
     private EstadoEquipo estado = EstadoEquipo.OPERATIVO;
     private final ArrayList<DetalleArriendo> detalleArriendos;
+    private final ArrayList<Equipo> equipos;
 
     // Constructor
-    public Equipo(long codigo, String descripcion, long precioArriendoDia) {
+    public Equipo(long codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.precioArriendoDia = precioArriendoDia;
         detalleArriendos = new ArrayList<DetalleArriendo>();
+        equipos = new ArrayList<Equipo>();
     }
 
     // Métodos
@@ -51,6 +51,16 @@ public abstract class Equipo {
             return detalleArriendos.get(detalleArriendos.size() - 1).getArriendo().getEstado() == EstadoArriendo.ENTREGADO;
         }
         return false;
+    }
+
+    public void addEquipo(Equipo equipo) {
+        if (!equipos.contains(equipo)) {
+            equipos.add(equipo);
+        }
+    }
+
+    public int getNroEquipos() {
+        return equipos.size();
     }
 }
 
