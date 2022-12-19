@@ -384,7 +384,7 @@ public class ControladorArriendoEquipos {
         }
         return null;
     }
-/*
+
     public void creaImplemento(long cod, String desc, long precio){
         Equipo equipo = buscaEquipo(cod);
         equipos.add(new Implemento(cod, desc, precio));
@@ -406,10 +406,11 @@ public class ControladorArriendoEquipos {
         for(int i = 0; i < codEquipos.length; i++){
             conjunto.addEquipo(buscaEquipo(codEquipos[i]));
         }
+        equipos.add(new Conjunto(cod, desc));
     }
     public void pagaArriendoContado(long codArriendo, long monto) throws  ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
-        if(arriendo != null){
+        if(arriendo == null){
             throw new ArriendoException("No existe un arriendo con el código dado");
         } else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
             throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
@@ -420,7 +421,7 @@ public class ControladorArriendoEquipos {
     }
     public void pagaArriendoDebito(long codArriendo, long monto, String codTransaccion, String numTarjeta)throws ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
-        if(arriendo != null){
+        if(arriendo == null){
             throw new ArriendoException("No existe un arriendo con el código dado");
         }else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
             throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
@@ -431,7 +432,7 @@ public class ControladorArriendoEquipos {
     }
     public void pagaArriendoCredito(long codArriendo, long monto, String codTransaccion, String numTarjeta, int nroCuotas) throws ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
-        if(arriendo != null){
+        if(arriendo == null){
             throw new ArriendoException("No existe un arriendo con el código dado");
         } else if(arriendo.getEstado() != EstadoArriendo.DEVUELTO){
             throw new ArriendoException("No se ha devuelto el o los equipos del arriendo");
@@ -462,7 +463,7 @@ public String[][] listaArriendosPagados() {
     if (!(arriendos.isEmpty())){
         int cantArrConPago = 0;
         for(Arriendo arriendo: arriendos){
-            if(arriendo.getMontoPagado > 0){
+            if(arriendo.getMontoPagado() > 0){
                 cantArrConPago++;
             }
         }
@@ -470,7 +471,7 @@ public String[][] listaArriendosPagados() {
             String[][] ArriendosPag = new String[cantArrConPago][7];
             int i = 0;
             for(Arriendo arriendo: arriendos){
-                if(arriendo.getMontoPagado > 0){
+                if(arriendo.getMontoPagado() > 0){
                     String[] datos = consultaArriendoAPagar(i);
                     ArriendosPag[i][0] = datos[0];
                     ArriendosPag[i][1] = datos[1];
@@ -502,7 +503,7 @@ public String[][] listaArriendosPagados() {
         }
     }
 
- */
+
 
 }
 

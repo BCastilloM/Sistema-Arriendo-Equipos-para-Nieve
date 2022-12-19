@@ -15,6 +15,8 @@ import Modelo.EstadoEquipo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.zip.DataFormatException;
+
 public class UIArriendoEquipos {
     // Atributos
     private static UIArriendoEquipos instance=null;
@@ -41,7 +43,7 @@ public class UIArriendoEquipos {
 
         do{
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
-            System.out.println("*** MENÚ DE OPCIONES ***");
+            System.out.println("\n*** MENÚ DE OPCIONES ***");
             System.out.println("1. Crea un nuevo cliente");
             System.out.println("2. Crea un nuevo equipo");
             System.out.println("3. Arrienda equipos");
@@ -62,13 +64,13 @@ public class UIArriendoEquipos {
             }
             switch (opcion) {
                 case 1 -> creaCliente();
-                //case 2 -> creaEquipo();
+                case 2 -> creaEquipo();
                 case 3 -> arriendaEquipos();
                 case 4 -> devuelveEquipos();
                 case 5 -> cambiaEstadoCliente();
-                //case 6 -> pagaArriendo();
+                case 6 -> pagaArriendo();
                 case 7 -> {
-                    System.out.println("*** MENU DE REPORTES ***");
+                    System.out.println("\n*** MENU DE REPORTES ***");
                     System.out.println("1. Lista todos los clientes");
                     System.out.println("2. Lista todos los equipos");
                     System.out.println("3. Lista todos los arriendos");
@@ -89,14 +91,30 @@ public class UIArriendoEquipos {
                         case 2 -> listaEquipos();
                         case 3 -> listaArriendos();
                         case 4 -> listaDetallesArriendo();
-                        //case 5 -> listaArriendosPagados();
-                        //case 6 -> listaPagosDeUnArriendo();
+                        case 5 -> listaArriendosPagados();
+                        case 6 -> listaPagosDeUnArriendo();
                         case 7 -> {}
                         default -> System.out.println("Error! El valor no está dentro del rango válido");
                     }
                 }
-                /*case 8 -> ControladorArriendoEquipos.getInstance().readDatosSistema();
-                case 9 -> ControladorArriendoEquipos.getInstance().saveDatosSistema();*/
+                case 8 -> {
+                    try {
+                        ControladorArriendoEquipos.getInstance().readDatosSistema();
+                    } catch (DataFormatException e) {
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+
+                }
+                case 9 -> {
+                    try{
+                        ControladorArriendoEquipos.getInstance().saveDatosSistema();
+                    } catch(DataFormatException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+
+                }
                 case 10 -> {}
                 default -> System.out.println("Error! El valor no está dentro del rango válido");
             }
@@ -123,7 +141,7 @@ public class UIArriendoEquipos {
 
         ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
     }
-    /*
+
     private void creaEquipo() {
         long codigo, precioArriendoDia;
         String descripcion;
@@ -140,10 +158,10 @@ public class UIArriendoEquipos {
         do{
             System.out.print("\nTipo equipo(1: Implemento, 2: Conjunto): ");
             tipoEquipo = scan.nextInt();
-            if(tipoEquipo!=1 | tipoEquipo !=2){
+            if(tipoEquipo < 1 | tipoEquipo > 2){
                 System.out.println("Valor fuera de rango");
             }
-        }while(tipoEquipo!=1 | tipoEquipo !=2);
+        }while(tipoEquipo < 1 | tipoEquipo > 2);
 
         if(tipoEquipo == 1){
             System.out.print("\nPrecio de arriendo por día: ");
@@ -160,22 +178,28 @@ public class UIArriendoEquipos {
 
             for(int i = 0; i < nroEquipos; i++){
                 do{
-                    System.out.print("\nCodigo equipo " + i + " de " + nroEquipos + ": ");
+                    System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
                     codigoDeImplemento = scan.nextLong();
                     if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
                         codigosEquipos[i] = codigoDeImplemento;
                     }else{
-                        System.out.println();
+                        System.out.println("El equipo no existe");
                     }
-                }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0);
+                }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0);
             }
 
-            ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion);
+            try{
+                ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
+            }catch(EquipoException e){
+                System.out.println(e.getMessage());
+                return;
+            }
+
             System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
         }
 
     }
-    */
+
 
     private void arriendaEquipos() {
         String pregunta, rutCliente;
@@ -276,7 +300,7 @@ public class UIArriendoEquipos {
             return;
         }
     }
-    /*
+
     private void pagaArriendo() {
         long codArriendo;
         int medioDePago;
@@ -309,7 +333,14 @@ public class UIArriendoEquipos {
         long monto = scan.nextLong();
 
         switch (medioDePago){
-            case 1 -> ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
+            case 1 -> {
+                try{
+                    ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
+                }catch(ArriendoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+            }
             case 2 -> {
                 String codTran, numTar;
 
@@ -331,7 +362,12 @@ public class UIArriendoEquipos {
                     return;
                 }
 
-                ControladorArriendoEquipos.getInstance().pagaArriendoDebito(codArriendo, monto, codTran, numTar);
+                try{
+                    ControladorArriendoEquipos.getInstance().pagaArriendoDebito(codArriendo, monto, codTran, numTar);
+                }catch(ArriendoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
             }
             case 3 -> {
                 String codTran, numTar;
@@ -356,12 +392,18 @@ public class UIArriendoEquipos {
 
                 System.out.print("\nNumero cuotas: ");
                 int nroCuotas = scan.nextInt();
-                ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
+
+                try{
+                    ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
+                }catch(ArriendoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
             }
             default -> System.out.print("\nNumero fuera de rango");
         }
     }
-     */
+
 
     private void cambiaEstadoCliente() {
         String rutCliente;
@@ -472,7 +514,7 @@ public class UIArriendoEquipos {
             System.out.printf("%-15s%-23s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
         }
     }
-    /*
+
     private void listaArriendosPagados() {
         String[][] listaArrPag = ControladorArriendoEquipos.getInstance().listaArriendosPagados();
         if (listaArrPag.length > 0) {
@@ -508,6 +550,6 @@ public class UIArriendoEquipos {
 
     }
 
-     */
+
 
 }
