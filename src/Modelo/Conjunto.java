@@ -3,7 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 
 public class Conjunto extends Equipo{
-    private ArrayList<Equipo> equipos;
+    private final ArrayList<Equipo> equipos;
     public Conjunto(long codigo, String descripcion) {
         super(codigo, descripcion);
         equipos = new ArrayList<Equipo>();

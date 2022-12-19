@@ -302,9 +302,9 @@ public class ControladorArriendoEquipos {
         ObjectOutputStream archivoArriendo = null;
 
         try {
-            archivoCliente = new ObjectOutputStream(new FileOutputStream("aaa1.obj"));
-            archivoEquipo = new ObjectOutputStream(new FileOutputStream("aaa2.obj"));
-            archivoArriendo = new ObjectOutputStream(new FileOutputStream("aaa3.obj"));
+            archivoCliente = new ObjectOutputStream(new FileOutputStream("Cliente.obj"));
+            archivoEquipo = new ObjectOutputStream(new FileOutputStream("Equipo.obj"));
+            archivoArriendo = new ObjectOutputStream(new FileOutputStream("Arriendo.obj"));
             for (Cliente cliente: clientes) {
                 archivoCliente.writeObject(cliente);
             }
@@ -335,9 +335,9 @@ public class ControladorArriendoEquipos {
         ObjectInputStream archivoArriendo = null;
 
         try {
-            archivoCliente = new ObjectInputStream(new FileInputStream("aaa1.obj"));
-            archivoEquipo = new ObjectInputStream(new FileInputStream("aaa2.obj"));
-            archivoArriendo = new ObjectInputStream(new FileInputStream("aaa3.obj"));
+            archivoCliente = new ObjectInputStream(new FileInputStream("Cliente.obj"));
+            archivoEquipo = new ObjectInputStream(new FileInputStream("Equipo.obj"));
+            archivoArriendo = new ObjectInputStream(new FileInputStream("Arriendo.obj"));
             while (true) {
                 clientes.add((Cliente) archivoCliente.readObject());
                 equipos.add((Equipo) archivoEquipo.readObject());
@@ -395,7 +395,7 @@ public class ControladorArriendoEquipos {
         if (equipoConjunto != null) {
             throw new EquipoException("Ya existe un equipo con el código dado");
         }
-        for(int i = 0; i < codEquipos.length; i++){
+        for(int i = 0; i < codEquipos.length; i++){ // Revisar
             for(Equipo equipo : equipos){
                 if(buscaEquipo(codEquipos[i]) == null){
                     throw new EquipoException("Código de un equipo componente es incorrecto");
@@ -408,6 +408,7 @@ public class ControladorArriendoEquipos {
         }
         equipos.add(new Conjunto(cod, desc));
     }
+
     public void pagaArriendoContado(long codArriendo, long monto) throws  ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
         if(arriendo == null){
@@ -419,6 +420,7 @@ public class ControladorArriendoEquipos {
         }
         arriendo.addPagoContado(new Contado(monto, LocalDate.now()));
     }
+
     public void pagaArriendoDebito(long codArriendo, long monto, String codTransaccion, String numTarjeta)throws ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
         if(arriendo == null){
@@ -430,6 +432,7 @@ public class ControladorArriendoEquipos {
         }
         arriendo.addPagoDebito(new Debito(monto, LocalDate.now(), codTransaccion, numTarjeta));
     }
+
     public void pagaArriendoCredito(long codArriendo, long monto, String codTransaccion, String numTarjeta, int nroCuotas) throws ArriendoException{
         Arriendo arriendo = buscaArriendo(codArriendo);
         if(arriendo == null){
@@ -441,6 +444,7 @@ public class ControladorArriendoEquipos {
         }
         arriendo.addPagoCredito(new Credito(monto, LocalDate.now(), codTransaccion, numTarjeta, nroCuotas));
     }
+
     public String[] consultaArriendoAPagar(long codigo){
         Arriendo arriendo = buscaArriendo(codigo);
         if(arriendo == null || arriendo.getEstado() != EstadoArriendo.DEVUELTO){
@@ -458,41 +462,40 @@ public class ControladorArriendoEquipos {
         return MontoAPagar;
     }
 
-
-public String[][] listaArriendosPagados() {
-    if (!(arriendos.isEmpty())){
-        int cantArrConPago = 0;
-        for(Arriendo arriendo: arriendos){
-            if(arriendo.getMontoPagado() > 0){
-                cantArrConPago++;
-            }
-        }
-        if(cantArrConPago>0){
-            String[][] ArriendosPag = new String[cantArrConPago][7];
-            int i = 0;
+    public String[][] listaArriendosPagados() {
+        if (!(arriendos.isEmpty())){
+            int cantArrConPago = 0;
             for(Arriendo arriendo: arriendos){
                 if(arriendo.getMontoPagado() > 0){
-                    String[] datos = consultaArriendoAPagar(i);
-                    ArriendosPag[i][0] = datos[0];
-                    ArriendosPag[i][1] = datos[1];
-                    ArriendosPag[i][2] = datos[2];
-                    ArriendosPag[i][3] = datos[3];
-                    ArriendosPag[i][4] = datos[4];
-                    ArriendosPag[i][5] = datos[5];
-                    ArriendosPag[i][6] = datos[6];
-                    i++;
+                    cantArrConPago++;
                 }
             }
-            return ArriendosPag;
+            if(cantArrConPago>0){
+                String[][] ArriendosPag = new String[cantArrConPago][7];
+                int i = 0;
+                for(Arriendo arriendo: arriendos){
+                    if(arriendo.getMontoPagado() > 0){
+                        String[] datos = consultaArriendoAPagar(i);
+                        ArriendosPag[i][0] = datos[0];
+                        ArriendosPag[i][1] = datos[1];
+                        ArriendosPag[i][2] = datos[2];
+                        ArriendosPag[i][3] = datos[3];
+                        ArriendosPag[i][4] = datos[4];
+                        ArriendosPag[i][5] = datos[5];
+                        ArriendosPag[i][6] = datos[6];
+                        i++;
+                    }
+                }
+                return ArriendosPag;
+            }else{
+                return new String[0][0];
+            }
+
         }else{
             return new String[0][0];
         }
 
-    }else{
-        return new String[0][0];
     }
-
-}
 
     public String[][] listaPagosDeArriendo(long codArriendo) {
         Arriendo arriendo = buscaArriendo(codArriendo);
@@ -502,9 +505,6 @@ public String[][] listaArriendosPagados() {
             return new String[0][0];
         }
     }
-
-
-
 }
 
 

@@ -307,7 +307,7 @@ public class UIArriendoEquipos {
         System.out.println("\nPagando arriendo...");
         System.out.print("\nCodigo arriendo a pagar: ");
         codArriendo = scan.nextLong();
-        String arriendo[] = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
+        String[] arriendo = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
 
         System.out.print("\n\n---- ANTECEDENTES DEL ARRIENDO ----");
         System.out.print("\nCodigo: " + arriendo[0]);
@@ -530,7 +530,6 @@ public class UIArriendoEquipos {
 
     }
 
-
     private void listaPagosDeUnArriendo() {
         long codArr;
 
@@ -547,9 +546,5 @@ public class UIArriendoEquipos {
                 System.out.printf("%7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
             }
         }
-
     }
-
-
-
 }
