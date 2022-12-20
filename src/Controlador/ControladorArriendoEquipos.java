@@ -43,9 +43,9 @@ public class ControladorArriendoEquipos {
         return instance;
     }
 
-    public void creaCliente(String rut, String nom, String dir, String tel)throws ClienteException {
+    public void creaCliente(String rut, String nom, String dir, String tel) throws ClienteException {
         Cliente cliente = buscaCliente(rut);
-        if(cliente != null) {
+        if (cliente != null) {
             throw new ClienteException("Ya existe un cliente con el rut dado");
         }else {
             clientes.add(new Cliente(rut, nom, dir, tel));
@@ -107,7 +107,7 @@ public class ControladorArriendoEquipos {
         } else if (!cliente.isActivo()) {
             throw new ClienteException("El cliente está inactivo");
         } else {
-            i = arriendos.size() +1;
+            i = arriendos.size() + 1;
             arriendo = new Arriendo(i, LocalDate.now(), cliente);
             arriendos.add(arriendo);
             cliente.addArriendo(arriendo);
@@ -243,7 +243,7 @@ public class ControladorArriendoEquipos {
             datosArr[5] = arriendo.getCliente().getNombre();
             datosArr[6] = String.valueOf(arriendo.getMontoTotal());
             return datosArr;
-        }else{
+        } else {
             return new String[0];
         }
     }
@@ -309,16 +309,16 @@ public class ControladorArriendoEquipos {
             archivoCliente = new ObjectOutputStream(new FileOutputStream("Cliente.obj"));
             archivoEquipo = new ObjectOutputStream(new FileOutputStream("Equipo.obj"));
             archivoArriendo = new ObjectOutputStream(new FileOutputStream("Arriendo.obj"));
-            for (Cliente cliente: clientes) {
+            for (Cliente cliente : clientes) {
                 archivoCliente.writeObject(cliente);
             }
-            for (Equipo equipo: equipos) {
+            for (Equipo equipo : equipos) {
                 archivoEquipo.writeObject(equipo);
             }
-            for (Arriendo arriendo: arriendos) {
+            for (Arriendo arriendo : arriendos) {
                 archivoArriendo.writeObject(arriendo);
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new DataFormatException("Problemas al abrir uno o más archivos");
         } catch (IOException e) {
             throw new DataFormatException("Problemas al grabar uno o más archivos");
@@ -389,9 +389,14 @@ public class ControladorArriendoEquipos {
         return null;
     }
 
-    public void creaImplemento(long cod, String desc, long precio){
+
+    public void creaImplemento ( long cod, String desc,long precio) throws EquipoException {
         Equipo equipo = buscaEquipo(cod);
-        equipos.add(new Implemento(cod, desc, precio));
+        if (equipo == null) {
+            equipos.add(new Implemento(cod, desc, precio));
+        } else {
+            throw new EquipoException("Ya existe un equipo con el código dado");
+        }
     }
 
     public void creaConjunto(long cod, String desc, long[] codEquipos) throws EquipoException {
@@ -399,11 +404,9 @@ public class ControladorArriendoEquipos {
         if (equipoConjunto != null) {
             throw new EquipoException("Ya existe un equipo con el código dado");
         }
-        for(int i = 0; i < codEquipos.length; i++){ // Revisar
-            for(Equipo equipo : equipos){
-                if(buscaEquipo(codEquipos[i]) == null){
-                    throw new EquipoException("Código de un equipo componente es incorrecto");
-                }
+        for(int i = 0; i < codEquipos.length; i++){
+            if(buscaEquipo(codEquipos[i]) == null){
+                throw new EquipoException("Código de un equipo componente es incorrecto");
             }
         }
         Equipo conjunto = new Conjunto(cod, desc);
