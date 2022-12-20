@@ -173,7 +173,7 @@ public class UIArriendoEquipos {
             System.out.print("\nPrecio de arriendo por día: ");
             precioArriendoDia = scan.nextLong();
 
-            ControladorArriendoEquipos.getInstance().creaImplemento(codigo, descripcion, precioArriendoDia);
+           // ControladorArriendoEquipos.getInstance().creaImplemento(codigo, descripcion, precioArriendoDia);
             System.out.print("\n\nSe ha creado exitosamente un nuevo implemento");
         }else{
 
