@@ -98,11 +98,34 @@ public class UIArriendoEquipos {
 
     private void creaCliente() {
         String rut, nombre, direccion, telefono;
+        boolean validador = false;
 
         System.out.println("\nCreando un nuevo cliente...");
 
-        System.out.print("\nRut: ");
-        rut = scan.next();
+        do{
+            System.out.print("\nRut: ");
+            rut = scan.next();
+            if(rut.length()==12){
+                String ultDig = String.valueOf(rut.charAt(11));
+                for(int i = 0; i<=9;i++){
+                    if (ultDig.equals(i)){
+                        validador = true;
+                    }
+                }
+                if(validador==false){
+                    if ((ultDig).toLowerCase().equals("k")){
+                        validador = true;
+                    }
+                }
+                if(rut.charAt(2)!=('.') && rut.charAt(6)!=('.') && rut.charAt(10)!=('-') && validador!=true){
+                    System.out.println("\nValor ingresado no valido como rut");
+                }
+            }else{
+                System.out.println("\nValor ingresado no valido como rut");
+                rut = "aaaaaaaaaaa";
+            }
+
+        }while(rut.charAt(2)!=('.') && rut.charAt(6)!=('.') && rut.charAt(10)!=('-') && validador!=true);
 
         System.out.print("\nNombre: ");
         nombre = scan.next();
@@ -110,8 +133,14 @@ public class UIArriendoEquipos {
         System.out.print("\nDomicilio: ");
         direccion = scan.next();
 
-        System.out.print("\nTeléfono: ");
-        telefono = scan.next();
+        do{
+            System.out.print("\nTeléfono: ");
+            telefono = scan.next();
+            if (telefono.charAt(0)!=('+')){
+                System.out.println("\nEse no es un telefono");
+            }
+        }while(telefono.charAt(0)!=('+'));
+
 
        try{
            ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
@@ -155,32 +184,35 @@ public class UIArriendoEquipos {
 
             System.out.print("\n\nSe ha creado exitosamente un nuevo implemento");
         }else{
+            if(ControladorArriendoEquipos.getInstance().listaEquipos().length == 0){
+                System.out.println("\nNo existen para agregar a un conjunto");
+            }else{
+                System.out.print("\nNumero de equipos componentes: ");
+                int nroEquipos = scan.nextInt();
+                long[] codigosEquipos = new long[nroEquipos];
+                long codigoDeImplemento;
 
-            System.out.print("\nNumero de equipos componentes: ");
-            int nroEquipos = scan.nextInt();
-            long[] codigosEquipos = new long[nroEquipos];
-            long codigoDeImplemento;
+                for(int i = 0; i < nroEquipos; i++){
+                    do{
+                        System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
+                        codigoDeImplemento = scan.nextLong();
+                        if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
+                            codigosEquipos[i] = codigoDeImplemento;
+                        }else{
+                            System.out.println("El equipo no existe");
+                        }
+                    }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0);
+                }
 
-            for(int i = 0; i < nroEquipos; i++){
-                do{
-                    System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
-                    codigoDeImplemento = scan.nextLong();
-                    if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
-                        codigosEquipos[i] = codigoDeImplemento;
-                    }else{
-                        System.out.println("El equipo no existe");
-                    }
-                }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0);
+                try{
+                    ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
+                }catch(EquipoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+
+                System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
             }
-
-            try{
-                ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
-            }catch(EquipoException e){
-                System.out.println(e.getMessage());
-                return;
-            }
-
-            System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
         }
 
     }
