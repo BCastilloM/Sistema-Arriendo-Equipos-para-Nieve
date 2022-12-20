@@ -140,7 +140,12 @@ public class UIArriendoEquipos {
         System.out.print("\nTeléfono: ");
         telefono = scan.next();
 
-       // ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
+       try{
+           ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
+       }catch(ClienteException e){
+           System.out.println(e.getMessage());
+           return;
+       }
     }
 
     private void creaEquipo() {
