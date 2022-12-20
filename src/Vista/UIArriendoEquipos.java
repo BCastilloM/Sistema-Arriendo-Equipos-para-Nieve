@@ -185,45 +185,49 @@ public class UIArriendoEquipos {
             System.out.print("\n\nSe ha creado exitosamente un nuevo implemento");
         }else{
             if(ControladorArriendoEquipos.getInstance().listaEquipos().length == 0){
-                System.out.println("\nNo existen para agregar a un conjunto");
+                System.out.println("\nNo existen equipos para agregar a un conjunto");
             }else{
                 System.out.print("\nNumero de equipos componentes: ");
                 int repeticion, nroEquipos = scan.nextInt();
                 long[] codigosEquipos = new long[nroEquipos];
                 long codigoDeImplemento;
 
-                if(nroEquipos > 0){
-                    for(int i = 0; i < nroEquipos; i++){
-                        do{
-                            repeticion = 0;
-                            System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
-                            codigoDeImplemento = scan.nextLong();
-                            if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
-                                codigosEquipos[i] = codigoDeImplemento;
-                            }else{
-                                System.out.println("El equipo no existe");
-                            }
-                            for(int cont = 0; cont < codigosEquipos.length; cont++){
-                                if(codigoDeImplemento==codigosEquipos[cont]){
-                                    repeticion++;
-                                }
-                            }
-                            if(repeticion > 1){
-                                System.out.println("\nNo se pueden repetir codigos de equipos");
-                            }
-                        }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0 | repeticion > 1);
-                    }
-
-                    try{
-                        ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
-                    }catch(EquipoException e){
-                        System.out.println(e.getMessage());
-                        return;
-                    }
-
-                    System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
+                if(nroEquipos > ControladorArriendoEquipos.getInstance().listaEquipos().length){
+                    System.out.println("\nEl numero de equipos ingresado supera la cantidad de equipos disponible");
                 }else{
-                    System.out.println("\nNumero de equipos componentes no valido");
+                    if(nroEquipos > 0){
+                        for(int i = 0; i < nroEquipos; i++){
+                            do{
+                                repeticion = 0;
+                                System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
+                                codigoDeImplemento = scan.nextLong();
+                                if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
+                                    codigosEquipos[i] = codigoDeImplemento;
+                                }else{
+                                    System.out.println("El equipo no existe");
+                                }
+                                for(int cont = 0; cont < codigosEquipos.length; cont++){
+                                    if(codigoDeImplemento==codigosEquipos[cont]){
+                                        repeticion++;
+                                    }
+                                }
+                                if(repeticion > 1){
+                                    System.out.println("\nNo se pueden repetir codigos de equipos");
+                                }
+                            }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0 | repeticion > 1);
+                        }
+
+                        try{
+                            ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
+                        }catch(EquipoException e){
+                            System.out.println(e.getMessage());
+                            return;
+                        }
+
+                        System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
+                    }else{
+                        System.out.println("\nNumero de equipos componentes no valido");
+                    }
                 }
             }
         }
