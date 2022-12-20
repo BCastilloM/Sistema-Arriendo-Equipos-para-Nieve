@@ -202,52 +202,68 @@ public class UIArriendoEquipos {
 
 
     private void arriendaEquipos() {
-        String pregunta, rutCliente;
-        long codigoEquipo, codigoArriendo, precioTotal;
+        if (ControladorArriendoEquipos.getInstance().listaEquipos().length == 0){
+            System.out.println("\nNo existen equipos");
+        }else{
+            String pregunta, rutCliente;
+            long codigoEquipo, codigoArriendo, precioTotal;
 
-        System.out.println("\nArrendando equipos...");
-        System.out.print("\nRut cliente: ");
-        rutCliente = scan.next();
-        String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
+            System.out.println("\nArrendando equipos...");
+            System.out.print("\nRut cliente: ");
+            rutCliente = scan.next();
+            String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
 
-        try{
-            codigoArriendo = ControladorArriendoEquipos.getInstance().creaArriendo(rutCliente);
-        }catch(ClienteException e){
-            System.out.println(e.getMessage());
-            return;
-        }
-
-        System.out.print("\nNombre cliente: " + cliente[1]);
-
-        do {
-            System.out.print("\nCódigo equipo: ");
-            codigoEquipo = scan.nextLong();
-            String[] datosEquipo = ControladorArriendoEquipos.getInstance().consultaEquipo(codigoEquipo);
-
-            if(datosEquipo[3].equals("entregado")){
-                System.out.print("\nEl equipo se encuentra arrendado");
-            }else{
-                try{
-                    ControladorArriendoEquipos.getInstance().agregaEquipoToArriendo(codigoArriendo, codigoEquipo);
-                }catch(ArriendoException | EquipoException e){
-                    System.out.println(e.getMessage());
-                    return;
-                }
-                System.out.print("\nSe ha agregado " + datosEquipo[1] + " al arriendo");
+            try{
+                codigoArriendo = ControladorArriendoEquipos.getInstance().creaArriendo(rutCliente);
+            }catch(ClienteException e){
+                System.out.println(e.getMessage());
+                return;
             }
 
-            System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n) ");
-            pregunta = scan.next();
-        }while(pregunta.equals("s"));
+            System.out.print("\nNombre cliente: " + cliente[1]);
 
-        try{
-            precioTotal=ControladorArriendoEquipos.getInstance().cierraArriendo(codigoArriendo);
-        }catch(ArriendoException e){
-            System.out.println(e.getMessage());
-            return;
+            do {
+                String[] datosEquipo;
+                do {
+                    System.out.print("\nCódigo equipo: ");
+                    codigoEquipo = scan.nextLong();
+                    datosEquipo = ControladorArriendoEquipos.getInstance().consultaEquipo(codigoEquipo);
+                    if (datosEquipo.length == 0) {
+                        System.out.println("\nEl equipo con el codigo dado no existe");
+                    }
+                }while(datosEquipo.length == 0);
+
+                if(datosEquipo[4].equals("Arrendado")){
+                    System.out.print("\nEl equipo se encuentra arrendado");
+                }else{
+                    try{
+                        ControladorArriendoEquipos.getInstance().agregaEquipoToArriendo(codigoArriendo, codigoEquipo);
+                    }catch(ArriendoException | EquipoException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+                    System.out.print("\nSe ha agregado " + datosEquipo[1] + " al arriendo");
+                }
+
+                if((ControladorArriendoEquipos.getInstance().listaEquipos().length - 1) == 0){
+                    System.out.print("\nNo hay mas equipos, por lo que no es posible agregar otro equipo al arriendo");
+                    pregunta = "n";
+                }else{
+                    System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n) ");
+                    pregunta = scan.next();
+                }
+            }while(pregunta.equals("s"));
+
+            try{
+                precioTotal=ControladorArriendoEquipos.getInstance().cierraArriendo(codigoArriendo);
+            }catch(ArriendoException e){
+                System.out.println(e.getMessage());
+                return;
+            }
+
+            System.out.print("\nMonto total por día de arriendo: --> $" + precioTotal);
         }
 
-        System.out.print("\nMonto total por día de arriendo: --> $" + precioTotal);
     }
 
     private void devuelveEquipos() {
@@ -267,42 +283,50 @@ public class UIArriendoEquipos {
             return ;
         }
 
-        System.out.print("\nNombre cliente: " + cliente[1]);
-        System.out.println("\n\nLos arriendos por devolver son =>>");
-        System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.", "Estado", "Rut Cliente", "Monto total");
-        for (String[] arriendo : arriendosDelCliente) {
-            System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", arriendo[0], arriendo[1], arriendo[2], arriendo[3], rutCliente, arriendo[6]);
-        }
-
-        System.out.print("\n\nCodigo arriendo a devolver: ");
-        codArriendoADevolver = scan.nextLong();
-        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codArriendoADevolver);
-        EstadoEquipo[] estadoEquipos = new EstadoEquipo[detalleArriendo.length];
-
-        System.out.print("\n\nIngrese código y estado en que se devuelve cada equipo que se indica >>>");
-
-        for(int i = 0; i < detalleArriendo.length; i++){
-        System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
-        int opcion = scan.nextInt();
-
-        switch(opcion){
-            case 1 -> estadoEquipos[i] = EstadoEquipo.OPERATIVO;
-            case 2 -> estadoEquipos[i] = EstadoEquipo.EN_REPARACION;
-            case 3 -> estadoEquipos[i] = EstadoEquipo.DADO_DE_BAJA;
+        if(arriendosDelCliente.length == 0){
+            System.out.println("\nEl cliente no tiene arriendos");
+        }else{
+            System.out.print("\nNombre cliente: " + cliente[1]);
+            System.out.println("\n\nLos arriendos por devolver son =>>");
+            System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.", "Estado", "Rut Cliente", "Monto total");
+            for (String[] arriendo : arriendosDelCliente) {
+                System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", arriendo[0], arriendo[1], arriendo[2], arriendo[3], rutCliente, arriendo[6]);
             }
-        }
 
-        try{
-            ControladorArriendoEquipos.getInstance().devuelveEquipos(codArriendoADevolver, estadoEquipos);
-            System.out.print("\n\n" + detalleArriendo.length + " equipo(s) fue(ron) devuelto(s) exitosamente");
-        }catch (ArriendoException e){
-            System.out.println(e.getMessage());
-            return;
+            System.out.print("\n\nCodigo arriendo a devolver: ");
+            codArriendoADevolver = scan.nextLong();
+            String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codArriendoADevolver);
+            EstadoEquipo[] estadoEquipos = new EstadoEquipo[detalleArriendo.length];
+
+            if (detalleArriendo.length == 0){
+                System.out.println("\nEl cliente no tiene un arriendo con el codigo dado");
+            }else{
+                System.out.print("\n\nIngrese código y estado en que se devuelve cada equipo que se indica >>>");
+
+                for(int i = 0; i < detalleArriendo.length; i++){
+                    System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
+                    int opcion = scan.nextInt();
+
+                    switch(opcion){
+                        case 1 -> estadoEquipos[i] = EstadoEquipo.OPERATIVO;
+                        case 2 -> estadoEquipos[i] = EstadoEquipo.EN_REPARACION;
+                        case 3 -> estadoEquipos[i] = EstadoEquipo.DADO_DE_BAJA;
+                    }
+                }
+
+                try{
+                    ControladorArriendoEquipos.getInstance().devuelveEquipos(codArriendoADevolver, estadoEquipos);
+                    System.out.print("\n\n" + detalleArriendo.length + " equipo(s) fue(ron) devuelto(s) exitosamente");
+                }catch (ArriendoException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+            }
         }
     }
 
     private void pagaArriendo() {
-        long codArriendo;
+        long codArriendo, monto;
         int medioDePago;
         System.out.println("\nPagando arriendo...");
         System.out.print("\nCodigo arriendo a pagar: ");
@@ -333,19 +357,21 @@ public class UIArriendoEquipos {
                 return;
             }
 
-            System.out.print("\nMonto: ");
-            long monto = scan.nextLong();
-
             switch (medioDePago){
                 case 1 -> {
+                    System.out.print("\nMonto: ");
+                    monto = scan.nextLong();
                     try{
                         ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
                     }catch(ArriendoException e){
                         System.out.println(e.getMessage());
                         return;
                     }
+                    System.out.println("\nPago realizado exitosamente");
                 }
                 case 2 -> {
+                    System.out.print("\nMonto: ");
+                    monto = scan.nextLong();
                     String codTran, numTar;
 
                     System.out.print("\nCodigo transaccion: ");
@@ -372,8 +398,11 @@ public class UIArriendoEquipos {
                         System.out.println(e.getMessage());
                         return;
                     }
+                    System.out.println("\nPago realizado exitosamente");
                 }
                 case 3 -> {
+                    System.out.print("\nMonto: ");
+                    monto = scan.nextLong();
                     String codTran, numTar;
 
                     System.out.print("\nCodigo transaccion: ");
@@ -403,6 +432,7 @@ public class UIArriendoEquipos {
                         System.out.println(e.getMessage());
                         return;
                     }
+                    System.out.println("\nPago realizado exitosamente");
                 }
                 default -> System.out.print("\nNumero fuera de rango");
             }
@@ -483,15 +513,20 @@ public class UIArriendoEquipos {
 
         String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
 
-        System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
-        System.out.println("--------------------\n");
-        System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
+        if(datosArriendos.length > 0) {
+            System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
+            System.out.println("--------------------\n");
+            System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
 
-        for (String[] datosArriendo : datosArriendos) {
-            if (LocalDate.parse(datosArriendo[1], tf).isAfter(ldFechaInicio) && LocalDate.parse(datosArriendo[1], tf).isBefore(ldFechaFin)) {
-                System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
+            for (String[] datosArriendo : datosArriendos) {
+                if (LocalDate.parse(datosArriendo[1], tf).isAfter(ldFechaInicio) && LocalDate.parse(datosArriendo[1], tf).isBefore(ldFechaFin)) {
+                    System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
+                }
             }
+        }else {
+            System.out.println("No se han registrado Arriendos");
         }
+
     }
 
     private void listaDetallesArriendo() {
@@ -501,23 +536,27 @@ public class UIArriendoEquipos {
         codigoArriendo = scan.nextInt();
         String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
 
-        System.out.print("\n----------------------------------------------------------------");
-        System.out.print("\nCodigo: " + codigoArriendo);
-        System.out.print("\nFecha Inicio: " + Arriendo[1]);
-        System.out.print("\nFecha Devolucion: " + Arriendo[2]);
-        System.out.print("\nEstado: " + Arriendo[3]);
-        System.out.print("\nRut cliente: " + Arriendo[4]);
-        System.out.print("\nNombre cliente: " + Arriendo[5]);
-        System.out.print("\nMonto total: $" + Arriendo[6]);
-        System.out.print("\n----------------------------------------------------------------");
+        if(Arriendo.length > 0) {
+            System.out.print("\n----------------------------------------------------------------");
+            System.out.print("\nCodigo: " + codigoArriendo);
+            System.out.print("\nFecha Inicio: " + Arriendo[1]);
+            System.out.print("\nFecha Devolucion: " + Arriendo[2]);
+            System.out.print("\nEstado: " + Arriendo[3]);
+            System.out.print("\nRut cliente: " + Arriendo[4]);
+            System.out.print("\nNombre cliente: " + Arriendo[5]);
+            System.out.print("\nMonto total: $" + Arriendo[6]);
+            System.out.print("\n----------------------------------------------------------------");
 
-        String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
+            String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codigoArriendo);
 
-        System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
-        System.out.println("\n----------------------------------------------------------------");
-        System.out.printf("%-15s%-25s%-25s%n", "Codigo equipo", "Descripcion equipo", "Precio arriendo por dia");
-        for(int i = 0; i<detalleArriendo.length; i++){
-            System.out.printf("%-15s%-23s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
+            System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
+            System.out.println("\n----------------------------------------------------------------");
+            System.out.printf("%-15s%-25s%-25s%n", "Codigo equipo", "Descripcion equipo", "Precio arriendo por dia");
+            for(int i = 0; i<detalleArriendo.length; i++){
+                System.out.printf("%-15s%-23s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
+            }
+        }else{
+            System.out.println("El arriendo con el codigo dado no existe");
         }
     }
 
