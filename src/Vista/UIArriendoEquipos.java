@@ -122,6 +122,7 @@ public class UIArriendoEquipos {
     }
 
     //FALTA VALIDAR (Se deja para el final para hacer las pruebas de forma mas rapida)********************************************************************************************
+
     private void creaCliente() {
         String rut, nombre, direccion, telefono;
 
@@ -139,7 +140,7 @@ public class UIArriendoEquipos {
         System.out.print("\nTeléfono: ");
         telefono = scan.next();
 
-        ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
+       // ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
     }
 
     private void creaEquipo() {
