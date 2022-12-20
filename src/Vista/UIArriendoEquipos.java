@@ -195,7 +195,7 @@ public class UIArriendoEquipos {
                 if(nroEquipos > ControladorArriendoEquipos.getInstance().listaEquipos().length){
                     System.out.println("\nEl numero de equipos ingresado supera la cantidad de equipos disponible");
                 }else{
-                    if(nroEquipos > 0){
+                    if(nroEquipos > 1){
                         for(int i = 0; i < nroEquipos; i++){
                             do{
                                 repeticion = 0;
@@ -226,7 +226,7 @@ public class UIArriendoEquipos {
 
                         System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
                     }else{
-                        System.out.println("\nNumero de equipos componentes no valido");
+                        System.out.println("\nNumero de equipos componentes no valido o insuficiente");
                     }
                 }
             }
