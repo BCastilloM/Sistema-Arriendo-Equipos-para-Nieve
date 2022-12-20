@@ -46,11 +46,9 @@ public class ControladorArriendoEquipos {
     public void creaCliente(String rut, String nom, String dir, String tel)throws ClienteException {
         Cliente cliente = buscaCliente(rut);
         if(cliente != null) {
-            if (cliente.getRut().equals(rut)) {
-                throw new ClienteException("Ya existe un cliente con el rut dado");
-            } else {
-                clientes.add(new Cliente(rut, nom, dir, tel));
-            }
+            throw new ClienteException("Ya existe un cliente con el rut dado");
+        }else {
+            clientes.add(new Cliente(rut, nom, dir, tel));
         }
     }
 
