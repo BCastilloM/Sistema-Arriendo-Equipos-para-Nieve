@@ -56,5 +56,6 @@ public abstract class Equipo {
     public int getNroEquipos() {
         return 0;
     }
+
 }
 
