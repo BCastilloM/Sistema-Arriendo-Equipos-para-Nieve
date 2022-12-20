@@ -13,14 +13,12 @@ public abstract class Equipo {
     private String descripcion;
     private EstadoEquipo estado = EstadoEquipo.OPERATIVO;
     private final ArrayList<DetalleArriendo> detalleArriendos;
-    private final ArrayList<Equipo> equipos;
 
     // Constructor
     public Equipo(long codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         detalleArriendos = new ArrayList<DetalleArriendo>();
-        equipos = new ArrayList<Equipo>();
     }
 
     // Métodos
@@ -53,14 +51,10 @@ public abstract class Equipo {
         return false;
     }
 
-    public void addEquipo(Equipo equipo) {
-        if (!equipos.contains(equipo)) {
-            equipos.add(equipo);
-        }
-    }
+    public void addEquipo(Equipo equipo) {}
 
     public int getNroEquipos() {
-        return equipos.size();
+        return 0;
     }
 }
 

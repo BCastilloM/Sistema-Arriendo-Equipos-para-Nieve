@@ -18,12 +18,14 @@ public class Conjunto extends Equipo{
         return precioArriendoDia;
     }
 
+    @Override
     public void addEquipo(Equipo equipo) {
         if (!equipos.contains(equipo)) {
             equipos.add(equipo);
         }
     }
 
+    @Override
     public int getNroEquipos() {
         return equipos.size();
     }
