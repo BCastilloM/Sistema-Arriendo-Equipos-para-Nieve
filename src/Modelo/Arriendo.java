@@ -127,9 +127,7 @@ public class Arriendo {
 
     public long getSaldoAdeudado() {
         long porPagar = 0;
-        if (!pagos.isEmpty()) {
-            porPagar = getMontoTotal() - getMontoPagado();
-        }
+        porPagar = getMontoTotal() - getMontoPagado();
         return porPagar;
     }
 

@@ -309,99 +309,105 @@ public class UIArriendoEquipos {
         codArriendo = scan.nextLong();
         String[] arriendo = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
 
-        System.out.print("\n\n---- ANTECEDENTES DEL ARRIENDO ----");
-        System.out.print("\nCodigo: " + arriendo[0]);
-        System.out.print("\nEstado: " + arriendo[1]);
-        System.out.print("\nRut cliente: " + arriendo[2]);
-        System.out.print("\nNombre cliente: " + arriendo[3]);
-        System.out.print("\nMonto total: " + arriendo[4]);
-        System.out.print("\nMonto pagado: " + arriendo[5]);
-        System.out.print("\nSaldo adeudado: " + arriendo[6]);
+        if (arriendo.length == 0){
+            System.out.println("\nNo existe un arriendo con el codigo dado");
+        }else{
 
-        System.out.println("\n\n---- ANTECEDENTES DEL PAGO ----");
-        System.out.print("Medio de pago (1: Contado, 2: Debito, 3: Credito): ");
+            System.out.print("\n\n---- ANTECEDENTES DEL ARRIENDO ----");
+            System.out.print("\nCodigo: " + arriendo[0]);
+            System.out.print("\nEstado: " + arriendo[1]);
+            System.out.print("\nRut cliente: " + arriendo[2]);
+            System.out.print("\nNombre cliente: " + arriendo[3]);
+            System.out.print("\nMonto total: " + arriendo[4]);
+            System.out.print("\nMonto pagado: " + arriendo[5]);
+            System.out.print("\nSaldo adeudado: " + arriendo[6]);
 
-        try {
-            String opcionStr = scan.next();
-            medioDePago = Integer.parseInt(opcionStr);
-        } catch (NumberFormatException e) {
-            System.out.println("No se ingresó una opcion válida");
-            return;
+            System.out.println("\n\n---- ANTECEDENTES DEL PAGO ----");
+            System.out.print("Medio de pago (1: Contado, 2: Debito, 3: Credito): ");
+
+            try {
+                String opcionStr = scan.next();
+                medioDePago = Integer.parseInt(opcionStr);
+            } catch (NumberFormatException e) {
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
+
+            System.out.print("\nMonto: ");
+            long monto = scan.nextLong();
+
+            switch (medioDePago){
+                case 1 -> {
+                    try{
+                        ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
+                    }catch(ArriendoException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+                }
+                case 2 -> {
+                    String codTran, numTar;
+
+                    System.out.print("\nCodigo transaccion: ");
+                    try {
+                        codTran = scan.next();
+                        int intCodTran = Integer.parseInt(codTran);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó un numero");
+                        return;
+                    }
+
+                    System.out.print("\nNumero tarjeta debito: ");
+                    try {
+                        numTar = scan.next();
+                        int intnumTar = Integer.parseInt(numTar);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó un numero");
+                        return;
+                    }
+
+                    try{
+                        ControladorArriendoEquipos.getInstance().pagaArriendoDebito(codArriendo, monto, codTran, numTar);
+                    }catch(ArriendoException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+                }
+                case 3 -> {
+                    String codTran, numTar;
+
+                    System.out.print("\nCodigo transaccion: ");
+                    try {
+                        codTran = scan.next();
+                        int intCodTran = Integer.parseInt(codTran);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó un numero");
+                        return;
+                    }
+
+                    System.out.print("\nNumero tarjeta credito: ");
+                    try {
+                        numTar = scan.next();
+                        int intnumTar = Integer.parseInt(numTar);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó un numero");
+                        return;
+                    }
+
+                    System.out.print("\nNumero cuotas: ");
+                    int nroCuotas = scan.nextInt();
+
+                    try{
+                        ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
+                    }catch(ArriendoException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+                }
+                default -> System.out.print("\nNumero fuera de rango");
+            }
         }
 
-        System.out.print("\nMonto: ");
-        long monto = scan.nextLong();
-
-        switch (medioDePago){
-            case 1 -> {
-                try{
-                    ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
-                }catch(ArriendoException e){
-                    System.out.println(e.getMessage());
-                    return;
-                }
-            }
-            case 2 -> {
-                String codTran, numTar;
-
-                System.out.print("\nCodigo transaccion: ");
-                try {
-                    codTran = scan.next();
-                    int intCodTran = Integer.parseInt(codTran);
-                } catch (NumberFormatException e) {
-                    System.out.println("No se ingresó un numero");
-                    return;
-                }
-
-                System.out.print("\nNumero tarjeta debito: ");
-                try {
-                    numTar = scan.next();
-                    int intnumTar = Integer.parseInt(numTar);
-                } catch (NumberFormatException e) {
-                    System.out.println("No se ingresó un numero");
-                    return;
-                }
-
-                try{
-                    ControladorArriendoEquipos.getInstance().pagaArriendoDebito(codArriendo, monto, codTran, numTar);
-                }catch(ArriendoException e){
-                    System.out.println(e.getMessage());
-                    return;
-                }
-            }
-            case 3 -> {
-                String codTran, numTar;
-
-                System.out.print("\nCodigo transaccion: ");
-                try {
-                    codTran = scan.next();
-                    int intCodTran = Integer.parseInt(codTran);
-                } catch (NumberFormatException e) {
-                    System.out.println("No se ingresó un numero");
-                    return;
-                }
-
-                System.out.print("\nNumero tarjeta credito: ");
-                try {
-                    numTar = scan.next();
-                    int intnumTar = Integer.parseInt(numTar);
-                } catch (NumberFormatException e) {
-                    System.out.println("No se ingresó un numero");
-                    return;
-                }
-
-                System.out.print("\nNumero cuotas: ");
-                int nroCuotas = scan.nextInt();
-
-                try{
-                    ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
-                }catch(ArriendoException e){
-                    System.out.println(e.getMessage());
-                    return;
-                }
-            }
-            default -> System.out.print("\nNumero fuera de rango");
-        }
     }
 
 
