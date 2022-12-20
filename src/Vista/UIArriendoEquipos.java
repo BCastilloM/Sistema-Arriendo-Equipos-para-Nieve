@@ -39,7 +39,7 @@ public class UIArriendoEquipos {
     }
 
     public void menu() {
-        int opcion, opcion2;
+        int opcion;
 
         do{
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
@@ -69,34 +69,7 @@ public class UIArriendoEquipos {
                 case 4 -> devuelveEquipos();
                 case 5 -> cambiaEstadoCliente();
                 case 6 -> pagaArriendo();
-                case 7 -> {
-                    System.out.println("\n*** MENU DE REPORTES ***");
-                    System.out.println("1. Lista todos los clientes");
-                    System.out.println("2. Lista todos los equipos");
-                    System.out.println("3. Lista todos los arriendos");
-                    System.out.println("4. Lista detalles de un arriendo");
-                    System.out.println("5. Lista arriendos con pagos");
-                    System.out.println("6. Lista los pagos de un arriendo");
-                    System.out.println("7. Salir");
-                    System.out.print("\tIngrese opción: ");
-                    try {
-                        String opcionStr2 = scan.next();
-                        opcion2 = Integer.parseInt(opcionStr2);
-                    } catch (NumberFormatException e) {
-                        System.out.println("No se ingresó una opcion válida");
-                        return;
-                    }
-                    switch (opcion2) {
-                        case 1 -> listaClientes();
-                        case 2 -> listaEquipos();
-                        case 3 -> listaArriendos();
-                        case 4 -> listaDetallesArriendo();
-                        case 5 -> listaArriendosPagados();
-                        case 6 -> listaPagosDeUnArriendo();
-                        case 7 -> {}
-                        default -> System.out.println("Error! El valor no está dentro del rango válido");
-                    }
-                }
+                case 7 -> generaReportes();
                 case 8 -> {
                     try {
                         ControladorArriendoEquipos.getInstance().readDatosSistema();
@@ -469,6 +442,36 @@ public class UIArriendoEquipos {
 
         String[] datosCliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
         System.out.print("\nSe ha cambiado exitosamente el estado del cliente \"" + datosCliente[1] + "\" a \"" + datosCliente[4] + "\"");
+    }
+
+    private void generaReportes() {
+        int opcion;
+        System.out.println("\n*** MENU DE REPORTES ***");
+        System.out.println("1. Lista todos los clientes");
+        System.out.println("2. Lista todos los equipos");
+        System.out.println("3. Lista todos los arriendos");
+        System.out.println("4. Lista detalles de un arriendo");
+        System.out.println("5. Lista arriendos con pagos");
+        System.out.println("6. Lista los pagos de un arriendo");
+        System.out.println("7. Salir");
+        System.out.print("\tIngrese opción: ");
+        try {
+            String opcionStr = scan.next();
+            opcion = Integer.parseInt(opcionStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
+        switch (opcion) {
+            case 1 -> listaClientes();
+            case 2 -> listaEquipos();
+            case 3 -> listaArriendos();
+            case 4 -> listaDetallesArriendo();
+            case 5 -> listaArriendosPagados();
+            case 6 -> listaPagosDeUnArriendo();
+            case 7 -> {}
+            default -> System.out.println("Error! El valor no está dentro del rango válido");
+        }
     }
 
     private void listaClientes() {

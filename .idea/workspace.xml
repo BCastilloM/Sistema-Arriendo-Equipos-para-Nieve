@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="clienteException">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="excepcion al crear implemento">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671501505336</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="excepcion al crear implemento">
+      <created>1671505005738</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1671505005738</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,7 +324,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Agrega clase Cliente, ControladorArriendoEquipos, Equipo, UIArriendoEquipos. Agrega enum EstadoEquipo. Implementación de arquitectura por capas." />
     <MESSAGE value="Avance clase UIArriendoEquipos" />
     <MESSAGE value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
     <MESSAGE value="Arregalndo clases UIArriendoEquipos y Main" />
@@ -342,6 +348,7 @@
     <MESSAGE value="tercer avance v0.1" />
     <MESSAGE value="validacion en pagaArriendo (Faltan todas las demas validaciones en UI)" />
     <MESSAGE value="mayoria de las validaciones hechas" />
-    <option name="LAST_COMMIT_MESSAGE" value="mayoria de las validaciones hechas" />
+    <MESSAGE value="excepcion al crear implemento" />
+    <option name="LAST_COMMIT_MESSAGE" value="excepcion al crear implemento" />
   </component>
 </project>
