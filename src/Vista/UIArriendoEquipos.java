@@ -121,7 +121,7 @@ public class UIArriendoEquipos {
                     System.out.println("\nValor ingresado no valido como rut");
                 }
             }else{
-                System.out.println("\nValor ingresado no valido como rut");
+                System.out.println("\nValor ingresado no valido como rut, tiene que ser de la forma 11.111.111-1");
                 rut = "aaaaaaaaaaa";
             }
 
@@ -137,7 +137,7 @@ public class UIArriendoEquipos {
             System.out.print("\nTeléfono: ");
             telefono = scan.next();
             if (telefono.charAt(0)!=('+')){
-                System.out.println("\nEse no es un telefono");
+                System.out.println("\nEse no es un telefono, tiene que ser de la forma +111...");
             }
         }while(telefono.charAt(0)!=('+'));
 
@@ -188,30 +188,43 @@ public class UIArriendoEquipos {
                 System.out.println("\nNo existen para agregar a un conjunto");
             }else{
                 System.out.print("\nNumero de equipos componentes: ");
-                int nroEquipos = scan.nextInt();
+                int repeticion, nroEquipos = scan.nextInt();
                 long[] codigosEquipos = new long[nroEquipos];
                 long codigoDeImplemento;
 
-                for(int i = 0; i < nroEquipos; i++){
-                    do{
-                        System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
-                        codigoDeImplemento = scan.nextLong();
-                        if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
-                            codigosEquipos[i] = codigoDeImplemento;
-                        }else{
-                            System.out.println("El equipo no existe");
-                        }
-                    }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0);
-                }
+                if(nroEquipos > 0){
+                    for(int i = 0; i < nroEquipos; i++){
+                        do{
+                            repeticion = 0;
+                            System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
+                            codigoDeImplemento = scan.nextLong();
+                            if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
+                                codigosEquipos[i] = codigoDeImplemento;
+                            }else{
+                                System.out.println("El equipo no existe");
+                            }
+                            for(int cont = 0; cont < codigosEquipos.length; cont++){
+                                if(codigoDeImplemento==codigosEquipos[cont]){
+                                    repeticion++;
+                                }
+                            }
+                            if(repeticion > 1){
+                                System.out.println("\nNo se pueden repetir codigos de equipos");
+                            }
+                        }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0 | repeticion > 1);
+                    }
 
-                try{
-                    ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
-                }catch(EquipoException e){
-                    System.out.println(e.getMessage());
-                    return;
-                }
+                    try{
+                        ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
+                    }catch(EquipoException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
 
-                System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
+                    System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
+                }else{
+                    System.out.println("\nNumero de equipos componentes no valido");
+                }
             }
         }
 
