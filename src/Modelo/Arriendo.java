@@ -1,11 +1,12 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Arriendo {
+public class Arriendo implements Serializable {
     private long codigo;
     private LocalDate fechaInicio;
     private LocalDate fechaDevolucion;

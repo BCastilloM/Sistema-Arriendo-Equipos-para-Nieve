@@ -5,9 +5,10 @@
 
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Equipo {
+public abstract class Equipo implements Serializable {
     // Atributos
     private long codigo;
     private String descripcion;

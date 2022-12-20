@@ -6,9 +6,10 @@
 
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Serializable {
     // Atributos
     private String rut;
     private String nombre;

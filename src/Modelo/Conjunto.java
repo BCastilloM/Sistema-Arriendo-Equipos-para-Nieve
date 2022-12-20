@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Conjunto extends Equipo{
+public class Conjunto extends Equipo implements Serializable {
     private final ArrayList<Equipo> equipos;
     public Conjunto(long codigo, String descripcion) {
         super(codigo, descripcion);
