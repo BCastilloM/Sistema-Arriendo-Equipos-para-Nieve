@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="validacion en pagaArriendo (Faltan todas las demas validaciones en UI)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="mayoria de las validaciones hechas">
       <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671497047159</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="mayoria de las validaciones hechas">
+      <created>1671501505336</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1671501505336</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,7 +316,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cambios." />
     <MESSAGE value="Agrega clase Cliente, ControladorArriendoEquipos, Equipo, UIArriendoEquipos. Agrega enum EstadoEquipo. Implementación de arquitectura por capas." />
     <MESSAGE value="Avance clase UIArriendoEquipos" />
     <MESSAGE value="Arreglando ControladorArriendoEquipos.creaEquipo. agregando métodos en la clase UIArriendoEquipos" />
@@ -335,6 +340,7 @@
     <MESSAGE value="las listas estan listas" />
     <MESSAGE value="tercer avance v0.1" />
     <MESSAGE value="validacion en pagaArriendo (Faltan todas las demas validaciones en UI)" />
-    <option name="LAST_COMMIT_MESSAGE" value="validacion en pagaArriendo (Faltan todas las demas validaciones en UI)" />
+    <MESSAGE value="mayoria de las validaciones hechas" />
+    <option name="LAST_COMMIT_MESSAGE" value="mayoria de las validaciones hechas" />
   </component>
 </project>
