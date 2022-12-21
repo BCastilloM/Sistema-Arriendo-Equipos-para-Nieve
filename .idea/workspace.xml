@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="validaciones numericas en todo + lista de arriendos con pagos arreglada">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="creacion de conjunto bien validada v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/ControladorArriendoEquipos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/UIArriendoEquipos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,14 +326,7 @@
       <option name="project" value="LOCAL" />
       <updated>1671580794219</updated>
     </task>
-    <task id="LOCAL-00037" summary="validaciones numericas en todo + lista de arriendos con pagos arreglada">
-      <created>1671586584829</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1671586584829</updated>
-    </task>
-    <option name="localTasksCounter" value="38" />
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -359,6 +353,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Agregando metodos Cliente" />
     <MESSAGE value="Arreglando métodos listaClientes y listaEquipos de ControladorArriendoEquipos (agregado &quot;i++&quot;)." />
     <MESSAGE value="Cambios estéticos." />
     <MESSAGE value="Inicializando activo en true (clase Cliente)." />
@@ -383,7 +378,6 @@
     <MESSAGE value="inclusion de mas validaciones" />
     <MESSAGE value="creacion de conjunto bien validada" />
     <MESSAGE value="creacion de conjunto bien validada v2" />
-    <MESSAGE value="validaciones numericas en todo + lista de arriendos con pagos arreglada" />
-    <option name="LAST_COMMIT_MESSAGE" value="validaciones numericas en todo + lista de arriendos con pagos arreglada" />
+    <option name="LAST_COMMIT_MESSAGE" value="creacion de conjunto bien validada v2" />
   </component>
 </project>

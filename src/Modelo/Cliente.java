@@ -50,12 +50,12 @@ public class Cliente implements Serializable {
     }
 
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setActivo() {
+        this.activo = true;
     }
 
-    public void setInactivo(boolean inactivo) {
-        this.activo = inactivo;
+    public void setInactivo() {
+        this.activo = false;
 
     }
 
@@ -76,6 +76,4 @@ public class Cliente implements Serializable {
         }
         return arriendosPD.toArray(new Arriendo[cantArrPorDev]);
     }
-
-
 }
