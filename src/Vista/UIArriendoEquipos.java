@@ -754,10 +754,10 @@ public class UIArriendoEquipos {
             System.out.println("\n\nEl arriendo no tiene pagos asociados");
         }else{
             System.out.println("\n\n>>>>>>>>>>>\tPAGOS REALIZADOS\t<<<<<<<<<<<\n");
-            System.out.printf("%7s%-12s%-12s%n", "Monto", "Fecha", "Tipo pago");
+            System.out.printf("%-7s%-12s%-12s%n", "Monto", "Fecha", "Tipo pago");
 
             for(int i = 0; i < listaPagDeArr.length; i++){
-                System.out.printf("%7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
+                System.out.printf("%-7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
             }
         }
     }

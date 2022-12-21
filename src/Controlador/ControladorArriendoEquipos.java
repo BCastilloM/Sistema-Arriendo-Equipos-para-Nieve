@@ -413,7 +413,7 @@ public class ControladorArriendoEquipos {
         for(int i = 0; i < codEquipos.length; i++){
             conjunto.addEquipo(buscaEquipo(codEquipos[i]));
         }
-        equipos.add(new Conjunto(cod, desc));
+        equipos.add(conjunto);
     }
 
     public void pagaArriendoContado(long codArriendo, long monto) throws  ArriendoException{
