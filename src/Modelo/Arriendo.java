@@ -139,7 +139,7 @@ public class Arriendo implements Serializable {
             for (Pago pago : pagos) {
                 pagosAsociados[i][0] = String.valueOf(pago.getMonto());
                 pagosAsociados[i][1] = String.valueOf(pago.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                pagosAsociados[i][2] = String.valueOf(pago.getClass());
+                pagosAsociados[i][2] = String.valueOf(pago.getClass().getSimpleName());
                 i++;
             }
             return pagosAsociados;
