@@ -105,6 +105,12 @@ public class UIArriendoEquipos {
         do{
             System.out.print("\nRut: ");
             rut = scan.next();
+            try{
+                int intRut = (rut.charAt(0)+rut.charAt(1)+rut.charAt(3)+rut.charAt(4)+rut.charAt(5)+rut.charAt(7)+rut.charAt(8)+rut.charAt(9));
+            }catch(NumberFormatException e){
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
             if(rut.length()==12){
                 String ultDig = String.valueOf(rut.charAt(11));
                 for(int i = 0; i<=9;i++){
@@ -158,14 +164,26 @@ public class UIArriendoEquipos {
         System.out.println("\nCreando un nuevo equipo...");
 
         System.out.print("\nCódigo: ");
-        codigo = scan.nextLong();
+        try {
+            String codStr = scan.next();
+            codigo = Integer.parseInt(codStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
 
         System.out.print("\nDescripción: ");
         descripcion = scan.next();
 
         do{
             System.out.print("\nTipo equipo(1: Implemento, 2: Conjunto): ");
-            tipoEquipo = scan.nextInt();
+            try {
+                String tipoEquipoStr = scan.next();
+                tipoEquipo = Integer.parseInt(tipoEquipoStr);
+            } catch (NumberFormatException e) {
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
             if(tipoEquipo < 1 | tipoEquipo > 2){
                 System.out.println("Valor fuera de rango");
             }
@@ -173,7 +191,13 @@ public class UIArriendoEquipos {
 
         if(tipoEquipo == 1){
             System.out.print("\nPrecio de arriendo por día: ");
-            precioArriendoDia = scan.nextLong();
+            try {
+                String PADStr = scan.next();
+                precioArriendoDia = Integer.parseInt(PADStr);
+            } catch (NumberFormatException e) {
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
 
             try {
                 ControladorArriendoEquipos.getInstance().creaImplemento(codigo, descripcion, precioArriendoDia);
@@ -200,7 +224,13 @@ public class UIArriendoEquipos {
                             do{
                                 repeticion = 0;
                                 System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
-                                codigoDeImplemento = scan.nextLong();
+                                try {
+                                    String codStr = scan.next();
+                                    codigoDeImplemento = Integer.parseInt(codStr);
+                                } catch (NumberFormatException e) {
+                                    System.out.println("No se ingresó una opcion válida");
+                                    return;
+                                }
                                 if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
                                     codigosEquipos[i] = codigoDeImplemento;
                                 }else{
@@ -260,7 +290,13 @@ public class UIArriendoEquipos {
                 String[] datosEquipo;
                 do {
                     System.out.print("\nCódigo equipo: ");
-                    codigoEquipo = scan.nextLong();
+                    try {
+                        String codStr = scan.next();
+                        codigoEquipo = Integer.parseInt(codStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
                     datosEquipo = ControladorArriendoEquipos.getInstance().consultaEquipo(codigoEquipo);
                     if (datosEquipo.length == 0) {
                         System.out.println("\nEl equipo con el codigo dado no existe");
@@ -283,8 +319,13 @@ public class UIArriendoEquipos {
                     System.out.print("\nNo hay mas equipos, por lo que no es posible agregar otro equipo al arriendo");
                     pregunta = "n";
                 }else{
-                    System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n) ");
-                    pregunta = scan.next();
+                    do{
+                        System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n) ");
+                        pregunta = scan.next();
+                        if(!(pregunta.equals("s")|pregunta.equals("n"))){
+                            System.out.println("\nRespuesta no valida");
+                        }
+                    }while (!(pregunta.equals("s")|pregunta.equals("n")));
                 }
             }while(pregunta.equals("s"));
 
@@ -328,7 +369,13 @@ public class UIArriendoEquipos {
             }
 
             System.out.print("\n\nCodigo arriendo a devolver: ");
-            codArriendoADevolver = scan.nextLong();
+            try {
+                String codStr = scan.next();
+                codArriendoADevolver = Integer.parseInt(codStr);
+            } catch (NumberFormatException e) {
+                System.out.println("No se ingresó una opcion válida");
+                return;
+            }
             String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codArriendoADevolver);
             EstadoEquipo[] estadoEquipos = new EstadoEquipo[detalleArriendo.length];
 
@@ -338,13 +385,22 @@ public class UIArriendoEquipos {
                 System.out.print("\n\nIngrese código y estado en que se devuelve cada equipo que se indica >>>");
 
                 for(int i = 0; i < detalleArriendo.length; i++){
+                    int opcion;
                     System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
-                    int opcion = scan.nextInt();
+                    try {
+                        String opcStr = scan.next();
+                        opcion = Integer.parseInt(opcStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
 
                     switch(opcion){
                         case 1 -> estadoEquipos[i] = EstadoEquipo.OPERATIVO;
                         case 2 -> estadoEquipos[i] = EstadoEquipo.EN_REPARACION;
                         case 3 -> estadoEquipos[i] = EstadoEquipo.DADO_DE_BAJA;
+                        default -> { System.out.println("\nValor no valido");
+                            return;}
                     }
                 }
 
@@ -364,7 +420,13 @@ public class UIArriendoEquipos {
         int medioDePago;
         System.out.println("\nPagando arriendo...");
         System.out.print("\nCodigo arriendo a pagar: ");
-        codArriendo = scan.nextLong();
+        try {
+            String codStr = scan.next();
+            codArriendo = Integer.parseInt(codStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
         String[] arriendo = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
 
         if (arriendo.length == 0){
@@ -394,7 +456,13 @@ public class UIArriendoEquipos {
             switch (medioDePago){
                 case 1 -> {
                     System.out.print("\nMonto: ");
-                    monto = scan.nextLong();
+                    try {
+                        String montoStr = scan.next();
+                        monto = Integer.parseInt(montoStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
                     try{
                         ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
                     }catch(ArriendoException e){
@@ -405,7 +473,13 @@ public class UIArriendoEquipos {
                 }
                 case 2 -> {
                     System.out.print("\nMonto: ");
-                    monto = scan.nextLong();
+                    try {
+                        String montoStr = scan.next();
+                        monto = Integer.parseInt(montoStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
                     String codTran, numTar;
 
                     System.out.print("\nCodigo transaccion: ");
@@ -436,8 +510,15 @@ public class UIArriendoEquipos {
                 }
                 case 3 -> {
                     System.out.print("\nMonto: ");
-                    monto = scan.nextLong();
+                    try {
+                        String montoStr = scan.next();
+                        monto = Integer.parseInt(montoStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
                     String codTran, numTar;
+                    int nroCuotas;
 
                     System.out.print("\nCodigo transaccion: ");
                     try {
@@ -458,7 +539,17 @@ public class UIArriendoEquipos {
                     }
 
                     System.out.print("\nNumero cuotas: ");
-                    int nroCuotas = scan.nextInt();
+                    try {
+                        String nCuotasStr = scan.next();
+                        nroCuotas = Integer.parseInt(nCuotasStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("No se ingresó una opcion válida");
+                        return;
+                    }
+                    if(nroCuotas <= 0){
+                        System.out.println("No se ingreso una opcion valida");
+                        return;
+                    }
 
                     try{
                         ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
@@ -564,6 +655,7 @@ public class UIArriendoEquipos {
             ldFechaInicio = LocalDate.parse(fechaInicioPer, tf);
         } catch (Exception e) {
             System.out.println("Formato de fecha invalido");
+            return;
         }
 
         System.out.print("\nFecha fin periodo (dd/mm/aaaa): ");
@@ -573,6 +665,7 @@ public class UIArriendoEquipos {
             ldFechaFin = LocalDate.parse(fechaFinPer, tf);
         } catch (Exception e) {
             System.out.println("Formato de fecha invalido");
+            return;
         }
 
         String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
@@ -597,7 +690,13 @@ public class UIArriendoEquipos {
         int codigoArriendo;
 
         System.out.print("\nCodigo arriendo: ");
-        codigoArriendo = scan.nextInt();
+        try {
+            String codStr = scan.next();
+            codigoArriendo = Integer.parseInt(codStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
         String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
 
         if(Arriendo.length > 0) {
@@ -629,9 +728,9 @@ public class UIArriendoEquipos {
         if (listaArrPag.length > 0) {
             System.out.println("\nLISTADO DE ARRIENDOS PAGADOS");
             System.out.println("----------------------------\n");
-            System.out.printf("%-12s%-10s%-15s%-20s%-10s%-10s%-15s%n", "Codigo", "Estado", "Rut cliente", "Nombre cliente", "Monto deuda", "Monto pagado", "Saldo adeudado");
+            System.out.printf("%-12s%-10s%-15s%-20s%-12s%-14s%-16s%n", "Codigo", "Estado", "Rut cliente", "Nombre cliente", "Monto deuda", "Monto pagado", "Saldo adeudado");
             for(int i = 0; i<listaArrPag.length; i++){
-                System.out.printf("%-12s%-10s%-15s%-20s%10s%10s%15s%n", listaArrPag[i][0], listaArrPag[i][1], listaArrPag[i][2], listaArrPag[i][3], listaArrPag[i][4], listaArrPag[i][5], listaArrPag[i][6]);
+                System.out.printf("%-12s%-10s%-15s%-20s%11s%13s%16s%n", listaArrPag[i][0], listaArrPag[i][1], listaArrPag[i][2], listaArrPag[i][3], listaArrPag[i][4], listaArrPag[i][5], listaArrPag[i][6]);
             }
         }else {
             System.out.println("\nNo hay arriendos pagados");
@@ -643,7 +742,13 @@ public class UIArriendoEquipos {
         long codArr;
 
         System.out.print("\nCodigo arriendo: ");
-        codArr = scan.nextLong();
+        try {
+            String codStr = scan.next();
+            codArr = Integer.parseInt(codStr);
+        } catch (NumberFormatException e) {
+            System.out.println("No se ingresó una opcion válida");
+            return;
+        }
         String[][] listaPagDeArr = ControladorArriendoEquipos.getInstance().listaPagosDeArriendo(codArr);
         if(listaPagDeArr.length == 0){
             System.out.println("\n\nEl arriendo no tiene pagos asociados");

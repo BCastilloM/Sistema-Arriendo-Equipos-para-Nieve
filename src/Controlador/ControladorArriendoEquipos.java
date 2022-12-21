@@ -454,7 +454,9 @@ public class ControladorArriendoEquipos {
 
     public String[] consultaArriendoAPagar(long codigo){
         Arriendo arriendo = buscaArriendo(codigo);
-        if(arriendo == null || arriendo.getEstado() != EstadoArriendo.DEVUELTO){
+        if(arriendo == null){
+            return new String[0];
+        } else if (arriendo.getEstado() != EstadoArriendo.DEVUELTO) {
             return new String[0];
         }
         String[] MontoAPagar = new String[7];
@@ -479,18 +481,20 @@ public class ControladorArriendoEquipos {
             }
             if(cantArrConPago>0){
                 String[][] ArriendosPag = new String[cantArrConPago][7];
-                int i = 0;
+                int cont = 0;
                 for(Arriendo arriendo: arriendos){
                     if(arriendo.getMontoPagado() > 0){
-                        String[] datos = consultaArriendoAPagar(i);
-                        ArriendosPag[i][0] = datos[0];
-                        ArriendosPag[i][1] = datos[1];
-                        ArriendosPag[i][2] = datos[2];
-                        ArriendosPag[i][3] = datos[3];
-                        ArriendosPag[i][4] = datos[4];
-                        ArriendosPag[i][5] = datos[5];
-                        ArriendosPag[i][6] = datos[6];
-                        i++;
+                        String[] datos = consultaArriendoAPagar(arriendo.getCodigo());
+                        if(datos.length>0){
+                            ArriendosPag[cont][0] = datos[0];
+                            ArriendosPag[cont][1] = datos[1];
+                            ArriendosPag[cont][2] = datos[2];
+                            ArriendosPag[cont][3] = datos[3];
+                            ArriendosPag[cont][4] = datos[4];
+                            ArriendosPag[cont][5] = datos[5];
+                            ArriendosPag[cont][6] = datos[6];
+                            cont++;
+                        }
                     }
                 }
                 return ArriendosPag;
