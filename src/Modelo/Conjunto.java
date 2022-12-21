@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Conjunto extends Equipo implements Serializable {
     private final ArrayList<Equipo> equipos;
+
     public Conjunto(long codigo, String descripcion) {
         super(codigo, descripcion);
         equipos = new ArrayList<Equipo>();
@@ -12,9 +13,9 @@ public class Conjunto extends Equipo implements Serializable {
 
     @Override
     public long getPrecioArriendoDia() {
-        long precioArriendoDia=0;
-        for (Equipo equipo: equipos) {
-            precioArriendoDia+= equipo.getPrecioArriendoDia();
+        long precioArriendoDia = 0;
+        for (Equipo equipo : equipos) {
+            precioArriendoDia += equipo.getPrecioArriendoDia();
         }
         return precioArriendoDia;
     }

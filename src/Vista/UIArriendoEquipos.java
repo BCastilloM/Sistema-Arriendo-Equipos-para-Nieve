@@ -19,7 +19,7 @@ import java.util.zip.DataFormatException;
 
 public class UIArriendoEquipos {
     // Atributos
-    private static UIArriendoEquipos instance=null;
+    private static UIArriendoEquipos instance = null;
     private final Scanner scan;
 
     //Constructor
@@ -32,7 +32,7 @@ public class UIArriendoEquipos {
 
     // Crea objeto de tipo UIArriendoEquipos
     public static UIArriendoEquipos getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new UIArriendoEquipos();
         }
         return instance;
@@ -41,7 +41,7 @@ public class UIArriendoEquipos {
     public void menu() {
         int opcion;
 
-        do{
+        do {
             System.out.println("\n\n\n******* SISTEMA DE ARRIENDO DE EQUIPOS DE NIEVE *******");
             System.out.println("\n*** MENÚ DE OPCIONES ***");
             System.out.println("1. Crea un nuevo cliente");
@@ -77,21 +77,19 @@ public class UIArriendoEquipos {
                         System.out.println(e.getMessage());
                         return;
                     }
-
                 }
                 case 9 -> {
-                    try{
+                    try {
                         ControladorArriendoEquipos.getInstance().saveDatosSistema();
-                    } catch(DataFormatException e){
+                    } catch (DataFormatException e) {
                         System.out.println(e.getMessage());
                         return;
                     }
-
                 }
                 case 10 -> {}
                 default -> System.out.println("Error! El valor no está dentro del rango válido");
             }
-        }while(opcion != 10);
+        } while (opcion != 10);
     }
 
     //FALTA VALIDAR (Se deja para el final para hacer las pruebas de forma mas rapida)********************************************************************************************
@@ -102,36 +100,36 @@ public class UIArriendoEquipos {
 
         System.out.println("\nCreando un nuevo cliente...");
 
-        do{
+        do {
             System.out.print("\nRut: ");
             rut = scan.next();
-            try{
-                int intRut = (rut.charAt(0)+rut.charAt(1)+rut.charAt(3)+rut.charAt(4)+rut.charAt(5)+rut.charAt(7)+rut.charAt(8)+rut.charAt(9));
-            }catch(NumberFormatException e){
+            try {
+                int intRut = (rut.charAt(0) + rut.charAt(1) + rut.charAt(3) + rut.charAt(4) + rut.charAt(5) + rut.charAt(7) + rut.charAt(8) + rut.charAt(9));
+            } catch (NumberFormatException e) {
                 System.out.println("No se ingresó una opcion válida");
                 return;
             }
-            if(rut.length()==12){
+            if (rut.length() == 12) {
                 String ultDig = String.valueOf(rut.charAt(11));
-                for(int i = 0; i<=9;i++){
-                    if (ultDig.equals(i)){
+                for (int i = 0; i <= 9; i++) {
+                    if (ultDig.equals(i)) {
                         validador = true;
                     }
                 }
-                if(validador==false){
-                    if ((ultDig).toLowerCase().equals("k")){
+                if (validador == false) {
+                    if ((ultDig).toLowerCase().equals("k")) {
                         validador = true;
                     }
                 }
-                if(rut.charAt(2)!=('.') && rut.charAt(6)!=('.') && rut.charAt(10)!=('-') && validador!=true){
+                if (rut.charAt(2) != ('.') && rut.charAt(6) != ('.') && rut.charAt(10) != ('-') && validador != true) {
                     System.out.println("\nValor ingresado no valido como rut");
                 }
-            }else{
+            } else {
                 System.out.println("\nValor ingresado no valido como rut, tiene que ser de la forma 11.111.111-1");
                 rut = "aaaaaaaaaaa";
             }
 
-        }while(rut.charAt(2)!=('.') && rut.charAt(6)!=('.') && rut.charAt(10)!=('-') && validador!=true);
+        } while (rut.charAt(2) != ('.') && rut.charAt(6) != ('.') && rut.charAt(10) != ('-') && validador != true);
 
         System.out.print("\nNombre: ");
         nombre = scan.next();
@@ -139,21 +137,20 @@ public class UIArriendoEquipos {
         System.out.print("\nDomicilio: ");
         direccion = scan.next();
 
-        do{
+        do {
             System.out.print("\nTeléfono: ");
             telefono = scan.next();
-            if (telefono.charAt(0)!=('+')){
+            if (telefono.charAt(0) != ('+')) {
                 System.out.println("\nEse no es un telefono, tiene que ser de la forma +111...");
             }
-        }while(telefono.charAt(0)!=('+'));
+        } while (telefono.charAt(0) != ('+'));
 
-
-       try{
-           ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
-       }catch(ClienteException e){
-           System.out.println(e.getMessage());
-           return;
-       }
+        try {
+            ControladorArriendoEquipos.getInstance().creaCliente(rut, nombre, direccion, telefono);
+        } catch (ClienteException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
     }
 
     private void creaEquipo() {
@@ -175,7 +172,7 @@ public class UIArriendoEquipos {
         System.out.print("\nDescripción: ");
         descripcion = scan.next();
 
-        do{
+        do {
             System.out.print("\nTipo equipo(1: Implemento, 2: Conjunto): ");
             try {
                 String tipoEquipoStr = scan.next();
@@ -184,12 +181,12 @@ public class UIArriendoEquipos {
                 System.out.println("No se ingresó una opcion válida");
                 return;
             }
-            if(tipoEquipo < 1 | tipoEquipo > 2){
+            if (tipoEquipo < 1 | tipoEquipo > 2) {
                 System.out.println("Valor fuera de rango");
             }
-        }while(tipoEquipo < 1 | tipoEquipo > 2);
+        } while (tipoEquipo < 1 | tipoEquipo > 2);
 
-        if(tipoEquipo == 1){
+        if (tipoEquipo == 1) {
             System.out.print("\nPrecio de arriendo por día: ");
             try {
                 String PADStr = scan.next();
@@ -201,27 +198,27 @@ public class UIArriendoEquipos {
 
             try {
                 ControladorArriendoEquipos.getInstance().creaImplemento(codigo, descripcion, precioArriendoDia);
-            }catch(EquipoException e){
+            } catch (EquipoException e) {
                 System.out.println(e.getMessage());
                 return;
             }
 
             System.out.print("\n\nSe ha creado exitosamente un nuevo implemento");
-        }else{
-            if(ControladorArriendoEquipos.getInstance().listaEquipos().length == 0){
+        } else {
+            if (ControladorArriendoEquipos.getInstance().listaEquipos().length == 0) {
                 System.out.println("\nNo existen equipos para agregar a un conjunto");
-            }else{
+            } else {
                 System.out.print("\nNumero de equipos componentes: ");
                 int repeticion, nroEquipos = scan.nextInt();
                 long[] codigosEquipos = new long[nroEquipos];
                 long codigoDeImplemento;
 
-                if(nroEquipos > ControladorArriendoEquipos.getInstance().listaEquipos().length){
+                if (nroEquipos > ControladorArriendoEquipos.getInstance().listaEquipos().length) {
                     System.out.println("\nEl numero de equipos ingresado supera la cantidad de equipos disponible");
-                }else{
-                    if(nroEquipos > 1){
-                        for(int i = 0; i < nroEquipos; i++){
-                            do{
+                } else {
+                    if (nroEquipos > 1) {
+                        for (int i = 0; i < nroEquipos; i++) {
+                            do {
                                 repeticion = 0;
                                 System.out.print("\nCodigo equipo " + (i + 1) + " de " + nroEquipos + ": ");
                                 try {
@@ -231,31 +228,31 @@ public class UIArriendoEquipos {
                                     System.out.println("No se ingresó una opcion válida");
                                     return;
                                 }
-                                if(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0){
+                                if (ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length > 0) {
                                     codigosEquipos[i] = codigoDeImplemento;
-                                }else{
+                                } else {
                                     System.out.println("El equipo no existe");
                                 }
-                                for(int cont = 0; cont < codigosEquipos.length; cont++){
-                                    if(codigoDeImplemento==codigosEquipos[cont]){
+                                for (int cont = 0; cont < codigosEquipos.length; cont++) {
+                                    if (codigoDeImplemento == codigosEquipos[cont]) {
                                         repeticion++;
                                     }
                                 }
-                                if(repeticion > 1){
+                                if (repeticion > 1) {
                                     System.out.println("\nNo se pueden repetir codigos de equipos");
                                 }
-                            }while(ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0 | repeticion > 1);
+                            } while (ControladorArriendoEquipos.getInstance().consultaEquipo(codigoDeImplemento).length == 0 | repeticion > 1);
                         }
 
-                        try{
+                        try {
                             ControladorArriendoEquipos.getInstance().creaConjunto(codigo, descripcion, codigosEquipos);
-                        }catch(EquipoException e){
+                        } catch (EquipoException e) {
                             System.out.println(e.getMessage());
                             return;
                         }
 
                         System.out.print("\nSe ha creado exitosamente un nuevo conjunto");
-                    }else{
+                    } else {
                         System.out.println("\nNumero de equipos componentes no valido o insuficiente");
                     }
                 }
@@ -266,9 +263,9 @@ public class UIArriendoEquipos {
 
 
     private void arriendaEquipos() {
-        if (ControladorArriendoEquipos.getInstance().listaEquipos().length == 0){
+        if (ControladorArriendoEquipos.getInstance().listaEquipos().length == 0) {
             System.out.println("\nNo existen equipos");
-        }else{
+        } else {
             String pregunta, rutCliente;
             long codigoEquipo, codigoArriendo, precioTotal;
 
@@ -277,9 +274,9 @@ public class UIArriendoEquipos {
             rutCliente = scan.next();
             String[] cliente = ControladorArriendoEquipos.getInstance().consultaCliente(rutCliente);
 
-            try{
+            try {
                 codigoArriendo = ControladorArriendoEquipos.getInstance().creaArriendo(rutCliente);
-            }catch(ClienteException e){
+            } catch (ClienteException e) {
                 System.out.println(e.getMessage());
                 return;
             }
@@ -301,37 +298,37 @@ public class UIArriendoEquipos {
                     if (datosEquipo.length == 0) {
                         System.out.println("\nEl equipo con el codigo dado no existe");
                     }
-                }while(datosEquipo.length == 0);
+                } while (datosEquipo.length == 0);
 
-                if(datosEquipo[4].equals("Arrendado")){
+                if (datosEquipo[4].equals("Arrendado")) {
                     System.out.print("\nEl equipo se encuentra arrendado");
-                }else{
-                    try{
+                } else {
+                    try {
                         ControladorArriendoEquipos.getInstance().agregaEquipoToArriendo(codigoArriendo, codigoEquipo);
-                    }catch(ArriendoException | EquipoException e){
+                    } catch (ArriendoException | EquipoException e) {
                         System.out.println(e.getMessage());
                         return;
                     }
                     System.out.print("\nSe ha agregado " + datosEquipo[1] + " al arriendo");
                 }
 
-                if((ControladorArriendoEquipos.getInstance().listaEquipos().length - 1) == 0){
+                if ((ControladorArriendoEquipos.getInstance().listaEquipos().length - 1) == 0) {
                     System.out.print("\nNo hay mas equipos, por lo que no es posible agregar otro equipo al arriendo");
                     pregunta = "n";
-                }else{
-                    do{
+                } else {
+                    do {
                         System.out.print("\n¿Desea agregar otro equipo al arriendo? (s/n) ");
                         pregunta = scan.next();
-                        if(!(pregunta.equals("s")|pregunta.equals("n"))){
+                        if (!(pregunta.equals("s") | pregunta.equals("n"))) {
                             System.out.println("\nRespuesta no valida");
                         }
-                    }while (!(pregunta.equals("s")|pregunta.equals("n")));
+                    } while (!(pregunta.equals("s") | pregunta.equals("n")));
                 }
-            }while(pregunta.equals("s"));
+            } while (pregunta.equals("s"));
 
-            try{
-                precioTotal=ControladorArriendoEquipos.getInstance().cierraArriendo(codigoArriendo);
-            }catch(ArriendoException e){
+            try {
+                precioTotal = ControladorArriendoEquipos.getInstance().cierraArriendo(codigoArriendo);
+            } catch (ArriendoException e) {
                 System.out.println(e.getMessage());
                 return;
             }
@@ -355,12 +352,12 @@ public class UIArriendoEquipos {
             arriendosDelCliente = ControladorArriendoEquipos.getInstance().listaArriendosPorDevolver(rutCliente);
         } catch (ClienteException e) {
             System.out.println(e.getMessage());
-            return ;
+            return;
         }
 
-        if(arriendosDelCliente.length == 0){
+        if (arriendosDelCliente.length == 0) {
             System.out.println("\nEl cliente no tiene arriendos");
-        }else{
+        } else {
             System.out.print("\nNombre cliente: " + cliente[1]);
             System.out.println("\n\nLos arriendos por devolver son =>>");
             System.out.printf("%-15s%-15s%-15s%-15s%-15s%15s%n", "Codigo", "Fecha Inicio", "Fecha Devol.", "Estado", "Rut Cliente", "Monto total");
@@ -379,12 +376,12 @@ public class UIArriendoEquipos {
             String[][] detalleArriendo = ControladorArriendoEquipos.getInstance().listaDetallesArriendo(codArriendoADevolver);
             EstadoEquipo[] estadoEquipos = new EstadoEquipo[detalleArriendo.length];
 
-            if (detalleArriendo.length == 0){
+            if (detalleArriendo.length == 0) {
                 System.out.println("\nEl cliente no tiene un arriendo con el codigo dado");
-            }else{
+            } else {
                 System.out.print("\n\nIngrese código y estado en que se devuelve cada equipo que se indica >>>");
 
-                for(int i = 0; i < detalleArriendo.length; i++){
+                for (int i = 0; i < detalleArriendo.length; i++) {
                     int opcion;
                     System.out.print("\n(" + detalleArriendo[i][1] + ") -> Estado (1: Operativo, 2: En Reparacion, 3: Dado de baja): ");
                     try {
@@ -395,19 +392,19 @@ public class UIArriendoEquipos {
                         return;
                     }
 
-                    switch(opcion){
+                    switch (opcion) {
                         case 1 -> estadoEquipos[i] = EstadoEquipo.OPERATIVO;
                         case 2 -> estadoEquipos[i] = EstadoEquipo.EN_REPARACION;
                         case 3 -> estadoEquipos[i] = EstadoEquipo.DADO_DE_BAJA;
                         default -> { System.out.println("\nValor no valido");
-                            return;}
+                            return; }
                     }
                 }
 
-                try{
+                try {
                     ControladorArriendoEquipos.getInstance().devuelveEquipos(codArriendoADevolver, estadoEquipos);
                     System.out.print("\n\n" + detalleArriendo.length + " equipo(s) fue(ron) devuelto(s) exitosamente");
-                }catch (ArriendoException e){
+                } catch (ArriendoException e) {
                     System.out.println(e.getMessage());
                     return;
                 }
@@ -429,9 +426,9 @@ public class UIArriendoEquipos {
         }
         String[] arriendo = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
 
-        if (arriendo.length == 0){
+        if (arriendo.length == 0) {
             System.out.println("\nNo existe un arriendo con el codigo dado");
-        }else{
+        } else {
 
             System.out.print("\n\n---- ANTECEDENTES DEL ARRIENDO ----");
             System.out.print("\nCodigo: " + arriendo[0]);
@@ -453,7 +450,7 @@ public class UIArriendoEquipos {
                 return;
             }
 
-            switch (medioDePago){
+            switch (medioDePago) {
                 case 1 -> {
                     System.out.print("\nMonto: ");
                     try {
@@ -463,9 +460,9 @@ public class UIArriendoEquipos {
                         System.out.println("No se ingresó una opcion válida");
                         return;
                     }
-                    try{
+                    try {
                         ControladorArriendoEquipos.getInstance().pagaArriendoContado(codArriendo, monto);
-                    }catch(ArriendoException e){
+                    } catch (ArriendoException e) {
                         System.out.println(e.getMessage());
                         return;
                     }
@@ -500,9 +497,9 @@ public class UIArriendoEquipos {
                         return;
                     }
 
-                    try{
+                    try {
                         ControladorArriendoEquipos.getInstance().pagaArriendoDebito(codArriendo, monto, codTran, numTar);
-                    }catch(ArriendoException e){
+                    } catch (ArriendoException e) {
                         System.out.println(e.getMessage());
                         return;
                     }
@@ -546,14 +543,14 @@ public class UIArriendoEquipos {
                         System.out.println("No se ingresó una opcion válida");
                         return;
                     }
-                    if(nroCuotas <= 0){
+                    if (nroCuotas <= 0) {
                         System.out.println("No se ingreso una opcion valida");
                         return;
                     }
 
-                    try{
+                    try {
                         ControladorArriendoEquipos.getInstance().pagaArriendoCredito(codArriendo, monto, codTran, numTar, nroCuotas);
-                    }catch(ArriendoException e){
+                    } catch (ArriendoException e) {
                         System.out.println(e.getMessage());
                         return;
                     }
@@ -573,9 +570,9 @@ public class UIArriendoEquipos {
         System.out.print("Rut cliente: ");
         rutCliente = scan.next();
 
-        try{
+        try {
             ControladorArriendoEquipos.getInstance().cambiaEstadoCliente(rutCliente);
-        }catch(ClienteException e){
+        } catch (ClienteException e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -617,14 +614,14 @@ public class UIArriendoEquipos {
     private void listaClientes() {
         String[][] listadoClientes = ControladorArriendoEquipos.getInstance().listaClientes();
 
-        if(listadoClientes.length > 0){
+        if (listadoClientes.length > 0) {
             System.out.println("LISTADO DE CLIENTES");
             System.out.println("-------------------\n");
-            System.out.printf("%-15s%-20s%-20s%-16s%-8s%-14s%n", "Rut", "Nombre", "Direccion",  "Telefono", "Estado", "Nro.Arr.Pdtes.");
-            for(String[] columna : listadoClientes){
+            System.out.printf("%-15s%-20s%-20s%-16s%-8s%-14s%n", "Rut", "Nombre", "Direccion", "Telefono", "Estado", "Nro.Arr.Pdtes.");
+            for (String[] columna : listadoClientes) {
                 System.out.printf("%-15s%-20s%-20s%-16s%-8s%14s%n", columna[0], columna[1], columna[2], columna[3], columna[4], columna[5]);
             }
-        }else{
+        } else {
             System.out.println("No se han registrado clientes");
         }
     }
@@ -632,14 +629,14 @@ public class UIArriendoEquipos {
     private void listaEquipos() {
         String[][] datosEquipos = ControladorArriendoEquipos.getInstance().listaEquipos();
 
-        if(datosEquipos.length > 0) {
+        if (datosEquipos.length > 0) {
             System.out.println("LISTADO DE EQUIPOS");
             System.out.println("------------------");
             System.out.printf("%-15s%-50s%-20s%-15s%-15s%n", "Código", "Descripción", "Precio", "Estado", "Situacion");
-            for(String[] columna : datosEquipos) {
+            for (String[] columna : datosEquipos) {
                 System.out.printf("%-15s%-50s%,-20d%-15s%-15s%n", columna[0], columna[1], Long.parseLong(columna[2]), columna[3], columna[4]);
             }
-        }else {
+        } else {
             System.out.println("No se han registrado equipos");
         }
     }
@@ -651,7 +648,7 @@ public class UIArriendoEquipos {
         System.out.print("\nFecha inicio periodo (dd/mm/aaaa): ");
         String fechaInicioPer = scan.next();
 
-        try{
+        try {
             ldFechaInicio = LocalDate.parse(fechaInicioPer, tf);
         } catch (Exception e) {
             System.out.println("Formato de fecha invalido");
@@ -661,7 +658,7 @@ public class UIArriendoEquipos {
         System.out.print("\nFecha fin periodo (dd/mm/aaaa): ");
         String fechaFinPer = scan.next();
 
-        try{
+        try {
             ldFechaFin = LocalDate.parse(fechaFinPer, tf);
         } catch (Exception e) {
             System.out.println("Formato de fecha invalido");
@@ -670,7 +667,7 @@ public class UIArriendoEquipos {
 
         String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
 
-        if(datosArriendos.length > 0) {
+        if (datosArriendos.length > 0) {
             System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
             System.out.println("--------------------\n");
             System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
@@ -680,7 +677,7 @@ public class UIArriendoEquipos {
                     System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
                 }
             }
-        }else {
+        } else {
             System.out.println("No se han registrado Arriendos");
         }
 
@@ -699,7 +696,7 @@ public class UIArriendoEquipos {
         }
         String[] Arriendo = ControladorArriendoEquipos.getInstance().consultaArriendo(codigoArriendo);
 
-        if(Arriendo.length > 0) {
+        if (Arriendo.length > 0) {
             System.out.print("\n----------------------------------------------------------------");
             System.out.print("\nCodigo: " + codigoArriendo);
             System.out.print("\nFecha Inicio: " + Arriendo[1]);
@@ -715,10 +712,10 @@ public class UIArriendoEquipos {
             System.out.print("\n\t\t\t\t\t\tDETALLE DEL ARRIENDO");
             System.out.println("\n----------------------------------------------------------------");
             System.out.printf("%-15s%-25s%-25s%n", "Codigo equipo", "Descripcion equipo", "Precio arriendo por dia");
-            for(int i = 0; i<detalleArriendo.length; i++){
+            for (int i = 0; i < detalleArriendo.length; i++) {
                 System.out.printf("%-15s%-23s%25s%n", detalleArriendo[i][0], detalleArriendo[i][1], detalleArriendo[i][2]);
             }
-        }else{
+        } else {
             System.out.println("El arriendo con el codigo dado no existe");
         }
     }
@@ -729,10 +726,10 @@ public class UIArriendoEquipos {
             System.out.println("\nLISTADO DE ARRIENDOS PAGADOS");
             System.out.println("----------------------------\n");
             System.out.printf("%-12s%-10s%-15s%-20s%-12s%-14s%-16s%n", "Codigo", "Estado", "Rut cliente", "Nombre cliente", "Monto deuda", "Monto pagado", "Saldo adeudado");
-            for(int i = 0; i<listaArrPag.length; i++){
+            for (int i = 0; i < listaArrPag.length; i++) {
                 System.out.printf("%-12s%-10s%-15s%-20s%11s%13s%16s%n", listaArrPag[i][0], listaArrPag[i][1], listaArrPag[i][2], listaArrPag[i][3], listaArrPag[i][4], listaArrPag[i][5], listaArrPag[i][6]);
             }
-        }else {
+        } else {
             System.out.println("\nNo hay arriendos pagados");
         }
 
@@ -750,13 +747,13 @@ public class UIArriendoEquipos {
             return;
         }
         String[][] listaPagDeArr = ControladorArriendoEquipos.getInstance().listaPagosDeArriendo(codArr);
-        if(listaPagDeArr.length == 0){
+        if (listaPagDeArr.length == 0) {
             System.out.println("\n\nEl arriendo no tiene pagos asociados");
-        }else{
+        } else {
             System.out.println("\n\n>>>>>>>>>>>\tPAGOS REALIZADOS\t<<<<<<<<<<<\n");
             System.out.printf("%-7s%-12s%-12s%n", "Monto", "Fecha", "Tipo pago");
 
-            for(int i = 0; i < listaPagDeArr.length; i++){
+            for (int i = 0; i < listaPagDeArr.length; i++) {
                 System.out.printf("%-7s%-12s%-12s%n", listaPagDeArr[i][0], listaPagDeArr[i][1], listaPagDeArr[i][2]);
             }
         }

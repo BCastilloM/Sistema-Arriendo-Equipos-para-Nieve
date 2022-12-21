@@ -52,7 +52,8 @@ public abstract class Equipo implements Serializable {
         return false;
     }
 
-    public void addEquipo(Equipo equipo) {}
+    public void addEquipo(Equipo equipo) {
+    }
 
     public int getNroEquipos() {
         return 0;
