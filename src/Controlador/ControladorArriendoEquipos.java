@@ -52,6 +52,7 @@ public class ControladorArriendoEquipos {
         }
     }
 
+
     public void creaImplemento ( long cod, String desc,long precio) throws EquipoException {
         Equipo equipo = buscaEquipo(cod);
         if (equipo == null) {
