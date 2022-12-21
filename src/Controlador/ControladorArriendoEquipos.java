@@ -33,8 +33,6 @@ public class ControladorArriendoEquipos {
         arriendos = new ArrayList<>();
     }
 
-    // Métodos
-
     // Crea objeto de tipo ControladorArriendoEquipos
     public static ControladorArriendoEquipos getInstance() {
         if (instance == null) {
