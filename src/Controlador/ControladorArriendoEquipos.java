@@ -341,6 +341,7 @@ public class ControladorArriendoEquipos {
                 arrDevolver[i][4] = arriendo.getCliente().getRut();
                 arrDevolver[i][5] = arriendo.getCliente().getNombre();
                 arrDevolver[i][6] = String.valueOf(arriendo.getMontoTotal());
+                i++;
             }
             return arrDevolver;
         }
