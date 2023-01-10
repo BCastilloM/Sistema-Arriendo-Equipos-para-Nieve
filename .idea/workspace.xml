@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="creacion de conjunto bien validada v2">
-      <change afterPath="$PROJECT_DIR$/src/Vista/CreaEquipo.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Vista/CreaEquipo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Vista/Principal.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Vista/Principal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Agregando menu y nuevo implemento GUI" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,20 +32,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/angel/OneDrive/Escritorio/PSeInt/Viveros y Sensores VFinal con GUI v1",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/angel/OneDrive/Escritorio/PSeInt/Viveros y Sensores VFinal con GUI v1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "PLAIN_TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\angel\OneDrive\Escritorio\PSeInt\nieveeeeee\src\Vista" />
@@ -368,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671580794219</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Agregando menu y nuevo implemento GUI">
+      <created>1673391330011</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1673391330011</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -395,7 +396,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Agregando metodos Cliente" />
     <MESSAGE value="Arreglando métodos listaClientes y listaEquipos de ControladorArriendoEquipos (agregado &quot;i++&quot;)." />
     <MESSAGE value="Cambios estéticos." />
     <MESSAGE value="Inicializando activo en true (clase Cliente)." />
@@ -420,6 +420,7 @@
     <MESSAGE value="inclusion de mas validaciones" />
     <MESSAGE value="creacion de conjunto bien validada" />
     <MESSAGE value="creacion de conjunto bien validada v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="creacion de conjunto bien validada v2" />
+    <MESSAGE value="Agregando menu y nuevo implemento GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando menu y nuevo implemento GUI" />
   </component>
 </project>
