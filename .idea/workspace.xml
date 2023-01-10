@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Avance 3 terminado.">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="creacion de conjunto bien validada v2">
+      <change afterPath="$PROJECT_DIR$/src/Vista/CreaEquipo.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vista/CreaEquipo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vista/Principal.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vista/Principal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,11 +43,28 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/bajbs/Downloads/javas/Sistema Arriendo Equipos para Nieve V1",
+    "last_opened_file_path": "C:/Users/angel/OneDrive/Escritorio/PSeInt/Viveros y Sensores VFinal con GUI v1",
     "settings.editor.selected.configurable": "inlay.hints"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
+    ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\angel\OneDrive\Escritorio\PSeInt\nieveeeeee\src\Vista" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Vista.Principal">
+    <configuration name="CreaEquipo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CreaEquipo" />
+      <module name="Sistema Arriendo Equipos para Nieve V1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Vista.Main" />
       <module name="Sistema Arriendo Equipos para Nieve V1" />
@@ -57,8 +78,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Principal" />
+      <module name="Sistema Arriendo Equipos para Nieve V1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Vista.Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Vista.Principal" />
+      <module name="Sistema Arriendo Equipos para Nieve V1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Vista.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Vista.Principal" />
+        <item itemvalue="Application.CreaEquipo" />
+        <item itemvalue="Application.Principal" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -324,42 +368,7 @@
       <option name="project" value="LOCAL" />
       <updated>1671580794219</updated>
     </task>
-    <task id="LOCAL-00037" summary="últimos arreglos.">
-      <created>1671588766687</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1671588766687</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Reordenando código.">
-      <created>1671590159459</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1671590159459</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Reordenando código.">
-      <created>1671590239238</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1671590239238</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Reformat Code.">
-      <created>1671590791378</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1671590791378</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Avance 3 terminado.">
-      <created>1671590891068</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1671590891068</updated>
-    </task>
-    <option name="localTasksCounter" value="42" />
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,6 +395,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Agregando metodos Cliente" />
+    <MESSAGE value="Arreglando métodos listaClientes y listaEquipos de ControladorArriendoEquipos (agregado &quot;i++&quot;)." />
+    <MESSAGE value="Cambios estéticos." />
+    <MESSAGE value="Inicializando activo en true (clase Cliente)." />
     <MESSAGE value="Agregando comentarios." />
     <MESSAGE value="Arreglando listaEquipos de la clase UIArriendoEquipos." />
     <MESSAGE value="Agregando autores." />
@@ -407,10 +420,6 @@
     <MESSAGE value="inclusion de mas validaciones" />
     <MESSAGE value="creacion de conjunto bien validada" />
     <MESSAGE value="creacion de conjunto bien validada v2" />
-    <MESSAGE value="últimos arreglos." />
-    <MESSAGE value="Reordenando código." />
-    <MESSAGE value="Reformat Code." />
-    <MESSAGE value="Avance 3 terminado." />
-    <option name="LAST_COMMIT_MESSAGE" value="Avance 3 terminado." />
+    <option name="LAST_COMMIT_MESSAGE" value="creacion de conjunto bien validada v2" />
   </component>
 </project>
