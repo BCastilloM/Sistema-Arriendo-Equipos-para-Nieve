@@ -47,6 +47,13 @@ public class Principal extends JDialog {
                 onCancel();
             }
         });
+        abrirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onLeer();
+            }
+        });
+
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
