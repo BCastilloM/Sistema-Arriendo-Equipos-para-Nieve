@@ -62,6 +62,15 @@ public class Principal extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pagaArriendoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                PagarArriendo dialog = new PagarArriendo();
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        });
     }
     private void onLeer(){
         try {
