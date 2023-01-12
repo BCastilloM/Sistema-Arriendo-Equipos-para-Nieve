@@ -27,7 +27,7 @@ public class ListadoArriendo extends JDialog {
     private String[] nombreColumnas;
 
     public ListadoArriendo() {
-        nombreColumnas = new String[]{"Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Nombre cliente" ,"Monto total"};
+        nombreColumnas = new String[]{"CODIGO", "ARRENDADO EL", "DEVUELTO EL", "ESTADO", "RUT CLIENTE", "NOMBRE CLIENTE" ,"MONTO TOTAL"};
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -115,6 +115,7 @@ public class ListadoArriendo extends JDialog {
     public static void display() {
         ListadoArriendo dialog = new ListadoArriendo();
         dialog.pack();
+        dialog.setSize(800,500);
         dialog.setVisible(true);
     }
 
