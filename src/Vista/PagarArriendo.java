@@ -237,10 +237,25 @@ public class PagarArriendo extends JDialog {
                 }
             }
         }
+        arriendoCodtextField.setText("");
+        labelMonto.setText("");
+        labelMontoPagado.setText("");
+        labelSaldoAdeudado.setText("");
+        labelNombre.setText("");
+        labelRut.setText("");
+        labelEstado.setText("");
+        fechaLabel.setText("");
+        numCuoLabel.setText("");
+        numTarLabel.setText("");
+        numTranLabel.setText("");
+        montotextField.setText("");
+        numTranTextField.setText("");
+        numTarTextField.setText("");
+        numCuoTextField.setText("");
     }
 
     private void onCancel() {
-        // add your code here if necessary
+
         dispose();
     }
 }
