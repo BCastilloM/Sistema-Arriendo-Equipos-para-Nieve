@@ -40,6 +40,23 @@ public class PagarArriendo extends JDialog {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
+                arriendoCodtextField.setText("");
+                labelMonto.setText("");
+                labelMontoPagado.setText("");
+                labelSaldoAdeudado.setText("");
+                labelNombre.setText("");
+                labelRut.setText("");
+                labelEstado.setText("");
+                fechaLabel.setText("");
+                numCuoLabel.setText("");
+                numTarLabel.setText("");
+                numTranLabel.setText("");
+                montotextField.setText("");
+                numTranTextField.setText("");
+                numTarTextField.setText("");
+                numCuoTextField.setText("");
+                dispose();
+                JOptionPane.showMessageDialog(null, "El pago se ha realizado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -237,21 +254,6 @@ public class PagarArriendo extends JDialog {
                 }
             }
         }
-        arriendoCodtextField.setText("");
-        labelMonto.setText("");
-        labelMontoPagado.setText("");
-        labelSaldoAdeudado.setText("");
-        labelNombre.setText("");
-        labelRut.setText("");
-        labelEstado.setText("");
-        fechaLabel.setText("");
-        numCuoLabel.setText("");
-        numTarLabel.setText("");
-        numTranLabel.setText("");
-        montotextField.setText("");
-        numTranTextField.setText("");
-        numTarTextField.setText("");
-        numCuoTextField.setText("");
     }
 
     private void onCancel() {
