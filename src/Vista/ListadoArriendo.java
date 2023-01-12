@@ -27,7 +27,7 @@ public class ListadoArriendo extends JDialog {
     private String[] nombreColumnas;
 
     public ListadoArriendo() {
-        nombreColumnas = new String[]{"Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total"};
+        nombreColumnas = new String[]{"Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Nombre cliente" ,"Monto total"};
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
