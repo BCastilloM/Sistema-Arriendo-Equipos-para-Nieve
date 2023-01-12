@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
-public class ControladorArriendoEquipos {
+public class ControladorArriendoEquipos implements Serializable{
     // Atributos
     private static ControladorArriendoEquipos instance = null;
     private final ArrayList<Cliente> clientes;
@@ -384,63 +384,41 @@ public class ControladorArriendoEquipos {
     }
 
     public void readDatosSistema() throws DataFormatException {
-        ObjectInputStream archivoCliente = null;
-        ObjectInputStream archivoEquipo = null;
-        ObjectInputStream archivoArriendo = null;
+        ObjectInputStream archivo = null;
 
         try {
-            archivoCliente = new ObjectInputStream(new FileInputStream("Cliente.obj"));
-            archivoEquipo = new ObjectInputStream(new FileInputStream("Equipo.obj"));
-            archivoArriendo = new ObjectInputStream(new FileInputStream("Arriendo.obj"));
-            while (true) {
-                clientes.add((Cliente) archivoCliente.readObject());
-                equipos.add((Equipo) archivoEquipo.readObject());
-                arriendos.add((Arriendo) archivoArriendo.readObject());
-            }
+            archivo = new ObjectInputStream(new FileInputStream("Archivos.obj"));
+            instance = (ControladorArriendoEquipos) archivo.readObject();
         } catch (EOFException e) {
             try {
-                archivoCliente.close();
-                archivoEquipo.close();
-                archivoArriendo.close();
+                archivo.close();
             } catch (IOException e2) {
-                throw new DataFormatException("Problemas al cerrar uno o más archivos");
+                throw new DataFormatException("Problemas al cerrar el archivo");
             }
         } catch (FileNotFoundException e) {
-            throw new DataFormatException("Problemas al abrir uno o más archivos");
+            throw new DataFormatException("Problemas al abrir el archivo");
         } catch (IOException | ClassNotFoundException e) {
-            throw new DataFormatException("Problemas al leer uno o más archivos");
+            throw new DataFormatException("Problemas al leer el archivo");
         }
     }
 
     public void saveDatosSistema() throws DataFormatException {
-        ObjectOutputStream archivoCliente = null;
-        ObjectOutputStream archivoEquipo = null;
-        ObjectOutputStream archivoArriendo = null;
+        ObjectOutputStream archivo = null;
 
         try {
-            archivoCliente = new ObjectOutputStream(new FileOutputStream("Cliente.obj"));
-            archivoEquipo = new ObjectOutputStream(new FileOutputStream("Equipo.obj"));
-            archivoArriendo = new ObjectOutputStream(new FileOutputStream("Arriendo.obj"));
-            for (Cliente cliente : clientes) {
-                archivoCliente.writeObject(cliente);
-            }
-            for (Equipo equipo : equipos) {
-                archivoEquipo.writeObject(equipo);
-            }
-            for (Arriendo arriendo : arriendos) {
-                archivoArriendo.writeObject(arriendo);
-            }
+            archivo = new ObjectOutputStream(new FileOutputStream("Archivos.obj"));
+
+            archivo.writeObject(instance);
+
         } catch (FileNotFoundException e) {
-            throw new DataFormatException("Problemas al abrir uno o más archivos");
+            throw new DataFormatException("Problemas al abrir el archivo");
         } catch (IOException e) {
-            throw new DataFormatException("Problemas al grabar uno o más archivos");
+            throw new DataFormatException("Problemas al grabar el archivo");
         } finally {
             try {
-                archivoCliente.close();
-                archivoEquipo.close();
-                archivoArriendo.close();
+                archivo.close();
             } catch (IOException E) {
-                throw new DataFormatException("Problemas al cerrar uno o más archivos");
+                throw new DataFormatException("Problemas al cerrar el archivo");
             }
         }
     }
