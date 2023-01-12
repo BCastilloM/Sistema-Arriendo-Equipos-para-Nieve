@@ -263,23 +263,21 @@ public class ControladorArriendoEquipos {
 
     public String[] consultaArriendoAPagar(long codigo) {
         Arriendo arriendo = buscaArriendo(codigo);
+        String[] MontoAPagar = new String[7];
         if (arriendo == null) {
-            System.out.println("Nunca");
             return new String[0];
         }
         if (arriendo.getEstado().equals(EstadoArriendo.DEVUELTO)) {
-            System.out.println("tampoco aca");
-            return new String[0];
+
+            MontoAPagar[0] = String.valueOf(arriendo.getCodigo());
+            MontoAPagar[1] = String.valueOf(arriendo.getEstado()).toLowerCase();
+            MontoAPagar[2] = arriendo.getCliente().getRut();
+            MontoAPagar[3] = arriendo.getCliente().getNombre();
+            MontoAPagar[4] = String.valueOf(arriendo.getMontoTotal());
+            MontoAPagar[5] = String.valueOf(arriendo.getMontoPagado());
+            MontoAPagar[6] = String.valueOf(arriendo.getSaldoAdeudado());
         }
-        System.out.println("???????");
-        String[] MontoAPagar = new String[7];
-        MontoAPagar[0] = String.valueOf(arriendo.getCodigo());
-        MontoAPagar[1] = String.valueOf(arriendo.getEstado()).toLowerCase();
-        MontoAPagar[2] = arriendo.getCliente().getRut();
-        MontoAPagar[3] = arriendo.getCliente().getNombre();
-        MontoAPagar[4] = String.valueOf(arriendo.getMontoTotal());
-        MontoAPagar[5] = String.valueOf(arriendo.getMontoPagado());
-        MontoAPagar[6] = String.valueOf(arriendo.getSaldoAdeudado());
+
 
         return MontoAPagar;
     }
