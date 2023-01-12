@@ -79,16 +79,15 @@ public class Principal extends JDialog {
             }
         });
         listadoPagosArriendoButton.addActionListener(e -> {
-            String codigoString = JOptionPane.showInputDialog(null, "Ingrese", "", JOptionPane.QUESTION_MESSAGE);
+            String codigoString = JOptionPane.showInputDialog(null, "Ingrese el código del arriendo", "Input", JOptionPane.QUESTION_MESSAGE);
             if (codigoString == null) {
-                System.out.print("fjdklasjfklsdjfsklad\n");
                 return;
             }
             int codigo;
             try {
                 codigo = Integer.parseInt(codigoString);
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Error", "titut", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Se ingresó un valor no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
