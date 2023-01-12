@@ -6,7 +6,6 @@ import Excepciones.ArriendoException;
 import javax.swing.*;
 import java.awt.event.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class PagarArriendo extends JDialog {
     private JPanel contentPane;
@@ -25,9 +24,9 @@ public class PagarArriendo extends JDialog {
     private JRadioButton creditoRadioButton;
     private JLabel fechaLabel;
     private JTextField montotextField;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
+    private JTextField numTranTextField;
+    private JTextField numTarTextField;
+    private JTextField numCuoTextField;
     private JLabel numTranLabel;
     private JLabel numTarLabel;
     private JLabel numCuoLabel;
@@ -36,7 +35,7 @@ public class PagarArriendo extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        fechaLabel.setText(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonth() + "/" + LocalDate.now().getYear());
+        fechaLabel.setText(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonthValue() + "/" + LocalDate.now().getYear());
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -74,22 +73,22 @@ public class PagarArriendo extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 numTranLabel.setEnabled(true);
-                textField3.setEnabled(true);
+                numTranTextField.setEnabled(true);
                 numTarLabel.setEnabled(true);
-                textField4.setEnabled(true);
+                numTarTextField.setEnabled(true);
                 numCuoLabel.setEnabled(false);
-                textField5.setEnabled(false);
+                numCuoTextField.setEnabled(false);
             }
         });
         creditoRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 numTranLabel.setEnabled(true);
-                textField3.setEnabled(true);
+                numTranTextField.setEnabled(true);
                 numTarLabel.setEnabled(true);
-                textField4.setEnabled(true);
+                numTarTextField.setEnabled(true);
                 numCuoLabel.setEnabled(true);
-                textField5.setEnabled(true);
+                numCuoTextField.setEnabled(true);
             }
         });
         contadoRadioButton.addActionListener(new ActionListener() {
@@ -97,11 +96,11 @@ public class PagarArriendo extends JDialog {
             public void actionPerformed(ActionEvent e) {
 
                 numTranLabel.setEnabled(false);
-                textField3.setEnabled(false);
+                numTranTextField.setEnabled(false);
                 numTarLabel.setEnabled(false);
-                textField4.setEnabled(false);
+                numTarTextField.setEnabled(false);
                 numCuoLabel.setEnabled(false);
-                textField5.setEnabled(false);
+                numCuoTextField.setEnabled(false);
             }
         });
     }
@@ -135,7 +134,13 @@ public class PagarArriendo extends JDialog {
         if(labelMonto.getText()==null| montotextField.getText()==null) {
             JOptionPane.showMessageDialog(this, "No ha pagado ningún arriendo", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }else {
-            long codArriendo = Long.parseLong(arriendoCodtextField.getText());
+            long codArriendo;
+            try {
+                codArriendo = Long.parseLong(arriendoCodtextField.getText());
+            }catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "Por favor, revisar el código del arriendo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             if(contadoRadioButton.isSelected()){
                 try {
                     String montoStr = montotextField.getText();
@@ -163,7 +168,7 @@ public class PagarArriendo extends JDialog {
                 String codTran, numTar;
 
                 try {
-                    codTran = textField3.getText();
+                    codTran = numTranTextField.getText();
                     int intCodTran = Integer.parseInt(codTran);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en Número de la transacción", "Error", JOptionPane.ERROR_MESSAGE);
@@ -171,7 +176,7 @@ public class PagarArriendo extends JDialog {
                 }
 
                 try {
-                    numTar = textField4.getText();
+                    numTar = numTarTextField.getText();
                     int intnumTar = Integer.parseInt(numTar);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en Número de tarjeta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -197,7 +202,7 @@ public class PagarArriendo extends JDialog {
                 int nroCuotas;
 
                 try {
-                    codTran = textField3.getText();
+                    codTran = numTranTextField.getText();
                     int intCodTran = Integer.parseInt(codTran);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en Número de la transacción", "Error", JOptionPane.ERROR_MESSAGE);
@@ -205,7 +210,7 @@ public class PagarArriendo extends JDialog {
                 }
 
                 try {
-                    numTar = textField4.getText();
+                    numTar = numTarTextField.getText();
                     int intnumTar = Integer.parseInt(numTar);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en Número de tarjeta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -213,7 +218,7 @@ public class PagarArriendo extends JDialog {
                 }
 
                 try {
-                    String nCuotasStr = textField5.getText();
+                    String nCuotasStr = numCuoTextField.getText();
                     nroCuotas = Integer.parseInt(nCuotasStr);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en Número de cuotas", "Error", JOptionPane.ERROR_MESSAGE);

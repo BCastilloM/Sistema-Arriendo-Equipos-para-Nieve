@@ -192,7 +192,7 @@
                   <text value="Número de transacción:"/>
                 </properties>
               </component>
-              <component id="17694" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+              <component id="17694" class="javax.swing.JTextField" binding="numTranTextField">
                 <constraints>
                   <grid row="3" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -211,7 +211,7 @@
                   <text value="Número de tarjeta:"/>
                 </properties>
               </component>
-              <component id="a2d33" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+              <component id="a2d33" class="javax.swing.JTextField" binding="numTarTextField">
                 <constraints>
                   <grid row="4" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -230,7 +230,7 @@
                   <text value="Número de cuotas:"/>
                 </properties>
               </component>
-              <component id="6b5a5" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+              <component id="6b5a5" class="javax.swing.JTextField" binding="numCuoTextField">
                 <constraints>
                   <grid row="5" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
