@@ -36,9 +36,7 @@ public class PagarArriendo extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        DateTimeFormatter tf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        fechaLabel.setText(LocalDate.now().toString());
-        //REVISAR*****************************************************************
+        fechaLabel.setText(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonth() + "/" + LocalDate.now().getYear());
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -79,6 +77,8 @@ public class PagarArriendo extends JDialog {
                 textField3.setEnabled(true);
                 numTarLabel.setEnabled(true);
                 textField4.setEnabled(true);
+                numCuoLabel.setEnabled(false);
+                textField5.setEnabled(false);
             }
         });
         creditoRadioButton.addActionListener(new ActionListener() {
@@ -90,6 +90,18 @@ public class PagarArriendo extends JDialog {
                 textField4.setEnabled(true);
                 numCuoLabel.setEnabled(true);
                 textField5.setEnabled(true);
+            }
+        });
+        contadoRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                numTranLabel.setEnabled(false);
+                textField3.setEnabled(false);
+                numTarLabel.setEnabled(false);
+                textField4.setEnabled(false);
+                numCuoLabel.setEnabled(false);
+                textField5.setEnabled(false);
             }
         });
     }
