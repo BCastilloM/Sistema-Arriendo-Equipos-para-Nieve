@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arreglando listaArriendosPorDevolver.">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arreglando pequeños detalles">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_24__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18-10-2022_22_37__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,9 +99,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Vista.Principal" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.CreaEquipo" />
         <item itemvalue="Application.Principal" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -371,7 +373,35 @@
       <option name="project" value="LOCAL" />
       <updated>1673391330011</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo.">
+      <created>1673482585716</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1673482585716</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo.">
+      <created>1673482723139</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1673482723139</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Arreglando pagar arriendo">
+      <created>1673483388032</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1673483388032</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Arreglando pagar arriendo 2">
+      <created>1673484166026</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1673484166026</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -398,9 +428,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arreglando métodos listaClientes y listaEquipos de ControladorArriendoEquipos (agregado &quot;i++&quot;)." />
-    <MESSAGE value="Cambios estéticos." />
-    <MESSAGE value="Inicializando activo en true (clase Cliente)." />
     <MESSAGE value="Agregando comentarios." />
     <MESSAGE value="Arreglando listaEquipos de la clase UIArriendoEquipos." />
     <MESSAGE value="Agregando autores." />
@@ -423,6 +450,9 @@
     <MESSAGE value="creacion de conjunto bien validada" />
     <MESSAGE value="creacion de conjunto bien validada v2" />
     <MESSAGE value="Agregando menu y nuevo implemento GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando menu y nuevo implemento GUI" />
+    <MESSAGE value="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo." />
+    <MESSAGE value="Arreglando pagar arriendo" />
+    <MESSAGE value="Arreglando pagar arriendo 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando pagar arriendo 2" />
   </component>
 </project>
