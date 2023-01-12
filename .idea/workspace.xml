@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo.">
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/Vista/ListadoArriendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/ListadoArriendo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
