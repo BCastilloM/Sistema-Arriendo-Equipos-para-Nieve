@@ -12,7 +12,7 @@ public class PagarArriendo extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textField1;
+    private JTextField arriendoCodtextField;
     private JButton buscarArriendoButton;
     private JLabel labelEstado;
     private JLabel labelRut;
@@ -24,7 +24,7 @@ public class PagarArriendo extends JDialog {
     private JRadioButton debitoRadioButton;
     private JRadioButton creditoRadioButton;
     private JLabel fechaLabel;
-    private JTextField textField2;
+    private JTextField montotextField;
     private JTextField textField3;
     private JTextField textField4;
     private JTextField textField5;
@@ -109,18 +109,19 @@ public class PagarArriendo extends JDialog {
     private void buscaArriendo() {
         long codArriendo;
         try {
-            String codStr = textField1.getText();
+            String codStr = arriendoCodtextField.getText();
             codArriendo = Integer.parseInt(codStr);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un número", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         String[] arriendo = ControladorArriendoEquipos.getInstance().consultaArriendoAPagar(codArriendo);
+        System.out.printf("%d %d", codArriendo, arriendo.length);
 
         if (arriendo.length == 0) {
             JOptionPane.showMessageDialog(this, "El arriendo no existe", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
-
             labelEstado.setText(arriendo[1]);
             labelRut.setText(arriendo[2]);
             labelNombre.setText(arriendo[3]);
@@ -131,13 +132,13 @@ public class PagarArriendo extends JDialog {
     }
     private void onOK() {
         int monto;
-        if(labelMonto.getText()==null|textField2.getText()==null) {
+        if(labelMonto.getText()==null| montotextField.getText()==null) {
             JOptionPane.showMessageDialog(this, "No ha pagado ningún arriendo", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }else {
-            long codArriendo = Long.parseLong(textField1.getText());
+            long codArriendo = Long.parseLong(arriendoCodtextField.getText());
             if(contadoRadioButton.isSelected()){
                 try {
-                    String montoStr = textField2.getText();
+                    String montoStr = montotextField.getText();
                     monto = Integer.parseInt(montoStr);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en monto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -153,7 +154,7 @@ public class PagarArriendo extends JDialog {
             }
             if(debitoRadioButton.isSelected()){
                 try {
-                    String montoStr = textField2.getText();
+                    String montoStr = montotextField.getText();
                     monto = Integer.parseInt(montoStr);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en monto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -186,7 +187,7 @@ public class PagarArriendo extends JDialog {
             }
             if(creditoRadioButton.isSelected()){
                 try {
-                    String montoStr = textField2.getText();
+                    String montoStr = montotextField.getText();
                     monto = Integer.parseInt(montoStr);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un número en monto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -231,9 +232,7 @@ public class PagarArriendo extends JDialog {
                 }
             }
         }
-
-
-        }
+    }
 
     private void onCancel() {
         // add your code here if necessary

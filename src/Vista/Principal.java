@@ -78,6 +78,25 @@ public class Principal extends JDialog {
                 dialog.setVisible(true);
             }
         });
+        listadoPagosArriendoButton.addActionListener(e -> {
+            String codigoString = JOptionPane.showInputDialog(null, "Ingrese", "", JOptionPane.QUESTION_MESSAGE);
+            if (codigoString == null) {
+                System.out.print("fjdklasjfklsdjfsklad\n");
+                return;
+            }
+            int codigo;
+            try {
+                codigo = Integer.parseInt(codigoString);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Error", "titut", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            ListadoPagosArriendo.display(codigo);
+        });
+
+        listadoArriendButton.addActionListener(e -> ListadoArriendo.display());
     }
     private void onLeer(){
         try {

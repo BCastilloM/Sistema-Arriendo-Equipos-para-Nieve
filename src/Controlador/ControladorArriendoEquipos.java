@@ -264,10 +264,14 @@ public class ControladorArriendoEquipos {
     public String[] consultaArriendoAPagar(long codigo) {
         Arriendo arriendo = buscaArriendo(codigo);
         if (arriendo == null) {
-            return new String[0];
-        } else if (arriendo.getEstado() != EstadoArriendo.DEVUELTO) {
+            System.out.println("Nunca");
             return new String[0];
         }
+        if (arriendo.getEstado().equals(EstadoArriendo.DEVUELTO)) {
+            System.out.println("tampoco aca");
+            return new String[0];
+        }
+        System.out.println("???????");
         String[] MontoAPagar = new String[7];
         MontoAPagar[0] = String.valueOf(arriendo.getCodigo());
         MontoAPagar[1] = String.valueOf(arriendo.getEstado()).toLowerCase();
@@ -302,27 +306,31 @@ public class ControladorArriendoEquipos {
         return new String[0][0];
     }
 
-    public String[][] listaArriendos() {
-        if (!(arriendos.isEmpty())) {
-            String[][] ArriendosArr = new String[arriendos.size()][7];
-            int i = 0;
-            for (Arriendo arriendo : arriendos) {
-                ArriendosArr[i][0] = String.valueOf(arriendo.getCodigo());
-                ArriendosArr[i][1] = String.valueOf(arriendo.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                if (arriendo.getEstado() == EstadoArriendo.DEVUELTO) {
-                    ArriendosArr[i][2] = String.valueOf(arriendo.getFechaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                } else {
-                    ArriendosArr[i][2] = "No devuelto";
-                }
-                ArriendosArr[i][3] = String.valueOf(arriendo.getEstado()).toLowerCase();
-                ArriendosArr[i][4] = arriendo.getCliente().getRut();
-                ArriendosArr[i][5] = arriendo.getCliente().getNombre();
-                ArriendosArr[i][6] = String.valueOf(arriendo.getMontoTotal());
-                i++;
-            }
-            return ArriendosArr;
+    public String[][] listaArriendos(LocalDate fechaInicio, LocalDate fechaFin) {
+        if ((arriendos.isEmpty())) {
+            return new String[0][0];
         }
-        return new String[0][0];
+        ArrayList<String[]> arriendosFiltrados = new ArrayList<>();
+
+        for (Arriendo arriendo : arriendos) {
+            if (arriendo.getFechaInicio().isAfter(fechaInicio) && fechaInicio.isBefore(fechaFin)) {
+                String[] datosArriendo = new String[7];
+                datosArriendo[0] = String.valueOf(arriendo.getCodigo());
+                datosArriendo[1] = arriendo.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                if (arriendo.getEstado() == EstadoArriendo.DEVUELTO) {
+                    datosArriendo[2] = arriendo.getFechaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                } else {
+                    datosArriendo[2] = "No devuelto";
+                }
+                datosArriendo[3] = String.valueOf(arriendo.getEstado()).toLowerCase();
+                datosArriendo[4] = arriendo.getCliente().getRut();
+                datosArriendo[5] = arriendo.getCliente().getNombre();
+                datosArriendo[6] = String.valueOf(arriendo.getMontoTotal());
+                arriendosFiltrados.add(datosArriendo);
+            }
+        }
+
+        return arriendosFiltrados.toArray(new String[0][0]);
     }
 
     public String[][] listaArriendosPorDevolver(String rut) throws ClienteException {

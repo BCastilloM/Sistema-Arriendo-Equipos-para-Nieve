@@ -665,7 +665,7 @@ public class UIArriendoEquipos {
             return;
         }
 
-        String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos();
+        String[][] datosArriendos = ControladorArriendoEquipos.getInstance().listaArriendos(ldFechaInicio, ldFechaFin);
 
         if (datosArriendos.length > 0) {
             System.out.println("\n\n\n\nLISTADO DE ARRIENDOS");
@@ -673,9 +673,7 @@ public class UIArriendoEquipos {
             System.out.printf("%-8s%-15s%-15s%-12s%-15s%-12s%n", "Codigo", "Fecha inicio", "Fecha devol.", "Estado", "Rut cliente", "Monto total");
 
             for (String[] datosArriendo : datosArriendos) {
-                if (LocalDate.parse(datosArriendo[1], tf).isAfter(ldFechaInicio) && LocalDate.parse(datosArriendo[1], tf).isBefore(ldFechaFin)) {
-                    System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
-                }
+                System.out.printf("%-8s%-15s%-15s%-12s%-15s%10s%n", datosArriendo[0], datosArriendo[1], datosArriendo[2], datosArriendo[3], datosArriendo[4], datosArriendo[6]);
             }
         } else {
             System.out.println("No se han registrado Arriendos");
