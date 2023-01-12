@@ -56,11 +56,7 @@ public class ListadoArriendo extends JDialog {
 
         buttonList.addActionListener(e -> listar());
 
-        buttonBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onBack();
-            }
-        });
+        buttonBack.addActionListener(e -> onBack());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -86,7 +82,7 @@ public class ListadoArriendo extends JDialog {
             inicio = LocalDate.parse(textFieldInicio.getText(), formatter);
             fin = LocalDate.parse(textFieldFin.getText(), formatter);
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "error", "error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Fecha no válida", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
