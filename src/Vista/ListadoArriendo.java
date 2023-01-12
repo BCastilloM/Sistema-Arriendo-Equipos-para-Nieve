@@ -104,6 +104,8 @@ public class ListadoArriendo extends JDialog {
         for (int i=0; i<table.getColumnCount();i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
         }
+        textFieldFin.setText("");
+        textFieldInicio.setText("");
     }
 
     private void onBack() {
