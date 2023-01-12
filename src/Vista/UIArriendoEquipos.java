@@ -103,13 +103,13 @@ public class UIArriendoEquipos {
         do {
             System.out.print("\nRut: ");
             rut = scan.next();
+            if (rut.length() == 12) {
             try {
                 int intRut = (rut.charAt(0) + rut.charAt(1) + rut.charAt(3) + rut.charAt(4) + rut.charAt(5) + rut.charAt(7) + rut.charAt(8) + rut.charAt(9));
             } catch (NumberFormatException e) {
                 System.out.println("No se ingresó una opcion válida");
                 return;
             }
-            if (rut.length() == 12) {
                 String ultDig = String.valueOf(rut.charAt(11));
                 for (int i = 0; i <= 9; i++) {
                     if (ultDig.equals(i)) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Vista/ListadoArriendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/ListadoArriendo.java" afterDir="false" />
+    <list default="true" id="dd219737-58ba-426a-96b3-b65b0758c646" name="Changes" comment="Arreglando pagar arriendo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
       <recent name="C:\Users\angel\OneDrive\Escritorio\PSeInt\nieveeeeee\src\Vista" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Vista.Principal">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CreaEquipo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CreaEquipo" />
       <module name="Sistema Arriendo Equipos para Nieve V1" />
@@ -96,10 +96,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Vista.Principal" />
         <item itemvalue="Application.CreaEquipo" />
         <item itemvalue="Application.Principal" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -385,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673482723139</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Arreglando pagar arriendo">
+      <created>1673483388032</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1673483388032</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -412,7 +419,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambios estéticos." />
     <MESSAGE value="Inicializando activo en true (clase Cliente)." />
     <MESSAGE value="Agregando comentarios." />
     <MESSAGE value="Arreglando listaEquipos de la clase UIArriendoEquipos." />
@@ -437,6 +443,7 @@
     <MESSAGE value="creacion de conjunto bien validada v2" />
     <MESSAGE value="Agregando menu y nuevo implemento GUI" />
     <MESSAGE value="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Terminando listados arriendos y pagos de un arriendo. Arreglando ControladorArriendoEquipos. Arreglando PagarArriendo." />
+    <MESSAGE value="Arreglando pagar arriendo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando pagar arriendo" />
   </component>
 </project>
